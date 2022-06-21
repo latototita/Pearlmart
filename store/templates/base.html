@@ -3783,6 +3783,152 @@ only screen and (min-width: 768px) and (max-width: 991px) {
     border-radius: 10%;
     text-transform: uppercase;
 }
+.product-item .product-thumb .product-label-discount {
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+.product-item .product-thumb .product-label-discount span {
+    width: 100px;
+    height: 50px;
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+    line-height: 50px;
+    display: block;
+    background-color:#C70039;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 10%;
+    text-transform: uppercase;
+}
+
+.product-item .product-thumb .product-label-featured {
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+.product-item .product-thumb .product-label-featured span {
+    width: 100px;
+    height: 50px;
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+    line-height: 50px;
+    display: block;
+    background-color:#FF5733;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 10%;
+    text-transform: uppercase;
+}
+
+.product-item .product-thumb .product-label-top_rated {
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+.product-item .product-thumb .product-label-top_rated span {
+    width: 100px;
+    height: 50px;
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+    line-height: 50px;
+    display: block;
+    background-color:#FFC300;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 10%;
+    text-transform: uppercase;
+}
+
+.product-item .product-thumb .product-label-most_sold {
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+.product-item .product-thumb .product-label-most_sold span {
+    width: 100px;
+    height: 50px;
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+    line-height: 50px;
+    display: block;
+    background-color:#900C3F;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 10%;
+    text-transform: uppercase;
+}
+
+.product-item .product-thumb .product-label-most_seen {
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+.product-item .product-thumb .product-label-most_seen span {
+    width: 100px;
+    height: 50px;
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+    line-height: 50px;
+    display: block;
+    background-color:#581845;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 10%;
+    text-transform: uppercase;
+}
+
+.product-item .product-thumb .product-label-hot_sale {
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+.product-item .product-thumb .product-label-hot_sale span {
+    width: 100px;
+    height: 50px;
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+    line-height: 50px;
+    display: block;
+    background-color:#3b084f;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 10%;
+    text-transform: uppercase;
+}
+.product-item .product-thumb .product-label-black_sale {
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+.product-item .product-thumb .product-label-black_sale span {
+    width: 100px;
+    height: 50px;
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+    line-height: 50px;
+    display: block;
+    background-color:#f19409;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 10%;
+    text-transform: uppercase;
+}
+
 
 .product-item .product-thumb .product-action-link {
     top: 0;
@@ -8434,13 +8580,17 @@ only screen and (max-width: 767px) {
                 <div class="row">
                     <div class="col-12">
                         <div class="brand-active slick-padding slick-arrow-style">
-                            {% for brand in brands %}       
-                            <div class="brand-item text-center" >
-                                <span  class="product-tag bold" >
-                                <a href="/?brand={{brand.id}}" ><i style="background-color: #ffffff;color: #ffffff;size: landscape;min-height:100%; min-width: 100%;"></i> {{ brand.name }} </a></span>
+                            {% for brand in brands %}
+                            <div class="brand-item text-center" style="background-color:#d8373e;">
+                                <div class="blog-sidebar mb-24" style="background-color:#d8373e;">
+                                    
+                                    <ul>
+                                        <li style="border-color:#d8373e; color: white;text-transform: uppercase;"><a href="/?brand={{brand.id}}" style="color:white;">{{ brand.name }} </a></li>
+                                       
+                                    </ul>
+                                </div>
                             </div>
                             {% endfor %}
-                            
                         </div>
                     </div>
                 </div>
@@ -8551,7 +8701,9 @@ only screen and (max-width: 767px) {
                 <div class="container">
                     <div class="footer-bottom-wrap">
                         <div class="copyright-text">
-                            
+                            <p>Copyright@<a target="_blank">
+                            Pearl Age of Technologies
+                            </a></p>
                         </div>
                         <div class="payment-method-img">
                            

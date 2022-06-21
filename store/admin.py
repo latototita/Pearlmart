@@ -35,9 +35,10 @@ admin.site.register(Comment, CommentAdmin)
 
 
 class AdminProduct(admin.ModelAdmin):
-    list_display = ['name', 'price','stock','category','brand','image','description','date']
+    list_display = ['name', 'price','stock','category','brand','image','date','discount','is_featured','is_top_rated','is_best_selling','is_new_arrival','is_most_viewed','is_new_product', 'is_hot_sale','is_hot_deal',]
     search_fields = ('name','category', 'brand','price','stock')
     list_filter = ('brand', 'date','category')
+    list_editable = ('discount','is_featured','is_top_rated','is_best_selling','is_new_arrival','is_most_viewed','is_new_product', 'is_hot_sale','is_hot_deal',)
 
 
 class AdminBrand(admin.ModelAdmin):

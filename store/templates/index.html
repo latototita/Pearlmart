@@ -78,28 +78,33 @@
                                             <a href="{% url 'details' product.id %}">
                                                     <img src="{{product.image.url}}"  class="img-pri" alt="">
                                             </a>
+                                            {% if product.discount == True %}
+                                            <div class="product-label-discount" style="border-radius: 50%; color: purple;">
+                                                <span>{{ product.discount_percentage}}% OFF</span>
+                                            </div>
+                                        {% else  %}
                                             {% if product.is_new_arrival == True %}
                                             <div class="product-label">
                                                 <span>New Stock</span>
                                             </div>
                                             
                                             {% elif product.is_featured == True %}
-                                            <div class="product-label">
+                                            <div class="product-label-featured">
                                                 <span>Featured</span>
                                             </div>
                                             
                                             {% elif product.is_top_rated == True %}
-                                            <div class="product-label">
+                                            <div class="product-label-top_rated">
                                                 <span>Top Rated</span>
                                             </div>
                                             
                                             {% elif product.is_best_selling == True %}
-                                            <div class="product-label">
+                                            <div class="product-label-most_sold">
                                                 <span>Most Sold</span>
                                             </div>
                                             
                                             {% elif product.is_most_viewed == True %}
-                                            <div class="product-label">
+                                            <div class="product-label-most_seen">
                                                 <span>Most Seen</span>
                                             </div>
                                             
@@ -107,16 +112,16 @@
                                             <div class="product-label">
                                                 <span>Just Added</span>
                                             </div>
-                                            
                                             {% elif product.is_hot_sale == True %}
-                                            <div class="product-label">
+                                            <div class="product-label-hot_sale">
                                                 <span>Hot Sale</span>
                                             </div>
                                             {% else  %}
-                                            <div class="product-label">
+                                            <div class="product-label-black_sale">
                                                 <span>Black Sale</span>
                                             </div>
-                                            {% endif %}
+                                            {% endif %}    
+                                        {% endif %}
                                             <div class="product-action-link">
                                                 <a href="{% url 'details' product.id %}" > <span data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search"></i></span> </a>
                                                <form action="/#" method="POST" class="buy-btn">
@@ -156,28 +161,33 @@
                                             <a href="{% url 'details' product.id %}">
                                                 <img src="{{product.image.url}}"  id="img1"  style="visibility: visible;" alt="">
                                             </a>
+                                            {% if product.discount == True %}
+                                            <div class="product-label-discount" style="border-radius: 50%; color: purple;">
+                                                <span>{{ product.discount_percentage}}% OFF</span>
+                                            </div>
+                                        {% else  %}
                                             {% if product.is_new_arrival == True %}
                                             <div class="product-label">
                                                 <span>New Stock</span>
                                             </div>
                                             
                                             {% elif product.is_featured == True %}
-                                            <div class="product-label">
+                                            <div class="product-label-featured">
                                                 <span>Featured</span>
                                             </div>
                                             
                                             {% elif product.is_top_rated == True %}
-                                            <div class="product-label">
+                                            <div class="product-label-top_rated">
                                                 <span>Top Rated</span>
                                             </div>
                                             
                                             {% elif product.is_best_selling == True %}
-                                            <div class="product-label">
+                                            <div class="product-label-most_sold">
                                                 <span>Most Sold</span>
                                             </div>
                                             
                                             {% elif product.is_most_viewed == True %}
-                                            <div class="product-label">
+                                            <div class="product-label-most_seen">
                                                 <span>Most Seen</span>
                                             </div>
                                             
@@ -185,16 +195,16 @@
                                             <div class="product-label">
                                                 <span>Just Added</span>
                                             </div>
-                                            
                                             {% elif product.is_hot_sale == True %}
-                                            <div class="product-label">
+                                            <div class="product-label-hot_sale">
                                                 <span>Hot Sale</span>
                                             </div>
                                             {% else  %}
-                                            <div class="product-label">
+                                            <div class="product-label-black_sale">
                                                 <span>Black Sale</span>
                                             </div>
-                                            {% endif %}
+                                            {% endif %}    
+                                        {% endif %}
                                         </div>
                                         <div class="product-list-content">
                                             <h3><a href="{% url 'details' product.id %}">{{ product.name }}</a></h3>
