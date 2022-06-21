@@ -49,6 +49,7 @@ class Post(models.Model):
     liked = models.ManyToManyField(
         settings.AUTH_USER_MODEL, blank=True, related_name='liked')
     date_posted = models.DateTimeField(default=timezone.now)
+    is_news=models.BooleanField(default=False)
 
     objects = PostManager()
 

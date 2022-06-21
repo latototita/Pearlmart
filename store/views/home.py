@@ -152,6 +152,7 @@ def homepage(request):
     random.shuffle(list(products))
 
     latest=Post.objects.order_by('-date_posted')[:5]
+    news=Post.objects.filter(is_news=True).order_by('-date_posted')[:3]
 
     fashion_cat=Category.objects.filter(is_tech=True)
     tech_cat=Category.objects.filter(is_fashion=True)
@@ -162,7 +163,7 @@ def homepage(request):
 
 
         
-    context={'latest':latest,'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'homepage':'homepage','trending':trending,'hot_deal':hot_deal,'productes':productes,'products':products,'brands':brands,'categories':categories ,'top_rated':top_rated,'featured':featured,'best_selling':best_selling,'new_arrival':new_arrival,'new_product':new_product,'hot_sale':hot_sale}
+    context={'news':news,'latest':latest,'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'homepage':'homepage','trending':trending,'hot_deal':hot_deal,'productes':productes,'products':products,'brands':brands,'categories':categories ,'top_rated':top_rated,'featured':featured,'best_selling':best_selling,'new_arrival':new_arrival,'new_product':new_product,'hot_sale':hot_sale}
 
     return render(request, 'home.html', context)
 
