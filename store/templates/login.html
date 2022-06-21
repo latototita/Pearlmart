@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load cart %}
+{% load custom_filter %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+
+
+        <!-- breadcrumb area start -->
+        <div class="breadcrumb-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb-wrap">
+                            <nav aria-label="breadcrumb">
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/homepage">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">login-register</li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- breadcrumb area end -->
+
+        <!-- login register wrapper start -->
+        <div class="login-register-wrapper">
+            <div class="container">
+                <div class="member-area-from-wrap">
+                    <div class="row">
+                        <!-- Login Content Start -->
+                        <div class="col-lg-6">
+                            <div class="login-reg-form-wrap  pr-lg-50">
+                                <h2>Log In</h2>
+                                {% if messages %}
+                                {% for message in messages %}
+                                <p style="background-color: indianred;">{{message}}</p>
+                                {% endfor %}
+                                {% endif %}
+                                <form action="" method="POST">
+                                    {% csrf_token %}
+                                        {% if error%}
+                                            <div class="alert alert-danger" role="alert">
+                                                {{error}}
+                                            </div>
+                                            {% endif %}
+                                    <div class="single-input-item">
+                                        <input required type="username" name="username" id="" class=" form-control-sm form-control" placeholder="Username">
+                                    </div>
+                                    <div class="single-input-item">
+                                        <input type="password" name="password" id="" class="form-control form-control-sm" placeholder="********">
+                                    </div>
+                                    <div class="single-input-item">
+                                        <div class="login-reg-form-meta d-flex align-items-center justify-content-between">
+                                            
+                                            <a href="/reset_password" class="forget-pwd">Forget Password?</a>
+                                        </div>
+                                    </div>
+                                    <div class="single-input-item">
+{% if request.GET.next %}
+                    <input type="hidden" name="next" value="{{request.GET.next}}"/>
+                    {% endif %}
+                                        <p><input class="btn btn-primary my-2 my-sm-0" type="submit" value="Login"></p>
+                                    
+                                    </div>
+                                </form>
+                                <div class="single-input-item">
+                                        <p class="btn btn-danger my-2 my-sm-0"><a href="/signup" style="color:white;max-width: inherit;">Or Register Here</a></p>
+                                        <p class="btn btn-danger my-2 my-sm-0"><a href="/signup" style="color:white;max-width: inherit;">If Already Register,Join And Sell Here </a></p>
+                                    </div>
+                            </div>
+                        </div>
+                        <!-- Login Content End -->
+
+                        </div>
+
+{% endblock %}

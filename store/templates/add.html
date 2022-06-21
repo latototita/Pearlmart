@@ -1,0 +1,66 @@
+{% extends 'base1.html' %}
+
+
+{% load crispy_forms_tags %}
+{% block body %}
+
+<!-- Register Content Start -->
+                        <div class="col-lg-6">
+                            <div class="login-reg-form-wrap mt-md-34 mt-sm-34">
+                                <h2>Singup Form</h2>
+                                <form action="vendor_add_product" method="post">
+                                    {% csrf_token %}
+                                    <div class="single-input-item">
+                                                <label for="name" class="bold">Name</label>
+                                                <input type="character" name="name" id="name" placeholder="Name of Product"  required />
+                                    </div>
+                                   <div class="single-input-item">
+                                                <label for="price" class="bold">Price of the Product</label>
+                                                <input type="integer" name="price" id="" placeholder="Eg 3000" required />
+                                            </div>
+                                            <div class="single-input-item">
+                                                <label for="price" class="bold">Stock Number</label>
+                                                <input type="integer" name="stock" id="" placeholder="Eg 10" required />
+                                            </div>
+                                            
+                                            <div class="single-input-item">
+                                                <p>Choose Category : </p>
+
+                                                <select class="nice-select" name="category">
+                                                    {% for category in categories %}
+                                                    <option value="{{category.id}}" ><a href>{{ category.name }}</option>
+                                                        {% endfor %}
+                                                </select>
+                                            </div>
+                                            <div class="single-input-item">
+                                                <p>Choose Brand : </p>
+                                                <select class="nice-select" name="brand">
+                                                    {% for brand in brands %}
+                                                    <option value="{{brand.id}}" ><a href>{{ brand.name }}</option />
+                                                    {% endfor %}
+
+                                                </select>
+                                            </div>
+
+                                            <div class="single-input-item">
+                                                <label for="description" class="bold">Product Description</label>
+                                                <input type="text" name="description" id="" placeholder="Summary of Product" required />
+                                            </div>
+                                            <div class="single-input-item">
+                                                <label for="image" class="bold">Product Picture</label>
+                                                <input type="file" name="image" id="image" placeholder="Chose a Good Looking Picture for image" accept="image" required />
+                                            </div>
+                                    <div class="single-input-item">
+                                        <button class="sqr-btn" type="submit" >Register</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Register Content End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- login register wrapper end -->
+
+{% endblock %}

@@ -1,0 +1,780 @@
+{% extends "base.html" %}
+{% load static %}
+{% load cart %}
+{% load custom_filter %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+        <!-- hero slider start -->
+        <div class="hero-slider-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="slider-wrapper-area2 mt-30">
+                            <div class="hero-slider-active hero__2 slick-dot-style hero-dot">
+                                <div class="single-slider d-flex align-items-center" style="background-image: url('/static/assets/img/banner17.webp');">
+                                    <div class="container">
+                                        <div class="slider-main-content">
+                                            <div class="slider-text text-center">
+                                                <h2>New shoe products</h2>
+                                                <h3>get up to 10% discount</h3>
+                                                <p>Variety of Shoes in Stock. </p>
+                                                <a class="home-btn" href="/store">shop now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-slider d-flex align-items-center" style="background-image: url('/static/assets/img/banner44.webp');">
+                                    <div class="container">
+                                        <div class="slider-main-content">
+                                            <div class="slider-text text-center">
+                                                <h2>Jewellery products</h2>
+                                                <h3>get up to 17% discount</h3>
+                                                <p>Ranging from watches, necklaces,bracelets etc.. </p>
+                                                <a class="home-btn" href="/store">shop now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-slider d-flex align-items-center" style="background-image: url('/static/assets/img/speakers.jpg');">
+                                    <div class="container">
+                                        <div class="slider-main-content">
+                                            <div class="slider-text text-center">
+                                                <h2>Electronics</h2>
+                                                <h3>22.5% discount all here</h3>
+                                                <p>Best electronics here eg Ailipu, Djack... </p>
+                                                <a class="home-btn" href="/store">shop now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-slider d-flex align-items-center" style="background-image: url('/static/assets/img/grains.webp');">
+                                    <div class="container">
+                                        <div class="slider-main-content">
+                                            <div class="slider-text text-center">
+                                                <h2>Grocery Products</h2>
+                                                <h3>Buy Fresh Prroducts</h3>
+                                                <p>All in our stock here...</p>
+                                                <a class="home-btn" href="/store">shop now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-slider d-flex align-items-center" style="background-image: url('/static/assets/img/banner15.webp');">
+                                    <div class="container">
+                                        <div class="slider-main-content">
+                                            <div class="slider-text text-center">
+                                                <h2>Clothes</h2>
+                                                <h3>Ladies and Gentlemen</h3>
+                                                <p>Jackets,Tshirts,Dresses etc...</p>
+                                                <a class="home-btn" href="/store">shop now</a>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="single-slider d-flex align-items-center" style="background-image: url('/static/assets/img/slider/1.jpg');">
+                                    <div class="container">
+                                        <div class="slider-main-content">
+                                            <div class="slider-text text-center">
+                                                <h2>Office Supllies</h2>
+                                                <h3>All office equipment</h3>
+                                                <p>Chairs,Table, White Boards etc..</p>
+                                                <a class="home-btn" href="/store">shop now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- hero slider end -->
+        
+
+        <!-- home banner area start -->
+        <div class="banner-area mt-30">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 order-1">
+                        <div class="img-container img-full fix imgs-res mb-sm-30">
+                            <a>
+                                <img src="{% static 'assets/img/18-removebg-preview.png' %}" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-5 order-sm-3">
+                        <div class="img-container img-full fix mb-30">
+                            <a>
+                                <img src="{% static 'assets/img/banner29.jpg' %}" alt="">
+                            </a>
+                        </div>
+                        <div class="img-container img-full fix mb-30">
+                            <a >
+                                <img src="{% static 'assets/img/banner/banner_static_top2.jpg' %}" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 order-2 order-md-3">
+                        <div class="img-container img-full fix">
+                            <a>
+                                <img src="{% static 'assets/img/front-view-room-with-bed-modern-wooden-night-tables-mockup_176382-1965.webp' %}" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- home banner area end -->
+
+        <!-- page wrapper start -->
+        <div class="page-wrapper pt-6 pb-28 pb-md-6 pb-sm-6 pt-xs-36">
+            <div class="container">
+                <div class="row">
+                    <!-- start home sidebar -->
+                    <div class="col-lg-3">
+                        <div class="home-sidebar">
+                            <!-- hot deals area start -->
+                            <div class="main-sidebar hot-deals-wrap mb-30">
+                                <div class="section-title-2 d-flex justify-content-between mb-28">
+                                    <h3>hot deals</h3>
+                                    <div class="slick-append"></div>
+                                </div> <!-- section title end -->
+                                <div class="deals-carousel-active slick-padding slick-arrow-style">
+                                    {% for product in hot_deal %}
+                                    <!-- product single item start -->
+                                    <div class="product-item fix">
+                                        <div class="product-thumb">
+                                            <a href="{% url 'details' product.id %}">
+                                                <img src="{{product.image.url}}" class="img-pri" alt="">
+                                                <img src="{% static 'assets/img/product/product-img13.jpg' %}" class="img-sec" alt="">
+                                            </a>
+                                            </a>
+                                            {% if product.is_new_arrival == True %}
+                                            <div class="product-label">
+                                                <span>New Stock</span>
+                                            </div>
+                                            
+                                            {% elif product.is_featured == True %}
+                                            <div class="product-label">
+                                                <span>Featured</span>
+                                            </div>
+                                            
+                                            {% elif product.is_top_rated == True %}
+                                            <div class="product-label">
+                                                <span>Top Rated</span>
+                                            </div>
+                                            
+                                            {% elif product.is_best_selling == True %}
+                                            <div class="product-label">
+                                                <span>Most Sold</span>
+                                            </div>
+                                            
+                                            {% elif product.is_most_viewed == True %}
+                                            <div class="product-label">
+                                                <span>Most Seen</span>
+                                            </div>
+                                            
+                                            {% elif product.is_new_product == True %}
+                                            <div class="product-label">
+                                                <span>Just Added</span>
+                                            </div>
+                                            
+                                            {% elif product.is_hot_sale == True %}
+                                            <div class="product-label">
+                                                <span>Hot Sale</span>
+                                            </div>
+                                            {% else  %}
+                                            <div class="product-label">
+                                                <span>Black Sale</span>
+                                            </div>
+                                            {% endif %}
+                                            <div class="product-action-link">
+                                                <a href="{% url 'details' product.id %}" > <span data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search"></i></span> </a>
+                                               <form action="/#" method="POST" class="buy-btn">
+                            {% csrf_token %}
+                            <input hidden type="text" name='product' value='{{product.id}}' >
+                        <input type="submit"  data-toggle="tooltip" class="btn btn-primary" data-placement="top" value="Add to Cart" title="Add to cart"></form> 
+                                            </div>
+                                        </div>
+                                        <div class="product-content">
+                                            <h4><a href="{% url 'details' product.id %}">{{ product.name }}</a></h4>
+                                            <div class="pricebox">
+                                                <span class="regular-price">{{ product.price }}/=</span>
+                                                <div class="ratings">
+                                                    <span class="good"><i class="fa fa-star"></i></span>
+                                                    <span class="good"><i class="fa fa-star"></i></span>
+                                                    <span class="good"><i class="fa fa-star"></i></span>
+                                                    <span class="good"><i class="fa fa-star"></i></span>
+                                                    <span><i class="fa fa-star"></i></span>
+                                                    <div class="pro-review">
+                                                        <span>1 review(s)</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- product single item end -->
+                                    {% endfor %}
+                                    
+                                </div>
+                            </div>
+                            <!-- hot deals area end -->
+
+                            <!-- best seller area start -->
+                            <div class="main-sidebar category-wrapper mb-24">
+                                <div class="section-title-2 d-flex justify-content-between mb-28">
+                                    <h3>best seller</h3>
+                                    <div class="category-append"></div>
+                                </div> <!-- section title end -->
+                                
+                                <div class="category-carousel-active row" data-row="4">
+                                    {% for product in best_selling %}
+                                    <div class="col">
+                                        <div class="category-item">
+                                            <div class="category-thumb">
+                                                <a href="{% url 'details' product.id %}">
+                                                    <img src="{{product.image.url}}" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="category-content">
+                                                <h4><a href="{% url 'details' product.id %}">{{ product.name }}</a></h4>
+                                                <div class="price-box">
+                                                    <div class="regular-price">
+                                                        {{ product.price }}/=
+                                                    </div>
+                                                    <div class="old-price">
+                                                        <del>$180.00</del>
+                                                    </div>
+                                                </div>
+                                                <div class="ratings">
+                                                    <span class="good"><i class="fa fa-star"></i></span>
+                                                    <span class="good"><i class="fa fa-star"></i></span>
+                                                    <span class="good"><i class="fa fa-star"></i></span>
+                                                    <span class="good"><i class="fa fa-star"></i></span>
+                                                    <span><i class="fa fa-star"></i></span>
+                                                    <div class="pro-review">
+                                                        <span>1 review(s)</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> <!-- end single item -->
+                                    </div> <!-- end single item column -->
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <!-- blog area start -->
+                            <div class="main-sidebar blog-area mb-24">
+                                <div class="section-title-2 d-flex justify-content-between mb-28">
+                                    <h3>latest blog</h3>
+                                    <div class="category-append"></div>
+                                </div> <!-- section title end -->
+                                <!-- blog wrapper start -->
+                                <div class="blog-carousel-active">
+                                    {% for post in latest %}
+                                    <div class="blog-item">
+                                        <div class="blog-thumb img-full fix">
+                                            <a href="{% url 'post_detail' post.pk %}">
+                                                <img src="{{post.image.url}}" style="height: 340px;" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="blog-content">
+                                            <h3><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h3>
+                                            <div class="blog-meta">
+                                                <span class="posted-author">by: {{ post.author }}</span>
+                                                <span class="post-date">{{ post.date_posted|date:"F d, Y" }}</span>
+                                            </div>
+                                            <p>{{ post.content|safe }}</p>
+                                        </div>
+                                        <a href="{% url 'post_detail' post.pk %}">read more <i class="fa fa-long-arrow-right"></i></a>
+                                    </div> <!-- end single blog item -->
+                                    {% endfor %}
+                                    
+                                </div>
+                                <!-- blog wrapper end -->
+                            </div>
+                            <!-- blog area end -->
+
+                            <!-- testimonial area start -->
+                            <div class="main-sidebar testimonial-area pb-sm-70">
+                                <div class="section-title-2 mb-28">
+                                    <h3>Blog News Trend</h3>
+                                </div> <!-- section title end -->
+                                
+                                <div class="testimonial-carousel-active slick-dot-style">
+                                    {% for post in Post_list2 %}
+                                    <div class="testimonial-item text-center">
+                                        <div class="testimonial-thumb">
+                                            <img src="{{ post.author.profile.image.url }}" alt="">
+                                        </div>
+                                        <div class="testimonial-content">
+                                            <h3><a href="{% url 'post_detail' post.pk %}">{{ post.author }}</a></h3>
+                                            <p>{{ post.content|safe }}</p>
+                                        </div>
+                                    </div> <!-- end single testimonial item -->
+                                    {% endfor %}
+                                    
+                                </div>
+                            </div>
+                            <!-- testimonial area end -->
+
+                        </div>
+                    </div>
+                    <!-- end home sidebar -->
+
+                    <div class="col-lg-9">
+                        <!-- featured category area start -->
+                        <div class="feature-category-area mt-md-70 ">
+                            <div class="section-title mb-30">
+                                <div class="title-icon">
+                                    <i class="fa fa-bookmark"></i>
+                                </div>
+                                <h3>featured</h3>
+                            </div> <!-- section title end -->
+                            <!-- featured category start -->
+                            <div class="latest-product-active slick-padding slick-arrow-style">
+                            
+                                <!-- product single item start -->
+                                {% for product in featured %}
+                                <div class="product-item fix">
+                                    <div class="product-thumb">
+                                        <a href="{% url 'details' product.id %}">
+                                            <img src="{{ product.image.url }}" id="img1" style="height: 210px;"  alt="">
+                                        </a>
+                                     
+                                            {% if product.is_new_arrival == True %}
+                                            <div class="product-label" style="right: 0px;">
+                                                <span>New Stock</span>
+                                            </div>
+                                            
+                                            {% elif product.is_featured == True %}
+                                            <div class="product-label">
+                                                <span>Featured</span>
+                                            </div>
+                                            
+                                            {% elif product.is_top_rated == True %}
+                                            <div class="product-label">
+                                                <span>Top Rated</span>
+                                            </div>
+                                            
+                                            {% elif product.is_best_selling == True %}
+                                            <div class="product-label">
+                                                <span>Most Sold</span>
+                                            </div>
+                                            
+                                            {% elif product.is_most_viewed == True %}
+                                            <div class="product-label">
+                                                <span>Most Seen</span>
+                                            </div>
+                                            
+                                            {% elif product.is_new_product == True %}
+                                            <div class="product-label">
+                                                <span>Just Added</span>
+                                            </div>
+                                            
+                                            {% elif product.is_hot_sale == True %}
+                                            <div class="product-label">
+                                                <span>Hot Sale</span>
+                                            </div>
+                                            {% else  %}
+                                            <div class="product-label">
+                                                <span>Black Sale</span>
+                                            </div>
+                                            {% endif %}
+                                            <div class="product-action-link">
+                                                <a href="{% url 'details' product.id %}" > <span data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search"></i></span> </a>
+                                               <form action="/#" method="POST" class="buy-btn">
+                            {% csrf_token %}
+                            <input hidden type="text" name='product' value='{{product.id}}' >
+                        <input type="submit"  data-toggle="tooltip" class="btn btn-primary" data-placement="top" value="Add to Cart" title="Add to cart"></form> 
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <h4><a href="{% url 'details' product.id %}">{{ product.name }}</a></h4>
+                                        <div class="pricebox">
+                                            <span class="regular-price">{{ product.price }}/=</span>
+                                            <div class="ratings">
+                                                <span class="good"><i class="fa fa-star"></i></span>
+                                                <span class="good"><i class="fa fa-star"></i></span>
+                                                <span class="good"><i class="fa fa-star"></i></span>
+                                                <span class="good"><i class="fa fa-star"></i></span>
+                                                <span><i class="fa fa-star"></i></span>
+                                                <div class="pro-review">
+                                                    <span>1 review(s)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {% endfor %}
+                                <!-- product single item end -->
+                                
+                            </div>
+                            <!-- featured category end -->
+                        </div>
+                        <!-- featured category area end -->
+
+                        <!-- banner statistic start -->
+                        <div class="banner-statistic pt-28 pb-36">
+                            <div class="img-container fix img-full">
+                                <a >
+                                    <img src="{% static 'assets/img/banner24.webp' %}" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <!-- banner statistic end -->
+
+                        <!-- featured category area start -->
+                        <div class="feature-category-area">
+                            <div class="section-title mb-30">
+                                <div class="title-icon">
+                                    <i class="fa fa-flask"></i>
+                                </div>
+                                <h3>New Arrivals</h3>
+                            </div> <!-- section title end -->
+                            <!-- featured category start -->
+                            <div class="latest-product-active slick-padding slick-arrow-style">
+                                {% for product in new_arrival %}
+                                <!-- product single item start -->
+                                <div class="product-item fix">
+                                    <div class="product-thumb">
+                                        <a href="{% url 'details' product.id %}">
+                                            <img src="{{product.image.url}}" class="img-pri" alt="">
+                                            <img src="{% static 'assets/img/product/product-img2.jpg' %}" class="img-sec" alt="">
+                                        </a>
+                                        
+                                            {% if product.is_new_arrival == True %}
+                                            <div class="product-label">
+                                                <span>New Stock</span>
+                                            </div>
+                                            
+                                            {% elif product.is_featured == True %}
+                                            <div class="product-label">
+                                                <span>Featured</span>
+                                            </div>
+                                            
+                                            {% elif product.is_top_rated == True %}
+                                            <div class="product-label">
+                                                <span>Top Rated</span>
+                                            </div>
+                                            
+                                            {% elif product.is_best_selling == True %}
+                                            <div class="product-label">
+                                                <span>Most Sold</span>
+                                            </div>
+                                            
+                                            {% elif product.is_most_viewed == True %}
+                                            <div class="product-label">
+                                                <span>Most Seen</span>
+                                            </div>
+                                            
+                                            {% elif product.is_new_product == True %}
+                                            <div class="product-label">
+                                                <span>Just Added</span>
+                                            </div>
+                                            
+                                            {% elif product.is_hot_sale == True %}
+                                            <div class="product-label">
+                                                <span>Hot Sale</span>
+                                            </div>
+                                            {% else  %}
+                                            <div class="product-label">
+                                                <span>Black Sale</span>
+                                            </div>
+                                            {% endif %}
+                                            <div class="product-action-link">
+                                                <a href="{% url 'details' product.id %}" > <span data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search"></i></span> </a>
+                                               <form action="/#" method="POST" class="buy-btn">
+                            {% csrf_token %}
+                            <input hidden type="text" name='product' value='{{product.id}}' >
+                        <input type="submit"  data-toggle="tooltip" class="btn btn-primary" data-placement="top" value="Add to Cart" title="Add to cart"></form> 
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <h4><a href="{% url 'details' product.id %}">{{ product.name }}</a></h4>
+                                        <div class="pricebox">
+                                            <span class="regular-price">{{ product.price }}/=</span>
+                                            <div class="ratings">
+                                                <span class="good"><i class="fa fa-star"></i></span>
+                                                <span class="good"><i class="fa fa-star"></i></span>
+                                                <span class="good"><i class="fa fa-star"></i></span>
+                                                <span class="good"><i class="fa fa-star"></i></span>
+                                                <span><i class="fa fa-star"></i></span>
+                                                <div class="pro-review">
+                                                    <span>1 review(s)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <!-- product single item end -->
+                                
+                            </div>
+                            <!-- featured category end -->
+                        </div>
+                        <!-- featured category area end -->
+
+                        <!-- banner statistic start -->
+                        <div class="banner-statistic pt-28 pb-30 pb-sm-0">
+                            <div class="row">
+                                <div class="col-lg-7 col-md-7">
+                                    <div class="img-container fix img-full mb-sm-30">
+                                        <a >
+                                            <img src="{% static 'assets/img/banner31.webp' %}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 col-md-5">
+                                    <div class="img-container fix img-full mb-sm-30">
+                                        <a ><img src="{% static 'assets/img/realistic-set-with-bottle-red-wine-four-drinking-glasses-filled-with-drink_1284-32449.webp' %}"alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- banner statistic end -->
+
+                        <!-- category features area start -->
+                        <div class="category-feature-area">
+                            <div class="row">
+                                <!-- New Products area start -->
+                                <div class="col-lg-4">
+                                    <div class="category-wrapper mb-md-24 mb-sm-24">
+                                        <div class="section-title-2 d-flex justify-content-between mb-28">
+                                            <h3>New Products</h3>
+                                            <div class="category-append"></div>
+                                        </div> <!-- section title end -->
+                                        <div class="category-carousel-active row" data-row="4">
+                                            {% for product in new_product %}
+                                            <div class="col">
+                                                <div class="category-item">
+                                                    <div class="category-thumb">
+                                                        <a href="{% url 'details' product.id %}">
+                                                            <img src="{{product.image.url}}" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <div class="category-content">
+                                                        <h4><a href="{% url 'details' product.id %}">{{ product.name }}</a></h4>
+                                                        <div class="price-box">
+                                                            <div class="regular-price">
+                                                                {{ product.price }}/=
+                                                            </div>
+                                                            <div class="old-price">
+                                                                <del></del>
+                                                            </div>
+                                                        </div>
+                                                        <div class="ratings">
+                                                            <span class="good"><i class="fa fa-star"></i></span>
+                                                            <span class="good"><i class="fa fa-star"></i></span>
+                                                            <span class="good"><i class="fa fa-star"></i></span>
+                                                            <span class="good"><i class="fa fa-star"></i></span>
+                                                            <span><i class="fa fa-star"></i></span>
+                                                            <div class="pro-review">
+                                                                <span>1 review(s)</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> <!-- end single item -->
+                                            </div> <!-- end single item column -->
+                                            {% endfor %}
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- New Products area end -->
+                                <!-- Most viewed area start -->
+                                <div class="col-lg-4">
+                                    <div class="category-wrapper mb-md-24 mb-sm-24">
+                                        <div class="section-title-2 d-flex justify-content-between mb-28">
+                                            <h3>Trending</h3>
+                                            <div class="category-append"></div>
+                                        </div> <!-- section title end -->
+                                        <div class="category-carousel-active row" data-row="4">
+                                            {% for product in trending %}
+                                            <div class="col">
+                                                <div class="category-item">
+                                                    <div class="category-thumb">
+                                                        <a href="{% url 'details' product.id %}">
+                                                            <img src="{{product.image.url}}" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <div class="category-content">
+                                                        <h4><a href="{% url 'details' product.id %}">{{ product.name }}</a></h4>
+                                                        <div class="price-box">
+                                                            <div class="regular-price">
+                                                                {{ product.price }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="ratings">
+                                                           
+                                                        </div>
+                                                    </div>
+                                                </div> <!-- end single item -->
+                                            </div> <!-- end single item column -->
+                                            {% endfor %}
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Most viewed area end -->
+                                <!-- Most viewed area start -->
+                                <div class="col-lg-4">
+                                    <div class="category-wrapper mb-md-24 mb-sm-24">
+                                        <div class="section-title-2 d-flex justify-content-between mb-28">
+                                            <h3>hot sale</h3>
+                                            <div class="category-append"></div>
+                                        </div> <!-- section title end -->
+                                        <div class="category-carousel-active row" data-row="4">
+                                            {% for product in hot_sale %}
+                                            <div class="col">
+                                                <div class="category-item">
+                                                    <div class="category-thumb">
+                                                        <a href="{% url 'details' product.id %}">
+                                                            <img src="{{product.image.url}}" alt="">
+                                                        </a>
+                                                        
+                                                    </div>
+                                                    <div class="category-content">
+                                                        <h4><a href="{% url 'details' product.id %}">{{product.name}}</a></h4>
+                                                        <div class="price-box">
+                                                            <div class="regular-price">
+                                                                {{ product.price }}/=
+                                                            </div>
+                                                            <div class="old-price">
+                                                                <del></del>
+                                                            </div>
+                                                        </div>
+                                                        <div class="ratings">
+                                                            <span class="good"><i class="fa fa-star"></i></span>
+                                                            <span class="good"><i class="fa fa-star"></i></span>
+                                                            <span class="good"><i class="fa fa-star"></i></span>
+                                                            <span class="good"><i class="fa fa-star"></i></span>
+                                                            <span><i class="fa fa-star"></i></span>
+                                                            <div class="pro-review">
+                                                                <span>1 review(s)</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> <!-- end single item -->
+                                            </div> <!-- end single item column -->
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Most viewed area end -->
+                            </div>
+                        </div>
+                        <!-- category features area end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- page wrapper end -->
+
+        <!-- latest product start -->
+        <div class="latest-product">
+            <div class="container">
+                <div class="section-title mb-30">
+                    <div class="title-icon">
+                        <i class="fa fa-flash"></i>
+                    </div>
+                    <h3>Top Rated</h3>
+
+                </div> <!-- section title end -->
+                
+                <!-- featured category start -->
+                <div class="latest-product-active slick-padding slick-arrow-style">
+                    {% for product in top_rated %}
+                    <!-- product single item start -->
+                    <div class="product-item fix">
+                        <div class="product-thumb">
+                            <a href="{% url 'details' product.id %}">
+                                <img src="{{product.image.url}}" class="img-pri" alt="">
+                               
+                            </a>
+                                            {% if product.is_new_arrival == True %}
+                                            <div class="product-label">
+                                                <span>New Stock</span>
+                                            </div>
+                                            
+                                            {% elif product.is_featured == True %}
+                                            <div class="product-label">
+                                                <span>Featured</span>
+                                            </div>
+                                            
+                                            {% elif product.is_top_rated == True %}
+                                            <div class="product-label">
+                                                <span>Top Rated</span>
+                                            </div>
+                                            
+                                            {% elif product.is_best_selling == True %}
+                                            <div class="product-label">
+                                                <span>Most Sold</span>
+                                            </div>
+                                            
+                                            {% elif product.is_most_viewed == True %}
+                                            <div class="product-label">
+                                                <span>Most Seen</span>
+                                            </div>
+                                            
+                                            {% elif product.is_new_product == True %}
+                                            <div class="product-label">
+                                                <span>Just Added</span>
+                                            </div>
+                                            
+                                            {% elif product.is_hot_sale == True %}
+                                            <div class="product-label">
+                                                <span>Hot Sale</span>
+                                            </div>
+                                            {% else  %}
+                                            <div class="product-label">
+                                                <span>Black Sale</span>
+                                            </div>
+                                            {% endif %}
+                                            <div class="product-action-link">
+                                                <a href="{% url 'details' product.id %}" > <span data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search"></i></span> </a>
+                                               <form action="/#" method="POST" class="buy-btn">
+                            {% csrf_token %}
+                            <input hidden type="text" name='product' value='{{product.id}}' >
+                        <input type="submit"  data-toggle="tooltip" class="btn btn-primary" data-placement="top" value="Add to Cart" title="Add to cart"></form> 
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <h4><a href="{% url 'details' product.id %}">{{ product.name }}</a></h4>
+                            <div class="pricebox">
+                                <span class="regular-price">{{ product.price }}/=</span>
+                                <div class="ratings">
+                                    <span class="good"><i class="fa fa-star"></i></span>
+                                    <span class="good"><i class="fa fa-star"></i></span>
+                                    <span class="good"><i class="fa fa-star"></i></span>
+                                    <span class="good"><i class="fa fa-star"></i></span>
+                                    <span><i class="fa fa-star"></i></span>
+                                    <div class="pro-review">
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- product single item end -->
+                    {% endfor %}
+                    
+             </div>
+             
+                <!-- featured category end -->
+            </div>
+        </div>
+        
+        <!-- latest product end -->
+
+        
+
+{% endblock %}
+

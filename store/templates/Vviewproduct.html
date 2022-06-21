@@ -1,0 +1,168 @@
+{% extends "base1.html" %}
+
+{% load static %}
+
+{% block body %}
+
+
+
+        <!-- breadcrumb area start -->
+        <div class="breadcrumb-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb-wrap">
+                            <nav aria-label="breadcrumb">
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/Dashboard">Dashboard</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">product details</li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- breadcrumb area end -->
+
+        <!-- product details wrapper start -->
+        <div class="product-details-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <!-- product details inner end -->
+                        <div class="product-details-inner">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="product-large-slider mb-20 slick-arrow-style_2">
+                                        <div class="pro-large-img img-zoom" id="img1">
+                                            <img src="{{product.image.url}}" alt="" />
+                                        </div>
+                                        
+                                    </div>
+                                    </div>
+                                <div class="col-lg-6">
+                                    <div class="product-details-des mt-md-34 mt-sm-34">
+                                        <h3><a href="product-details.html">{{ product.name }}</a></h3>
+                                        
+                                        <div class="customer-rev">
+                                            <a href></a>
+                                        </div>
+                                        <div class="availability mt-10">
+                                            <h5>Availability:</h5>
+                                            <span>{{product.stock }} in stock</span>
+                                        </div>
+                                        <div class="pricebox">
+                                            <span class="regular-price">{{product.price }}</span>
+                                        </div>
+                                        <p>{{ product.description }}</p>
+                                        
+                                            
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- product details inner end -->
+
+                        <!-- product details reviews start -->
+                        <div class="product-details-reviews mt-34">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="product-review-info">
+                                        <ul class="nav review-tab">
+                                            <li>
+                                                <a class="active" data-toggle="tab" href="#tab_one">description</a>
+                                            </li>
+                                            
+                                        </ul>
+                                        <div class="tab-content reviews-tab">
+                                            <div class="tab-pane fade show active" id="tab_one">
+                                                <div class="tab-one">
+                                                    <p>{{ product.description }}</p>
+                                                    <div class="review-description">
+                                                        <div class="tab-thumb">
+                                                            <img src="{% static 'assets/img/Screenshot from 2021-08-09 10-00-12.png' %}" alt="">
+                                                        </div>
+                                                        <div class="tab-des mt-sm-24">
+                                                            <h3>Services That We Offer To Our Vendors:</h3>
+                                                            <ul>
+                                                                <li>Vendor Protection From Fraud.</li>
+                                                                <li>Delivery within 24 hours.</li>
+                                                                <li>Payment On Delivery of the Order</li>
+                                                                <li>Payment made by Pearl-Mart Financial Board</li>
+                                                                <li>Within 1 hour after Delivery is made.</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <p>Thank you for selling on our Page.We are so gratefull that you chose Pearl-Mart.Terms and Conditions which apply are:
+                                                        <li>Product must be Authentic.Fraud, theft, and form of cone-manship will result into immediate closing of your account</li>
+                                                        <li>Product will always be double check by our delivery team from your store before taken for delivery</li>
+                                                        <li> Please contact us at pearlmartbusinesses@yahoo.com for any inquries</li>
+
+
+
+When you and more generally, use any of our services (the "Services", which include the Online Store Pearl-Mart), we appreciate that you are trusting us with your personal information. We take your privacy very seriously. In this privacy notice,We seek to offer you Fast and Efficient 24 hour delivery of all your Orders.We Offer goo of various categories and brands, as it is important to Make sure you find all that you seek.
+
+</p>
+                                                </div>
+                                            </div>
+                                            
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <!-- product details reviews end --> 
+
+                        <!-- related products area start -->
+                        <div class="related-products-area mt-34">
+                            <div class="section-title mb-30">
+                                <div class="title-icon">
+                                    <i class="fa fa-desktop"></i>
+                                </div>
+                                <h3>Your Other products</h3>
+                            </div> <!-- section title end -->
+                            <!-- featured category start -->
+                            <div class="featured-carousel-active slick-padding slick-arrow-style">
+                                <!-- product single item start -->
+                                {% for product in Others %}
+                                <div class="product-item fix">
+                                    <div class="product-thumb">
+                                        <a href="{% url 'details' product.id %}">
+                                            <img src="{{product.image.url}}" class="img-pri" alt="">
+                                        </a>
+                                        
+                                       
+                                    </div>
+                                    <div class="product-content">
+                                        <h4><a href="{% url 'details' product.id %}">{{ product.name }}</a></h4>
+                                        <div class="pricebox">
+                                            <span class="regular-price">{{ product.price }}/=</span>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}                                                                  
+                                <!-- product single item end -->
+                                
+                            </div>
+                            <!-- featured category end -->
+                        </div>
+                        <!-- related products area end -->
+                    </div>
+
+                    <!-- sidebar start -->
+                    <div class="col-lg-3">
+                      
+                    </div>
+                    <!-- sidebar end -->
+                </div>
+            </div>
+        </div>
+        <!-- product details wrapper end -->
+
+  
+
+{% endblock %}

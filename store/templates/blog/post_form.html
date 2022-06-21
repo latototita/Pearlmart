@@ -1,0 +1,26 @@
+{% extends "base1.html" %}
+{% load crispy_forms_tags %}
+{% block body %}
+<div class="breadcrumb-area>">
+<div class="container">
+<div class="content-section">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4 bold">Create Post</legend>
+            {{ form|crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button class=" btn btn-danger " type="submit">Post</button>
+        </div>
+    </form>
+</div>
+</div>
+    <div class="container">
+                            <a href="/blog">
+                                <i class="btn btn-primary glyphicon glyphicon-new-window"> Back to Blog</i>
+                            </a>
+                       </div>
+<!-- Medium Editor -->
+<script>var editor = new MediumEditor('.editable');</script>
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'Vendorbase1.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+{% block body %}
+
+
+        <!-- breadcrumb area start -->
+        <div class="breadcrumb-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb-wrap">
+                            <nav aria-label="breadcrumb">
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/homepage">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="/store">Shop</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">contact us</li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- breadcrumb area end -->
+
+        <!-- contact area start -->
+        <div class="contact-area pb-34 pb-md-18 pb-sm-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="contact-message">
+                            <h2><u>Do You Need Assistance Or Consultation</u></h2>
+                            <h3><i>Send Email Now and We will get back to You</i></h3>
+                            <form action="/Contact_Us" method="POST" class="contact-form">
+                                <div class="row">
+                                    {% csrf_token %}
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <input name="contact_subject" placeholder="Subject *" type="text" required>   
+                                    </div>
+                                <div class="col-12">
+                                        <div class="contact2-textarea text-center">
+                                            <textarea placeholder="Message *" name="message"  class="form-control2" required=""></textarea>     
+                                        </div>   
+                                        <div class="contact-btn">
+                                            <button type="submit" class="btn btn-primary">Add New Product</button>
+                                        </div> 
+                                    </div> 
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <p class="form-messege"></p>
+                                    </div>
+                                </div>
+                            </form>    
+                        </div> 
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="contact-info mt-md-28 mt-sm-28">
+                            <h2>contact us</h2>
+                            <p class="saved-message">
+At Pearl-Mart,We enable you to pay has you sell.We bring to you customer from as far as you can imagine, and this is what makes you Our Online Vendor  very Important to Us. As We Strive to be Uganda’s number one e-commerce company, we’re always looking for ways to add value for our customers. As a Pearl-Mart seller, you take part in offering those customers better selection, better prices, and a top-notch customer experience.</p>
+                            <ul>
+                                <li><i class="fa fa-map-marker"></i> Amazon building, Mbarara City</li>
+                                <li><i class="fa fa-phone"></i> 0702317807</li>
+                                <li><i class="fa fa-envelope-o"></i> pearlmartbusinessesvendor@gmail.com</li>
+                            </ul>
+                            <div class="working-time">
+                                <h3>Working hours</h3>
+                                <p><span>Monday – Sunday:</span>24 hours</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- contact area end -->
+
+        <!-- map area start -->
+        <div class="map-area-wrapper">
+            <div class="container">
+                    <div id="map_content" id="google-map" data-latitude="-0.607160" data-longitude="30.654503" >
+                    </div>
+            </div>
+        </div>
+        <!-- map area end -->
+
+{% endblock body %}

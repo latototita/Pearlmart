@@ -1,0 +1,255 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% block body %}
+
+
+
+
+        <!-- breadcrumb area start -->
+        <div class="breadcrumb-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb-wrap">
+                            <nav aria-label="breadcrumb">
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/Dashboard">Dashboard</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Your Store</li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- breadcrumb area end -->
+
+        <!-- page wrapper start -->
+        <div class="page-main-wrapper">
+            <div class="container">
+                <div class="row">
+                    <!-- product main wrap start -->
+                    <div class="col-12">
+                        <div class="shop-banner img-full">
+                            <img src="{% static 'assets/img/banner/banner_static1.jpg' %}" alt="">
+                        </div>
+                        <!-- product view wrapper area start -->
+                        <div class="shop-product-wrapper pt-34">
+                            <!-- shop product top wrap start -->
+                            <div class="shop-top-bar">
+                                <div class="row">
+                                    <div class="col-lg-7 col-md-6">
+                                        <div class="top-bar-left">
+                                            <div class="product-view-mode mr-70 mr-sm-0">
+                                                <a class="active" href="#" data-target="grid"><i class="fa fa-th"></i></a>
+                                                <a href="#" data-target="list"><i class="fa fa-list"></i></a>
+                                            </div>
+                                            <div class="product-amount">
+                                                
+        And yet this presents a tension. The telescoping of our planning and policy
+processes – that fact that we are forced to think about the future in such short
+quanta of time means that we very sadly do not think strategically as much as we                                    </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 col-md-6">
+                                        <div class="top-bar-right">
+                                            <div class="product-short">
+                                                <p>Sort By : </p>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- shop product top wrap start -->
+                            <!-- product item start -->
+                            <!-- product item start -->
+                            <div class="shop-product-wrap grid row">
+
+                                    <!-- product single grid item start -->
+                                    {% for product in product_list %}
+
+                            <!-- product item start -->
+                            
+                                <div class="col-lg-3 col-md-4 col-sm-6">
+                                    <!-- product single grid item start -->
+                                    <div class="product-item fix mb-30">
+                                        <div class="product-thumb">
+                                            <a href="/vdetails">
+                                                <img src="{{product.image.url}}" class="img-pri" alt="" style="width: 100%;height: 345px;">
+                                                
+                                            </a>
+                                            {% if product.is_new_arrival == True %}
+                                            <div class="product-label">
+                                                <span>New Stock</span>
+                                            </div>
+                                            
+                                            {% elif product.is_featured == True %}
+                                            <div class="product-label">
+                                                <span>Featured</span>
+                                            </div>
+                                            
+                                            {% elif product.is_top_rated == True %}
+                                            <div class="product-label">
+                                                <span>Top Rated</span>
+                                            </div>
+                                            
+                                            {% elif product.is_best_selling == True %}
+                                            <div class="product-label">
+                                                <span>Most Sold</span>
+                                            </div>
+                                            
+                                            {% elif product.is_most_viewed == True %}
+                                            <div class="product-label">
+                                                <span>Most Seen</span>
+                                            </div>
+                                            
+                                            {% elif product.is_new_product == True %}
+                                            <div class="product-label">
+                                                <span>Just Added</span>
+                                            </div>
+                                            
+                                            {% elif product.is_hot_sale == True %}
+                                            <div class="product-label">
+                                                <span>Hot Sale</span>
+                                            </div>
+                                            {% else  %}
+                                            <div class="product-label">
+                                                <span>Black Sale</span>
+                                            </div>
+                                            {% endif %}
+                                            <div class="product-action-link">
+                                               
+                                            </div>
+                                        </div>
+                                        <div class="product-content">
+                                            <h4><a href="">{{ product.name }}</a></h4>
+                                            <div class="pricebox">
+                                                <span class="regular-price">{{ product.price }}/=</span>
+                                                
+                                            
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                          
+                              <!-- product single grid item end -->
+                                    {% endfor %}
+                                    {% for product in product_list %}
+                                    <!-- product single list item start -->
+                                    <div class="product-list-item mb-30">
+                                        <div class="product-thumb">
+                                            <a href="">
+                                                <img src="{{product.image.url}}" class="img-pri" alt="" style="width: 100%;height: 345px;">
+                                            </a>
+                                            {% if product.is_new_arrival == True %}
+                                            <div class="product-label">
+                                                <span>New Stock</span>
+                                            </div>
+                                            
+                                            {% elif product.is_featured == True %}
+                                            <div class="product-label">
+                                                <span>Featured</span>
+                                            </div>
+                                            
+                                            {% elif product.is_top_rated == True %}
+                                            <div class="product-label">
+                                                <span>Top Rated</span>
+                                            </div>
+                                            
+                                            {% elif product.is_best_selling == True %}
+                                            <div class="product-label">
+                                                <span>Most Sold</span>
+                                            </div>
+                                            
+                                            {% elif product.is_most_viewed == True %}
+                                            <div class="product-label">
+                                                <span>Most Seen</span>
+                                            </div>
+                                            
+                                            {% elif product.is_new_product == True %}
+                                            <div class="product-label">
+                                                <span>Just Added</span>
+                                            </div>
+                                            
+                                            {% elif product.is_hot_sale == True %}
+                                            <div class="product-label">
+                                                <span>Hot Sale</span>
+                                            </div>
+                                            {% else  %}
+                                            <div class="product-label">
+                                                <span>Black Sale</span>
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="product-list-content">
+                                            <h3><a href="">{{ product.name }}</a></h3>
+                                            
+                                            <div class="pricebox">
+                                                <span class="regular-price">{{ product.price }}/=</span>
+                                                
+                                            </div>
+                                            <p>{{ product.description }}.</p>
+                                            
+                                            <div class="product-list-action-link">
+                        <p>
+                                                
+                                               
+                                                
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     {% endfor %}
+                                    <!-- product single list item start -->
+                                </div> <!-- product single column end -->
+                                
+                            </div>
+                       
+
+                            <!-- product item end -->
+                            </div>
+                       
+
+                            <!-- product item end -->
+                        </div>
+                        <!-- product view wrapper area end -->
+                       
+                        <!-- start pagination area -->
+                        <div class="paginatoin-area text-center pt-28">
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul class="pagination-box">
+                                        {% if is_paginated %}
+                                        {% if page_obj.has_previous %}
+                                        <li><a class="Previous" href="?page=1">First</a></li>
+                                        <li><a class="Previous" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+                                        {% endif %}
+                                        {% for num in page_obj.paginator.page_range %}
+                                          {% if page_obj.number == num %}
+                                        <li class="active"><a href="?page={{ num }}">{{ num }}</a></li>
+                                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                                        <li><a href="?page={{ num }}">{{ num }}</a></li>
+                                        {% endif %}
+                                        {% endfor %}
+                                          {% if page_obj.has_next %}
+                                        <li><a class="Next" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+                                        <li><a href="?page={{page_obj.paginator.num_pages }}"> Last </a></li>
+                                        {% endif %}
+                                        {% endif %}
+                                       
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end pagination area -->
+
+                    </div>
+
+                    <!-- product main wrap end -->
+                </div>
+            </div>
+        </div>
+        <!-- page wrapper end -->
+
+{% endblock %}

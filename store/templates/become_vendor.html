@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+{% block body %}
+
+
+
+        <!-- breadcrumb area start -->
+        <div class="breadcrumb-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb-wrap">
+                            <nav aria-label="breadcrumb">
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/store">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">vendor-register</li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- breadcrumb area end -->
+<div class="container">
+<div class="product-details-reviews mt-34">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="product-review-info">
+                                        <ul class="nav review-tab">
+                                            
+                                        </ul>
+                                        <div class="tab-content reviews-tab">
+                                            <div class="tab-pane fade show active" id="tab_one">
+                                                <div class="tab-one">
+                                                    <div class="container"><p></p></div>   
+
+                                    <div class="single-input-item">
+                                        <div class="review-description">
+                                                        <div class="tab-thumb">
+                                                            <img src="{% static 'assets/img/about/servicess.png' %}" alt="">
+                                                        </div>
+                                                        <div class="tab-des mt-sm-24">
+                                                            <h3>Terms And Conditions of Selling On Pearl-Mart:</h3>
+                                                            <ul>
+                                                                <li>Counterfeit, fraud, damage and intentionally selling Expired(etc..) Products will lead to account suspension, discontinuation Or Penalisation.</li>
+                                                                <li>Pearl-Mart Delivery Team(PDT) picks, double checks and makes delivery of the orders.</li>
+                                                                <li>Pearl-Mart Financial Management Team(PFMT) make payment to the Vendor for products sold and delivered(Without customer complaints or cancellation of order) within 2 hours after delivery is made</li>
+                                                                <li>Inappropriate Images and rather poor images of products will result in to reminding of Vendor to change image, after 48 hours of non compliance, the company Pearl-Mart Product Management Team will immediately discontinue the Product</li>
+                                                                <li>Vendor must agree to exchange of product incase customer raises a complaint of Manufacture based,Damage or Even inconviniencing condiotions that may have risen either in storage or from Vendor warehouse or Store.</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                             </div>
+                                            </div>
+                                            
+  <h2>Become a Vendor.</h2><p>Register Now And Sell to A million Customers.....</p>
+
+                                <form action="{% url 'become_vendor' %}" method="POST">
+                                    
+                                
+                                    {% csrf_token %}
+                                     
+                                        
+                                    <div class="single-input-item">
+                                                <label for="phone" class="bold">Phone</label>
+                                                <input type="character" name="phone" id="phone" placeholder="Your Phone Number"  required />
+                                    </div>
+                                   <div class="single-input-item">
+                                                <label for="alternative_Phone" class="bold">Second Phone Number</label>
+                                                <input type="character" name="alternative_Phone" id="alternative_Phone" placeholder="Another Phone Number" />
+                                            </div>
+                                            <div class="single-input-item">
+                                                <label for="location" class="bold">Location of Your Store</label>
+                                                <input type="character" name="location" id="location" placeholder="Eg Amazon building Opposite Posta Uganda" required />
+                                            </div>
+                                            
+
+                                            <div class="single-input-item">
+                                                <label for="shop_name" class="bold">Name of the Store</label>
+                                                <input type="character" name="shop_name" id="shop_name" placeholder="Eg. Pearl Investment Limited" required />
+                                            </div>
+                                            
+<p><input type="checkbox" name="check" required>  I agree to Pearl-Mart Vendor Terms and Condition</p>
+
+                                        <p><input class="btn btn-primary my-2 my-sm-0" type="submit" value="Join Now !!!.."></p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Login Content End -->
+
+                        </div>
+                    </div>
+
+{% endblock %}

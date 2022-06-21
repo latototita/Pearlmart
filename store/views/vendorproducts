@@ -1,0 +1,39 @@
+<div class="panel panel-default">
+				<div class="panel-heading">
+				<h3 class="panel-title">Products In Your Store</h3>
+			</div>
+
+		<div   class="table-responsive container mt-6">
+			<table class="table table-sm table-condensed table-striped">
+	
+		<thead>
+			<th>No</th>
+			<th>Product</th>
+			<th>Price</th>
+			<th>Brand</th>
+			<th>Image</th>
+			<th>Category</th>
+			<th>Delete</th>
+		</thead>
+		<tbody>
+			{% for product in products %}
+			<tr>
+				<td>{{ loop.index }}</td>
+				<td> {{ product.name }} </td>
+				<td> {{ product.price}}</td>
+		<td> {{ product.brand.name }} </td>
+		<td><img src="{{ product.image }}" height="40", width="50" alt=""></td>
+				<td> {{ product.category.name }} </td>
+				<td>
+				<form action="{{ url_for('deleteproduct' ,id=product.id) }}" method="POST">
+				<button type="submit" class="btn btn-primary">
+				<i class="glyphicon glyphicon-delete-sign">Delete</i> </button>
+					</form></td>
+			</tr>
+			{% endfor %}
+		</tbody>
+		
+	</table>
+</div>
+</div>
+</div>

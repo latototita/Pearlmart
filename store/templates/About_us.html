@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+{% block body %}
+
+
+        <!-- breadcrumb area start -->
+        <div class="breadcrumb-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb-wrap">
+                            <nav aria-label="breadcrumb">
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/homepage">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">about us</li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- breadcrumb area end -->
+
+        <!-- about wrapper start -->
+        <div class="about-us-wrapper pt-4">
+            <div class="container">
+                <div class="row">
+                    <!-- About Text Start -->
+                    <div class="col-lg-6">
+                        <div class="about-text-wrap">
+                            <h2><span>Provide Best Shopping Experience</span>For You</h2>
+                            <p>We provide the best products from all over the world. We  Strive to be the world's Best Online Store. You can buy and Sell products without any hesitation because we make sure that you get quality services.</p>
+                            <p>This Store started solely to make shopping experience top notch fast, effient and secure with accurate complaint handling and fast delivery services.</p>
+                            <p>We provide a plateform where a customer can buy and sell at the same time, Pearl-Mart Own its own sells its own product but also has a large number of Registered Vendors.</p>
+                        </div>
+                    </div>
+                    <!-- About Text End -->
+                    <!-- About Image Start -->
+                    <div class="col-lg-5 ml-auto">
+                        <div class="about-image-wrap mt-md-26 mt-sm-26">
+                            <img src="{% static 'assets/img/about/about.jpg' %}" alt="About" />
+                        </div>
+                    </div>
+                    <!-- About Image End -->
+                </div>
+            </div>
+        </div>
+        <!-- about wrapper end -->
+
+        
+
+        <!-- testimonial area start -->
+        <div class="container">
+        <div class="testimonial-area2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="testimonial-title text-center mb-28">
+                            <h3>Latest News</h3>
+                        </div> <!-- section title end -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="testimonial-carousel-active testimonial-style-2 slick-dot-style">
+                        	{% for post in posts %}
+                            <div class="testimonial-item text-center">
+                                <div class="testimonial-thumb">
+                                    <img src="{% static 'assets/img/slider/error.png' %}" alt="">
+                                </div>
+                                <div class="testimonial-content">
+                                    <p>{{ post.content|safe|truncatewords:50 }}...</p>
+                                    <a href="{% url 'post_detail' post.pk %}">read more <i class="fa fa-long-arrow-right"></i></a>
+                                    <h3><a href="{% url 'post_detail' post.pk %}">{{ post.author }}</a></h3>
+                                </div>
+                            </div> <!-- end single testimonial item -->
+                           {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- testimonial area end -->
+
+        <!-- choosing area start -->
+        <div class="choosing-area pt-28">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="title-box text-center mb-30">
+                            <h3>why choose us</h3>
+                        </div>
+                    </div>
+                </div> <!-- section title end -->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="single-choose-item text-center mb-md-30 mb-sm-30">
+                            <i class="fa fa-globe"></i>
+                            <h4>Cheap delivery</h4>
+                            <p>Only 3000/= for delivery fee Around Mbarara City</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="single-choose-item text-center mb-md-30 mb-sm-30">
+                            <i class="fa fa-plane"></i>
+                            <h4>fast delivery</h4>
+                            <p>Less than 24 hours delivery time.All our orders delivered in time</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="single-choose-item text-center mb-md-30 mb-sm-30">
+                            <i class="fa fa-comments"></i>
+                            <h4>customers support</h4>
+                            <p>We have a flexible customer support.Fast and Efficient communication both on phone and email</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- choosing area end -->
+
+
+{% endblock body %}

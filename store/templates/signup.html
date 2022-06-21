@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+{% block body %}
+
+
+<!-- Register Content Start -->
+                        <div class="col-lg-6">
+                            <div class="login-reg-form-wrap mt-md-34 mt-sm-34">
+                                <h2>Customer Registration Form</h2>
+                                <form action="/signup" method="post">
+                                    {% csrf_token %}
+                                    {{ form|crispy }}
+                                    <div class="single-input-item">
+                                        <button class="sqr-btn" type="submit" >Register</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Register Content End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- login register wrapper end -->
+
+{% endblock %}

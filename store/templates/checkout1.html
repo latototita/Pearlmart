@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block body %}
+
+<div class="container">
+        <!-- breadcrumb area start -->
+        <div class="breadcrumb-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb-wrap">
+                            <nav aria-label="breadcrumb">
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/homepage">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="/store">shop</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">checkout</li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- breadcrumb area end -->
+       <div class="row">
+                    <!-- Checkout Billing Details -->
+                    <div class="col-lg-6">
+                        <div class="checkout-billing-details-wrap">
+                            <h2>Delivery Informaation</h2>
+                            <div class="billing-form-wrap">
+                                <form action="/check-out" method="POST">
+                                			{% csrf_token %}
+                                			<div class="single-input-item" class="bold" class="bold">
+                                                <label for="street-address_2" class="required pt-20">Delivery address</label>
+                                                <input type="text" name="address" id="" class="form-control" placeholder="Exact Place To deliver Your Order" aria-describedby="helpId" required >
+                                            </div>
+        
+                                            <div class="single-input-item">
+                                                <label for="com-name_2" for="street-address_2" class="bold" class="required pt-20">Phone(For communication)</label>
+                                                <input type="number" name="phone" id="" class="form-control" placeholder="Eg.077777777" aria-describedby="helpId" required >
+                                            </div>
+        
+                                            
+                                            <div class="single-input-item">
+                                                <label for="email_2" class="bold">Email Address(Optional)</label>
+                                                <input type="email" name="email" id="email_2" placeholder="Email Address"  />
+                                            </div>
+
+                                            <div class="container">
+                                            <div class="payment-method-name ">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="cashon" name="paymentmethod" value="cash" class="custom-control-input" checked  />
+                                                <label class="custom-control-label" for="cashon">Cash On Delivery</label>
+                                            </div>
+                                       
+	                                        <div class="payment-method-details" data-method="cash">
+	                                            <p>Pay with cash upon delivery.</p>
+	                                        </div>
+	                                         <button type="submit" class="check-btn sqr-btn">Place Order</button>
+	                                     </div>
+	                                 </div>
+	                                     </form>
+                            </div>
+                        </div>
+                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- checkout main wrapper end -->
+
+      
+
+{% endblock %}

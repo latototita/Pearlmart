@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+{% load cart %}
+{% load custom_filter %}
+        <!-- breadcrumb area start -->
+        <div class="breadcrumb-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb-wrap">
+                            <nav aria-label="breadcrumb">
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item active"><a href="/homepage">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="/store">shop</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Cart details</li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- breadcrumb area end -->
+<div class="container">
+<div class="breadcrumb-wrap">
+<div class="row">
+    <div class="col-lg-8">
+        <h3 class="bold">
+            <i class="glyphicon glyphicon-shopping-cart"></i><u>Your Shopping Cart</u> 
+        </h3>
+        
+        <div class="panel panel-primary">
+            <div class="panel-body">
+                {% if request.session.cart.keys|length == 0 %}
+                <div class="container breadcrumb-wrap">
+                <p class="saved-message bold">Your Cart is Empty Go to  <a href="/store" class="btn btn-primary">Our Store</a>  To Shop Now </p>
+                </div>
+                {% endif %}
+                {% for product in productes %}
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="thumbnail thumbnail-q">
+                                <a href="{% url 'details' product.id %}">
+                                <img src="{{product.image.url}}" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <h3 class="bold">{{product.name}}</h3>
+                        <p>{{product.price}}/=</p>
+                        <br />
+                        <p>
+                            {% if product|is_in_cart:request.session.cart %}
+                            <form action="/remove_to_cart" class="col-2 " method="post">
+                                {% csrf_token %}
+                                <input hidden type="text" name='product' value='{{product.id}}'>
+                                <input hidden type="text" name='remove' value='True'>
+                                
+                           <input type="submit" value="Remove " class="glyphicon glyphicon-trash btn btn-danger btn-xs">
+
+                            </form>
+                            {% endif %}
+                        
+                        </p>
+                    </div>
+                    <div class="col-lg-2">
+                        <h3>Quantity</h3>
+                        <p>
+                            {{product|cart_quantity:request.session.cart}}
+                        </p>
+                    </div>
+                    <div class="col-lg-2">
+                        <h3>Total</h3>
+                        <p>
+                            <strong>{{product|price_total:request.session.cart}}/=</strong>
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <h3 class="bold">
+            <i class="glyphicon glyphicon-th-list"></i> Cart Summary
+        </h3>
+
+        <div class="panel panel-primary">
+            <div class="panel-body">
+                Current Cart Value
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <p>
+                       {{request.session.cart.keys|length}} Items <strong class="pull-right"> {{products|total_cart_price:request.session.cart}}/=</strong>
+                    </p>
+                    <p>
+                        24hr Delivery <strong class="pull-right"> 3000/=</strong>
+                    </p>
+                </li>
+                <li class="list-group-item">
+                    <p>Total <strong class="pull-right">{{products|total_cart_price_grand:request.session.cart}}/=</strong></p>
+                </li>
+            </ul>
+            <div class="panel-footer">
+                <a href="{% url 'checkout1' %}" class="btn btn-primary">
+                    Checkout <i class="glyphicon glyphicon-chevron-right"></i>
+                </a>
+                <a href="{% url 'store' %}" class="btn btn-danger">
+                    <i class="glyphicon glyphicon-chevron-left"></i> Continue Shopping
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+{% endblock %}

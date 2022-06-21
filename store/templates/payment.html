@@ -1,0 +1,59 @@
+{% extends 'Vendorbase1.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+{% block body %}
+
+
+
+        <!-- breadcrumb area start -->
+        <div class="breadcrumb-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb-wrap">
+                            <nav aria-label="breadcrumb">
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/view_admin">DashBoard</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Add Product</li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- breadcrumb area end -->
+
+        <!-- login register wrapper start -->
+        <div class="login-register-wrapper">
+            <div class="container">
+                <div class="member-area-from-wrap">
+                    <div class="row">
+                        <!-- Login Content Start -->
+                        <div class="col-lg-6">
+                            <div class="login-reg-form-wrap  pr-lg-50">
+                                
+                                <h2>Payment Methods</h2>
+                                <p class="saved-message">Ways In Which the company will make <br>payments to you for any of your Products bought by the customers </p>
+                                
+                                    <form method = "post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="single-input-item">
+                                        {{ form |crispy }}
+                                    </div>
+                                        <div class="single-input-item">
+                                        <button type="submit" class="btn btn-primary">Save Now</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                                                
+                            </div>
+                        </div>
+                        <!-- Login Content End -->
+
+                        </div>
+
+
+{% endblock %}

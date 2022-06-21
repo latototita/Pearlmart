@@ -1,0 +1,119 @@
+{% extends 'Vendorbase1.html' %}
+{% include 'messages.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+<!-- Brand Content Start -->
+{% if brand %}
+<div class="panel panel-default container">
+                <div class="panel-heading">
+                <h3 class="panel-title"><u>Your Brands</u></h3>
+            </div>
+
+        <div   class="table-responsive container mt-5">
+            <table class="table table-sm table-condensed table-striped table-hover">
+    
+        <thead>
+            <th>No</th>
+            <th>Name</th>
+            <th>Edit</th>
+            <th>Delete</th>
+            {% for brand in brands %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td class=""><i><b> {{ brand.name }} </b></i></td>
+
+                <td>
+                    <a href="{% url 'Brand_update' brand.id %}" class="btn btn-primary">
+                        <i class="fa fa-edit">Edit</i>
+                        </a>
+
+
+                </td>
+
+                <td>
+                    <a href="{% url 'Brand_delete' brand.id %}" class="btn btn-danger">
+                        <i class="glyphicon glyphicon-trash">Delete</i>
+                        </a>
+
+
+                </td>
+            </tr>
+            {% endfor %}
+
+
+        </tbody>
+        
+    </table>
+</div>
+</div>
+</div>
+<!-- Category Content Start -->
+{% elif category %}
+<div class="panel panel-default container">
+                <div class="panel-heading">
+                <h3 class="panel-title"><u>Your Categories</u></h3>
+            </div>
+
+        <div   class="table-responsive container mt-5">
+            <table class="table table-sm table-condensed table-striped table-hover">
+    
+        <thead>
+            <th>No</th>
+            <th>Name</th>
+            <th>Edit</th>
+            <th>Delete</th>
+            {% for category in categories %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td><i><b> {{ category.name }} </b></i></td>
+                <td>
+                    <a href="{% url 'Category_update' category.id %}" class="btn btn-primary">
+                        <i class="fa fa-edit">Edit</i>
+                        </a>
+
+
+                </td>
+
+                <td>
+                    <a href="{% url 'Category_delete' category.id %}" class="btn btn-danger">
+                        <i class="glyphicon glyphicon-trash">Delete</i>
+                        </a>
+
+
+                </td>
+
+            </tr>
+            {% endfor %}
+            </tbody>
+        
+    </table>
+</div>
+</div>
+</div>
+            
+{% endif %}
+<!-- Register Content Start -->
+                        <div class="col-lg-6 container">
+                            <div class="login-reg-form-wrap mt-md-34 mt-sm-34">
+                                {% if vendor %}
+                                <h2><u>Update Your {{ name }} Profile</u></h2>
+                                {% else %}
+                                <h2><u>Update Or Add New {{ name }}</u></h2>
+                                {% endif %}
+                                <form action="" method="POST">
+                                    {% csrf_token %}
+                                    {{ form|crispy }}
+                                    <div class="single-input-item">
+                                        <button class="sqr-btn" type="submit" >Update Your{{ name }} {% if vendor %}Profile  {% endif %} Now!!!</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Register Content End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- login register wrapper end -->
+
+{% endblock %}

@@ -1,0 +1,340 @@
+{% extends "base.html" %}
+{% load social_share %}
+{% load static %}
+{% load cart %}
+{% load custom_filter %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+
+
+        <!-- breadcrumb area start -->
+        <div class="breadcrumb-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb-wrap">
+                            <nav aria-label="breadcrumb">
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/homepage">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="/store">Shop</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">product details</li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- breadcrumb area end -->
+
+        <!-- product details wrapper start -->
+        <div class="product-details-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <!-- product details inner end -->
+                        <div class="product-details-inner">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="product-large-slider mb-20 slick-arrow-style_2">
+                                        <div class="pro-large-img img-zoom" id="img1">
+                                            <img src="{{product.image.url}}" alt="" />
+                                        </div>
+                                        
+                                    </div>
+                                    </div>
+                                <div class="col-lg-6">
+                                    <div class="product-details-des mt-md-34 mt-sm-34">
+                                        <h3><a href="{% url 'details' product.id %}">{{ product.name }}</a></h3>
+                                        <div class="ratings">
+                                            <span class="good"><i class="fa fa-star"></i></span>
+                                            <span class="good"><i class="fa fa-star"></i></span>
+                                            <span class="good"><i class="fa fa-star"></i></span>
+                                            <span class="good"><i class="fa fa-star"></i></span>
+                                            <span><i class="fa fa-star"></i></span>
+                                            <div class="pro-review">
+                                                <span>1 review(s)</span>
+                                            </div>
+                                        </div>
+                                        <div class="customer-rev">
+                                            <a >{{k}} Orders within last {{G}} Hours</a>
+                                        </div>
+                                        <div class="availability mt-10">
+                                            <h5>Availability:</h5>
+                                            <span>{{product.stock }} in stock</span>
+                                        </div>
+                                        <div class="pricebox">
+                                            <span class="regular-price">{{product.price }}</span>
+                                        </div>
+                                        <p>{{ product.description }}</p>
+                                        <div class="quantity-cart-box d-flex align-items-center">
+                        <form action="" method="POST" class="btn-block">
+							{% csrf_token %}
+							{{ form|crispy}}
+							
+							<input hidden type="text" name='product' value='{{product.id}}'>
+							
+							<input type="submit"  class=" btn btn-primary"
+								value="Add To Cart">
+							
+						</form>
+						
+                                              
+                                            
+                                        </div>
+                                        <div class="share-icon mt-20">
+                                            <i class="btn btn-primary" style="background-color:#0e76a8">{% post_to_linkedin object_or_url %}</i>
+                                            <i class="btn btn-primary" style="background-color:red">{% send_email object.title "Pearl-Mart: {{product.name}}. Check it out!" object_or_url "Email" %}</i>
+                                            <i class="btn btn-primary" style="background-color:#DD4B39">{% post_to_gplus object_or_url "Google+!" %}</i>
+                                        </div>
+                                        <div class="share-icon mt-20">
+                                              <i class="btn btn-primary" style="background-color:#3b5998 ">{% post_to_facebook object_or_url "Facebook" %}</i> 
+                                              <i class="btn btn-primary" style="background-color: #25D366 ">{% post_to_whatsapp  object_or_url "WhatsApp" %}</i>
+                                              <i class="btn btn-primary" style="background-color: #00acee ">{% post_to_twitter "Twiter" object_or_url "Twitter" %}</i>
+                                              <i class="btn btn-primary" style="background-color:  #229ED9 ">{% post_to_telegram 'Pearl-Mart' object_or_url "Telegram" %}</i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- product details inner end -->
+
+                        <!-- product details reviews start -->
+                        <div class="product-details-reviews mt-34">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="product-review-info">
+                                        <ul class="nav review-tab">
+                                            <li>
+                                                <a class="active" data-toggle="tab" href="#tab_one">description</a>
+                                            </li>
+                                            
+                                        </ul>
+                                        <div class="tab-content reviews-tab">
+                                            <div class="tab-pane fade show active" id="tab_one">
+                                                <div class="tab-one">
+                                                    <div class="container"><p>{{ product.description }}</p></div>
+                                                    <div class="review-description">
+                                                        <div class="tab-thumb">
+                                                            <img src="assets/img/about/services.jpg" alt="">
+                                                        </div>
+                                                        <div class="tab-des mt-sm-24">
+                                                            <h3>Services That We Offer :</h3>
+                                                            <ul>
+                                                                <li>Buyer Protection From Buy Counterfeit Products.</li>
+                                                                <li>Delivery within 24 hours.</li>
+                                                                <li>Payment On Delivery</li>
+                                                                <li>Our Products Have Guranteed Quality</li>
+                                                                <li>No money back Gurantee.</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <p>Thank you for choosing to be part of our community at Pearl-Mart Businesses. We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about this privacy notice, or our practices with regards to your personal information, please contact us at pearlmartbusinesses@yahoo.com
+
+
+
+When you and more generally, use any of our services (the "Services", which include the Online Store Pearl-Mart), we appreciate that you are trusting us with your personal information. We take your privacy very seriously. In this privacy notice,We seek to offer you Fast and Efficient 24 hour delivery of all your Orders.We Offer goo of various categories and brands, as it is important to Make sure you find all that you seek.
+
+</p>
+                                                </div>
+                                            </div>
+                                            
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <!-- product details reviews end --> 
+
+                        <!-- related products area start -->
+                        <div class="related-products-area mt-34">
+                            <div class="section-title mb-30">
+                                <div class="title-icon">
+                                    <i class="fa fa-desktop"></i>
+                                </div>
+                                <h3>related products</h3>
+                            </div> <!-- section title end -->
+                            <!-- featured category start -->
+                            <div class="featured-carousel-active slick-padding slick-arrow-style">
+                                <!-- product single item start -->
+                                {% for product in related_products %}
+                                <div class="product-item fix">
+                                    <div class="product-thumb">
+                                        <a href="{% url 'details' product.id %}">
+                                            <img src="{{product.image.url}}" class="img-pri" alt="">
+                                        </a>
+                                        {% if product.is_new_arrival == True %}
+                                            <div class="product-label">
+                                                <span>New Stock</span>
+                                            </div>
+                                            
+                                            {% elif product.is_featured == True %}
+                                            <div class="product-label">
+                                                <span>Featured</span>
+                                            </div>
+                                            
+                                            {% elif product.is_top_rated == True %}
+                                            <div class="product-label">
+                                                <span>Top Rated</span>
+                                            </div>
+                                            
+                                            {% elif product.is_best_selling == True %}
+                                            <div class="product-label">
+                                                <span>Most Sold</span>
+                                            </div>
+                                            
+                                            {% elif product.is_most_viewed == True %}
+                                            <div class="product-label">
+                                                <span>Most Seen</span>
+                                            </div>
+                                            
+                                            {% elif product.is_new_product == True %}
+                                            <div class="product-label">
+                                                <span>Just Added</span>
+                                            </div>
+                                            
+                                            {% elif product.is_hot_sale == True %}
+                                            <div class="product-label">
+                                                <span>Hot Sale</span>
+                                            </div>
+                                            {% else  %}
+                                            <div class="product-label">
+                                                <span>Black Sale</span>
+                                            </div>
+                                            {% endif %}
+                                            <div class="product-action-link">
+                                                <a href="{% url 'details' product.id %}" > <span data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search"></i></span> </a>
+                                               <form action="/#" method="POST" class="buy-btn">
+                            {% csrf_token %}
+                            <input hidden type="text" name='product' value='{{product.id}}' >
+                        <input type="submit"  data-toggle="tooltip" class="btn btn-primary" data-placement="top" value="Add to Cart" title="Add to cart"></form> 
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <h4><a href="{% url 'details' product.id %}">{{ product.name }}</a></h4>
+                                        <div class="pricebox">
+                                            <span class="regular-price">{{ product.price }}/=</span>
+                                            <div class="ratings">
+                                                <span class="good"><i class="fa fa-star"></i></span>
+                                                <span class="good"><i class="fa fa-star"></i></span>
+                                                <span class="good"><i class="fa fa-star"></i></span>
+                                                <span class="good"><i class="fa fa-star"></i></span>
+                                                <span><i class="fa fa-star"></i></span>
+                                                <div class="pro-review">
+                                                    <span>1 review(s)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <!-- product single item end -->
+                                
+                            </div>
+                            <!-- featured category end -->
+                        </div>
+                        <!-- related products area end -->
+                    </div>
+
+                    <!-- sidebar start -->
+                    <div class="col-lg-3">
+                        <div class="shop-sidebar-wrap fix mt-md-22 mt-sm-22">
+                            <!-- featured category start -->
+                            <div class="sidebar-widget mb-22">
+                                <div class="section-title-2 d-flex justify-content-between mb-28">
+                                    <h3>featured</h3>
+                                    <div class="category-append"></div>
+                                </div> <!-- section title end -->
+                                {% for product in featured %}
+                                <div class="category-carousel-active row" data-row="4">
+                                    <div class="col">
+                                    	
+                                        <div class="category-item">
+                                            <div class="category-thumb">
+                                                <a href="{% url 'details' product.id %}">
+                                                    <img src="{{ product.image.url }}" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="category-content">
+                                                <h4><a href="{% url 'details' product.id %}">{{ product.name }}</a></h4>
+                                                <div class="price-box">
+                                                    <div class="regular-price">
+                                                        {{ product.price }}/=
+                                                    </div>
+                                                    <div class="old-price">
+                                                        <del>{{ product.price }}/=</del>
+                                                    </div>
+                                                </div>
+                                                <div class="ratings">
+                                                    <span class="good"><i class="fa fa-star"></i></span>
+                                                    <span class="good"><i class="fa fa-star"></i></span>
+                                                    <span class="good"><i class="fa fa-star"></i></span>
+                                                    <span class="good"><i class="fa fa-star"></i></span>
+                                                    <span><i class="fa fa-star"></i></span>
+                                                    <div class="pro-review">
+                                                        <span>1 review(s)</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> <!-- end single item -->
+                                        
+                                    </div> <!-- end single item column -->
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <!-- featured category end -->
+
+                            <!-- manufacturer start -->
+                            <div class="sidebar-widget mb-22">
+                                <div class="sidebar-title mb-10">
+                                    <h3>Popular Companies</h3>
+                                </div>
+                                <div class="sidebar-widget-body">
+                                    <ul>{% for brand in popularB %}
+                                        <li><i class="fa fa-angle-right"></i><a href="/?brand={{brand.id}}">{{ brand.name }}</a></li>
+                                        {% endfor %}
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- manufacturer end -->
+
+                            <!-- product tag start -->
+                            <div class="sidebar-widget mb-22">
+                                <div class="sidebar-title mb-20">
+                                    <h3>tag</h3>
+                                </div>
+                                <div class="sidebar-widget-body">
+                                    <div class="product-tag">
+                                    	{% for category in taggedC %}
+                                        <a href="/?category={{category.id}}">{{ category.name }}</a>
+                                        {% endfor %}
+                                        {% for brand in taggedB %}
+                                        <a href="/?brand={{brand.id}}">{{ brand.name }}</a>
+                                        {% endfor %}
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- product tag end -->
+
+                            <!-- sidebar banner start -->
+                            <div class="sidebar-widget mb-22">
+                                <div class="img-container fix img-full mt-30">
+                                    <a ><img src="assets/img/banner/banner_shop.jpg" alt=""></a>
+                                </div>
+                            </div>
+                            <!-- sidebar banner end -->
+                        </div>
+                    </div>
+                    <!-- sidebar end -->
+                </div>
+            </div>
+        </div>
+        <!-- product details wrapper end -->
+
+  
+
+{% endblock %}
