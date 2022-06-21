@@ -37,6 +37,7 @@ def checkout(request):
         order = Order(customer=User(id=customer),
                       product=product,
                       price=product.price,
+                      selling_price=product.selling_price,
                       address=address,
                       phone=phone,
                       email=email,

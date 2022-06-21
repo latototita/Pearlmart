@@ -95,9 +95,9 @@
                                                                 <td><img style="height: 80px;" class="rounded-circle" src="{{order.product.image.url}}" alt=""></td>
                                                                 <td>{{order.product.name}}</td>
                                                                 <td>{{order.date}}</td>
-                                                                <td>{{order.price}}/=</td>
+                                                                <td>{{order.selling_price}}/=</td>
                                                                 <td>{{order.quantity}}</td>
-                                                                <td>{{order.quantity|mul:order.price}}/=</td>
+                                                                <td>{{order.quantity|mul:order.selling_price}}/=</td>
                                                                 <td>{{order.ordering_code}}</td>
                                                                 <td><a href="/?order={{order.id}}" class="btn btn-primary my-2 my-sm-0"><i class="glyphicon glyphicon-trash">Delete</i></a></td>
                                                                 {% if order.status %}

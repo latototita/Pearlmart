@@ -10,6 +10,8 @@ from django.contrib.auth.models import User
 class Product(models.Model):
     name = models.CharField(max_length=50)
     price = models.IntegerField(default=0)
+    del_price= models.IntegerField(default=0)
+    selling_price =models.IntegerField(default=0)
     stock = models.IntegerField(default=1)
     category =models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, default=1)
