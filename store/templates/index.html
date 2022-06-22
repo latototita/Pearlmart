@@ -78,7 +78,7 @@
                                             <a href="{% url 'details' product.id %}">
                                                     <img src="{{product.image.url}}"  class="img-pri" alt="">
                                             </a>
-                                            {% if product.discount == True %}
+                                        {% if product.discount == True %}
                                             <div class="product-label-discount" style="border-radius: 50%; color: purple;">
                                                 <span>{{ product.discount_percentage}}% OFF</span>
                                             </div>
@@ -109,7 +109,7 @@
                                             </div>
                                             
                                             {% elif product.is_new_product == True %}
-                                            <div class="product-label">
+                                            <div class="product-label-new_product">
                                                 <span>Just Added</span>
                                             </div>
                                             {% elif product.is_hot_sale == True %}
@@ -161,46 +161,55 @@
                                             <a href="{% url 'details' product.id %}">
                                                 <img src="{{product.image.url}}"  id="img1"  style="visibility: visible;" alt="">
                                             </a>
-                                            {% if product.discount == True %}
-                                            <div class="product-label-discount" style="border-radius: 50%; color: purple;">
+                                        {% if product.discount == True %}
+                                            <div class="" style="top: 0;left: 0;position: absolute;width: 100px;height: 50px;font-size: 14px;color: #ffffff;font-weight: 600;text-align:center;line-height: 50px;display: block;background-color:#C70039;-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 10%;text-transform: uppercase;
+">
                                                 <span>{{ product.discount_percentage}}% OFF</span>
                                             </div>
                                         {% else  %}
                                             {% if product.is_new_arrival == True %}
-                                            <div class="product-label">
+                                            <div class="" style="top: 0;left: 0;position: absolute;width: 100px;height: 50px;font-size: 14px;color: #ffffff;font-weight: 600;text-align:center;line-height: 50px;display: block;background-color:#f19409;-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 10%;text-transform: uppercase;
+">
                                                 <span>New Stock</span>
                                             </div>
                                             
                                             {% elif product.is_featured == True %}
-                                            <div class="product-label-featured">
+                                            <div class="" style="top: 0;left: 0;position: absolute;width: 100px;height: 50px;font-size: 14px;color: #ffffff;font-weight: 600;text-align:center;line-height: 50px;display: block;background-color:#FF5733;-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 10%;text-transform: uppercase;
+">
                                                 <span>Featured</span>
                                             </div>
                                             
                                             {% elif product.is_top_rated == True %}
-                                            <div class="product-label-top_rated">
+                                            <div class="" style="top: 0;left: 0;position: absolute;width: 100px;height: 50px;font-size: 14px;color: #ffffff;font-weight: 600;text-align:center;line-height: 50px;display: block;background-color:#FFC300;-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 10%;text-transform: uppercase;
+">
                                                 <span>Top Rated</span>
                                             </div>
                                             
                                             {% elif product.is_best_selling == True %}
-                                            <div class="product-label-most_sold">
+                                            <div class="" style="top: 0;left: 0;position: absolute;width: 100px;height: 50px;font-size: 14px;color: #ffffff;font-weight: 600;text-align:center;line-height: 50px;display: block;background-color:#900C3F;-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 10%;text-transform: uppercase;
+">
                                                 <span>Most Sold</span>
                                             </div>
                                             
                                             {% elif product.is_most_viewed == True %}
-                                            <div class="product-label-most_seen">
+                                            <div class="" style="top: 0;left: 0;position: absolute;width: 100px;height: 50px;font-size: 14px;color: #ffffff;font-weight: 600;text-align:center;line-height: 50px;display: block;background-color:#581845;-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 10%;text-transform: uppercase;
+">
                                                 <span>Most Seen</span>
                                             </div>
                                             
                                             {% elif product.is_new_product == True %}
-                                            <div class="product-label">
+                                            <div class="" style="top: 0;left: 0;position: absolute;width: 100px;height: 50px;font-size: 14px;color: #ffffff;font-weight: 600;text-align:center;line-height: 50px;display: block;background-color:#e409f1;-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 10%;text-transform: uppercase;
+">
                                                 <span>Just Added</span>
                                             </div>
                                             {% elif product.is_hot_sale == True %}
-                                            <div class="product-label-hot_sale">
+                                            <div class="" style="top: 0;left: 0;position: absolute;width: 100px;height: 50px;font-size: 14px;color: #ffffff;font-weight: 600;text-align:center;line-height: 50px;display: block;background-color:#3b084f;-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 10%;text-transform: uppercase;
+">
                                                 <span>Hot Sale</span>
                                             </div>
                                             {% else  %}
-                                            <div class="product-label-black_sale">
+                                            <div class="" style="top: 0;left: 0;position: absolute;width: 100px;height: 50px;font-size: 14px;color: #ffffff;font-weight: 600;text-align:center;line-height: 50px;display: block;background-color:#f19409;-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 10%;text-transform: uppercase;
+">
                                                 <span>Black Sale</span>
                                             </div>
                                             {% endif %}    

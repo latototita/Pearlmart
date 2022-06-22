@@ -30,7 +30,7 @@
     <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
     <link href="{% static 'assets/css/skin-default.css' %}" rel="stylesheet" id="galio-skin">
     <style type="text/css">
-/*------------------------------------------------------------------
+        /*------------------------------------------------------------------
 Table of content
 -------------------
 1. Start Header Area
@@ -3760,6 +3760,28 @@ only screen and (min-width: 768px) and (max-width: 991px) {
     position: absolute;
     opacity: 0;
     visibility: hidden;
+}
+
+.product-item .product-thumb .product-label-new_product {
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+.product-item .product-thumb .product-label-new_product span {
+    width: 100px;
+    height: 50px;
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+    line-height: 50px;
+    display: block;
+    background-color: #e409f1;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 10%;
+    text-transform: uppercase;
 }
 
 .product-item .product-thumb .product-label {
@@ -8425,11 +8447,12 @@ only screen and (max-width: 767px) {
                                 <div class="main-menu">
                                     <nav id="mobile-menu">
                                         <ul>
-                                            <li class="active"><a href="/homepage"><i class="fa fa-home"></i>Home <i class="fa fa-angle-down"></i></a>
+                                            <li class="active"><a href="/homepage"><i class="fa fa-home"></i>Home<i class="fa fa-angle-down"></i></a>
                                                 <ul class="megamenu dropdown">
                                                    
                                                     <ul>
                                                         <li><a href="/lart">Cart</a></li>
+                                                        <li><a href="/orders">My Orders</a></li>
                                                         {% if user.is_authenticated %}
                                                          <li><a href="/become_vendor1">Sell Here</a></li>
                                                          <li><a href="/logout">Logout</a></li>
@@ -8442,8 +8465,6 @@ only screen and (max-width: 767px) {
                                                 
                                                 </ul>
                                             </li>
-
-                                            <li><a href="/orders">My Orders <i class="fa fa-truck"></i></a></li>
                                           
                                             <li class="static"><a href="/store">STORES<i class="fa fa-angle-down"></i></a>
                                                 <ul class="megamenu dropdown">
