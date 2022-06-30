@@ -1,0 +1,4 @@
+{% load admin_chart_tags %}
+{% for chart in charts %}
+   {% include "./chart_container.html" with chart=chart %}
+{% endfor %}

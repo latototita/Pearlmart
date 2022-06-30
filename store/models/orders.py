@@ -14,11 +14,12 @@ class Order(models.Model):
     selling_price =models.IntegerField(default=0)
     address = models.CharField(max_length=50, default='', blank=True)
     phone = models.CharField(max_length=50, default='', blank=True)
-    date = models.DateField(default=datetime.datetime.today)
+    dates = models.DateField(default=datetime.datetime.today)
     email  = models.EmailField(max_length=70,blank=True,unique=False)
     status = models.BooleanField(default=False)
     ordering_code=models.CharField(max_length=6,default='')
     shop = models.IntegerField(default=0)
+    is_accounted = models.BooleanField(default=False)
 
     def placeOrder(self):
         self.save()

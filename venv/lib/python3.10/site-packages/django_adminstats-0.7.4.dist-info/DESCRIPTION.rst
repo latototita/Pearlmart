@@ -1,0 +1,232 @@
+==================
+Django Admin Stats
+==================
+
+|pipeline-badge| |coverage-badge| |pypi-badge|
+
+Django Admin Stats allows you to create and display charts of your data
+using the django admin. It uses `c3 <https://c3js.org/>`_ to display charts.
+
+
+.. figure:: chart.png
+   :alt: A chart of page-views
+
+   A sample chart from the demo being visualized
+
+Features
+========
+
+* Easy-no configuration charting using the "explore" function.
+* Supports generating statistics from django models and from trackstats_
+  metrics.
+* Also allows for custom statistics generation by making your own
+  ``Registration`` subclass.
+* Nice JavaScript charts with c3, falls back to a plain table without
+  JavaScript.
+* Add filters & group data by setting query parameters on the criteria
+
+Limitations
+===========
+
+* One dimension/axis of the chart is always the date. There's no way to
+  specify a chart that isn’t “by date”.
+
+Installation
+============
+
+Installation is straightforward. Install ``django-adminstats`` with pip, and
+then add the following ``INSTALLED_APPS`` in your config. If you already have
+something that replaces ``django.contrib.admin``, you'll need to manually
+add links to the “Explore” pages if you want to use the Explore tool.
+
+..  code-block:: python
+
+    INSTALLED_APPS = [
+        ...
+        'django_adminstats.apps.AdminConfig', # replaces django.contrib.admin
+        'django_adminstats',
+        ...
+    ]
+
+Using the Explore Tool
+======================
+
+The Explore tool lets any user with access to the admin site view charts
+for whatever models they have access to. Unlike the following Charts system,
+these charts are generated on-the-fly, and don’t require any setup.
+
+The explore tool is closely integrated into the functionality that already
+exists in the django admin. The consequence of this is that if you want to
+do any grouping or filtering you have to define filters_ on your admin
+pages using ``ModelAdmin.list_filter``.
+
+One of the benefits of the Explore tool is that once you’ve applied filters,
+you can click on the “View Entries” button, to view the selected entries in
+the regular admin page.
+
+Using Charts
+============
+
+Using charts allows you to generate charts with a high degree of flexibility,
+including things like averages, sums, substring queries, etcetera. Most
+of the the regular django querying abilities are available in charts, even
+if the fields aren't normally visible in the admin.
+
+This is nice in that it is flexible, but it requires a bit of setup and its
+not a good idea to give create/edit access to non-superusers due to the ability
+to query data on almost any field.
+
+
+Registering Statistics
+----------------------
+
+In order to do anything, you'll need register some models or trackstats
+metrics. You can find examples of this in ``tests/models.py``, but the short
+of it looks like this:
+
+.. code-block:: python
+
+   from django_adminstats.registry import register_model
+
+   class Currency(models.Model):
+       slug = models.CharField(max_length=10)
+       name = models.CharField(max_length=100)
+       current_usd_rate = models.DecimalField()
+       sign = models.CharField(max_length=10, default='$')
+
+   class Transaction(models.Model):
+       amount = models.DecimalField()
+       currency = models.Foreignkey(to=Currency)
+       date = models.DateTimeField(auto_now_add=True)
+
+   register_model(Transaction)
+
+
+By default, we look for a field called ‘date’ on the model, and it should be
+either a ``DateField`` or ``DateTimeField``. If you want to use a different,
+field (for example if you’re using Django’s default user and you want to chart
+by ‘joined_at’) you need to create a registration subclass.
+
+.. code-block:: python
+
+   from django_adminstats.registry import registry, register
+
+   class UserRegistration(ModelRegistration):
+       date_field = 'joined_at'
+
+   register(UserRegistration())
+
+
+Creating Charts
+---------------
+
+You can add charts in the admin. In order for the chart to show anything, you
+need to add criteria. By default, it will just show a count of all the items
+charted by the date field, if you to change this, you need to add things in
+the filter query, axis query, and group query fields.
+
+First, the content of these fields is formatted like a URL querystring,
+for example a filter query of ``message=Hello%20World&x=y`` is equivalent to
+``.filter(message='Hello World', x='y')``. Note that you only use the
+``key0=value0&key1=value1`` form in the filter query, the axis and group
+queries are just ``key0&key2``.
+
+Second, you can use lookups and relations just like in a normal django
+query (e.g. ``field__gt=2`` or ``field__related_field``).
+
+Finally, you can also specify functions to use on the field by doing
+``field:function``. For example ``id:count`` is the default axis query when
+the field is left blank.
+
+
+Demo
+====
+
+Just run ``make demo`` and log in with user ``admin`` and password ``admin``.
+
+
+.. |pipeline-badge| image:: https://gitlab.com/alantrick/django-adminstats/badges/master/pipeline.svg
+   :target: https://gitlab.com/alantrick/django-adminstats/
+   :alt: Build Status
+
+.. |coverage-badge| image:: https://gitlab.com/alantrick/django-adminstats/badges/master/coverage.svg
+   :target: https://gitlab.com/alantrick/django-adminstats/
+   :alt: Coverage Status
+
+.. |pypi-badge| image:: https://img.shields.io/pypi/v/django_adminstats.svg
+   :target: https://pypi.org/project/django-adminstats/
+   :alt: Project on PyPI
+
+.. _trackstats: https://pypi.org/project/django-trackstats/
+
+.. _filters: https://docs.djangoproject.com/en/dev/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_filter
+
+CHANGES
+=======
+
+0.7.4
+-----
+
+* Use the view instead of change permission for viewing charts
+
+0.7.3
+-----
+
+* Fix error in description generation
+
+0.7.2
+-----
+* Make chart control list items more visually distinct
+
+0.7.1
+-----
+
+* Fix packaging problem (missing files)
+
+0.7.0
+-----
+
+* Add new “Explore” charts, upgrading users may want to adjust
+  ``INSTALLED_APPS``.
+
+0.6.3
+-----
+
+* Drop pbr for regular setuptools, add VERSION attribute
+* Fix some new problems that flake was catching
+* Add screenshot of chart
+
+0.6.2
+-----
+
+* Fix problem where criteria with same stats would clobber each other
+
+0.6.1
+-----
+
+* fix programming bug with by-month trackstats metrics, better test coverage
+
+0.6
+---
+
+* fix autocomplete options for tracstats criteria
+* Fix problems with the autocomplete not (re)initializing properly
+
+0.5
+---
+
+* Add autocomplete for query fields in admin, and rename query fields
+
+0.4
+---
+
+* Add documentation for query fields and registrations
+* Add copy chart admin action
+
+0.3
+---
+
+* Add the ability to filter/group related models in trackstats by-object
+  stats registrations
+
+

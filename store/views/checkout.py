@@ -6,6 +6,7 @@ import random
 from Eshop import settings
 from store.models.product import Product
 from store.models.orders import Order
+from store.models.models import Order_record
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
@@ -27,7 +28,7 @@ def checkout(request):
     email = request.POST.get('email')
     phone = request.POST.get('phone')
     cart = request.session.get('cart')
-    customer = request.session.get('customer')
+    customer = request.user.id
     products = Product.get_products_by_id(list(cart.keys()))
     print(address, phone, customer, cart, products)
     ordering_code= ''.join([random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567893456789') for _ in range(6)])
@@ -44,6 +45,21 @@ def checkout(request):
                       ordering_code=ordering_code,
                       quantity=cart.get(str(product.id)))
         order.save()
+        order_records = Order_record(customer=User(id=customer),
+                      product=product,
+                      price=product.price,
+                      selling_price=product.selling_price,
+                      address=address,
+                      phone=phone,
+                      email=email,
+                      ordering_code=ordering_code,
+                      quantity=cart.get(str(product.id)))
+        order_records.save()
+        product_stock=Product.objects.get(id=product.id)
+        stock=(product_stock.stock-cart.get(str(product.id)))
+        new_product=Product(stock=stock)
+        new_product.save()
+
     if email:
             
         send_mail(
@@ -53,7 +69,7 @@ def checkout(request):
             [f'{email}'],
             fail_silently = False,
         )
-    send_mail(
+        send_mail(
             'Order Made',
             f'Order has been made on at exactly {date_time} Today. Kind make th delivery within 24 Hours. To be delivered at {address}, Contact the customer on {phone}',
             settings.EMAIL_HOST_USER,

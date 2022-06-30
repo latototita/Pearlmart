@@ -17,7 +17,7 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
 
 
 # Quick-start development settings - unsuitable for production
@@ -36,8 +36,10 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_list_charts',
     'admin_interface',
     'colorfield',
+    'chartjs',
     'django.contrib.admin',
     'crispy_forms',
     'django_social_share',
@@ -49,6 +51,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'store'
 ]
+
+
+
+
 X_FRAME_OPTIONS='SAMEORIGIN'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -135,7 +141,6 @@ USE_TZ = False
 
 # This is new
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
@@ -151,6 +156,7 @@ MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 #STMP configuration
 
@@ -160,3 +166,6 @@ EMAIL_PORT=587
 EMAIL_USE_TLS=True
 EMAIL_HOST_USER='pearlmartbusinesses@yahoo.com'
 EMAIL_HOST_PASSWORD='jlxmlemwkciomuea'
+
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'

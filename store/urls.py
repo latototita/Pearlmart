@@ -9,12 +9,22 @@ from .views.orders import orders,delete
 from .middlewares.auth import  auth_middleware
 from django.contrib.auth import views as auth_views
 from store.views.views import *
-
-
+from store.graph import *
 
 
 
 urlpatterns = [
+    #Graph Urls
+    path('chartJSON_Asset', line_chart_json_asset, name='line_chart_json_asset'),
+    path('chartJSON_Debit', line_chart_json_debit, name='line_chart_json_debit'),
+    path('chartJSON_Credit', line_chart_json_credit, name='line_chart_json_credit'),
+    path('chartJSON_Expense', line_chart_json_expense, name='line_chart_json_expense'),
+    path('chartJSON_Products_Sold', line_chart_json_products_sold, name='line_chart_json_products_sold'),
+    path('chartJSON_Account', line_chart_json_account, name='line_chart_json_account'),
+    path('chartJSON_Net_Profit', line_chart_json_net_profit, name='line_chart_json_net_profit'),
+    #Accounting
+    path('daily_accounting/',daily_accounting,name='daily_accounting'),
+    #store
     path('remove_to_store',remove_to_store,name='remove_to_store'),
     path('remove_to_checkout',remove_to_checkout,name='remove_to_checkout'),
     path('remove_to_homepage',remove_to_homepage,name='remove_to_homepage'),

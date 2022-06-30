@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import check_password
 from django.views import View
 from store.models.product import Product
+from store.models.brand import *
+from store.models.category import *
 from store.models.orders import *
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -33,6 +35,10 @@ def orders(request):
     order = request.POST.get('order')
     if deleteorder:
         order=Order.objects.filter(id__in=deleteorder)
+        product=Order.objects.filter(id__in=order.product.id)
+        stock=(product.stock+order.quantity)
+        new_product=Product(stock=stock)
+        new_product.save()
         order.delete()
         messages.success(request, f'Order for {order}Item Cancelled Successfully')
     print(orders)

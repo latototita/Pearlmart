@@ -7,8 +7,14 @@ certifi==2019.3.9
 chardet==3.0.4
 django-environ
 defusedxml==0.6.0
+django_admin_interface
 Django==2.2.14
-django-admin-charts==0.25.2
+django-celery
+redis
+django_social_share
+django_crispy_forms
+django-admin-charts
+django_mathfilters
 django-admin-interface==0.18.5
 django-allauth==0.39.1
 django-bower==5.2.0

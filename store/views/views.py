@@ -15,17 +15,16 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
+from django.http import HttpResponse
 from django.core.mail import send_mail
-from django.shortcuts import (
-render_to_response
-)
+from django.shortcuts import render
+
 from django.template import RequestContext
 from django.contrib.auth.decorators import user_passes_test
 
 from .login import Login
 from django.contrib.auth.models import Group
 from store.models.product import Product
-
 
 def group_check(user):
     return user.groups.filter(name__in=['Vendor'])
@@ -650,7 +649,7 @@ def VendorOrders(request):
 
 # HTTP Error 400
 def bad_request(request, exception):
-    response = render_to_response(
+    response = render(
         '400.html',
         context_instance=RequestContext(request)
         )
@@ -680,7 +679,7 @@ def server_error(request):
 
 # HTTP Error 404
 def page_not_found(request, exception):
-    response = render_to_response(
+    response = render(
         '404.html',
         context_instance=RequestContext(request)
         )
@@ -697,7 +696,7 @@ def page_not_found(request, exception):
 
 # HTTP Error 403
 def permission_denied(request, exception):
-    response = render_to_response(
+    response = render(
         '403.html',
         context_instance=RequestContext(request)
         )
@@ -803,3 +802,114 @@ def add_comment(request, pk):
     else:
         return redirect('index')
     return redirect('post_detail', pk=pk)
+
+
+def daily_accounting(request):
+    today = datetime.datetime.today()
+    number_of_products=0
+    number_of_orders=0
+    number_of_customers=0
+    Product_Sold=[]
+    gross_income_selling=0
+    gross_income_cost=0
+    New_Orders=[]
+    profits=0
+    gross_income_transport=0
+    if Order.objects.filter(dates=today).filter(status=True).filter(is_accounted=False):
+        '''print('pass : ')
+    
+        print('Failed try 1')
+        todays_accounting=[]
+        print('Failed try 1')
+        pass
+    try:
+        todays_accounting= Accounts.objects.filter(date_created=today).filter(status =True)
+    except Exception as e:
+        raise e
+    else:
+        return HttpResponse('else')
+    if todays_accounting==[]:'''
+        if Order.objects.filter(dates=today).filter(status=True).filter(is_accounted=False):
+            Orders_today=Order.objects.filter(dates=today).filter(status =True)
+            if Orders_today.first():
+                print('Orders not Empty')
+                for order in Orders_today:
+                    if order.customer not in New_Orders:
+                        New_Orders.append(order.customer)
+                        number_of_orders=number_of_orders+1
+                        number_of_customers=number_of_customers+1
+                        gross_income_transport= gross_income_transport+3000
+                    if order.product not in Product_Sold:
+                        Product_Sold.append(order.product)
+                    number_of_products=number_of_products+order.quantity
+                    gross_income_selling=gross_income_selling+(order.price*order.quantity)
+                    product=Product.objects.get(id=order.product.id)
+                    gross_income_cost=gross_income_cost+(product.selling_price*order.quantity)
+                    cost_price=(product.selling_price*order.quantity)
+                    selling_price=(order.price*order.quantity)
+                    print(product.selling_price)
+                    orders=Order.objects.get(id=order.id)
+                    orders.is_accounted=True
+                    orders.save()
+                gross_income_selling=(gross_income_selling+gross_income_transport)
+                print('gross_income_selling :',gross_income_selling)
+                gross_profit=(gross_income_selling- gross_income_cost)
+                print('gross_profit  :',gross_profit)
+                profits=(selling_price-cost_price)+gross_income_transport
+                if Credit.objects.filter(date_created=today):
+                    Credits=Credit.objects.filter(date_created=today)
+                    if Credit.first():
+                        for credit in Credits:
+                            profits=(profits+credit.amount)
+                else:
+                    pass
+                if Expense.objects.filter(date_created=today):
+                    Expenses=Expenses.objects.filter(date_created=today)
+                    if Expenses.first():
+                        for expense in Expenses:
+                            profits=(profits-expense.amount)
+                    else:
+                        pass
+                else:
+                    pass
+                if Debit.objects.filter(date_created=today):
+                    Debt=Debit.objects.filter(date_created=today)
+                    if Debt.first():
+                        for debt in Debt:
+                            profits=(profits-debt.amount)
+                    else:
+                        pass
+                else:
+                    pass
+
+                print('profits :', profits)
+                for product in Product_Sold:
+                    product=Product.objects.get(id=order.product.id)
+                    products_Sold = Products_Sold(
+                        name=product.name,
+                        price=product.price,
+                        category=product.category.name,
+                        brand=product.brand.name,
+                        shop=product.shop,
+                        is_discounted=product.discount,
+                        discount_percentage=product.discount_percentage,)
+                    products_Sold.save()
+                accounts = Account(
+                    gross_income=gross_income_selling,
+                    gross_profit=profits,
+                    net_profit=profits,
+                    number_of_products=number_of_products,
+                    number_of_orders=number_of_orders)
+                accounts.save()
+                net_profits=Net_Profit(
+                    amount=profits)
+                net_profits.save()
+        
+            else:
+                print('Empty No Order today')
+                return HttpResponse('Empty No Order today')
+        return HttpResponse('Empty')
+    elif todays_accounting.first():
+        print('todays_accounting handled already')
+        return HttpResponse('todays_accounting handled already')
+

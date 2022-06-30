@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: django-admin-list-charts
+Version: 0.1.3
+Summary: Super simple bar charts for django admin list views visualizing the number of objects based on date_hierarchy using Chart.js.
+Home-page: https://github.com/foorilla/django-admin-list-charts
+Author: foorilla LLC
+Author-email: pat@foorilla.com
+License: BSD 2-clause
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 3.2
+Classifier: Framework :: Django :: 4.0
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.6
+License-File: LICENSE
+Requires-Dist: Django (>=3.2)
+

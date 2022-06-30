@@ -1,0 +1,107 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+{% load admin_urls %}
+{% block extrahead %}{{ block.super }}
+<script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+<link rel="stylesheet" href="{% static 'django_adminstats/c3.min.css' %}"/>
+<script type="text/javascript" src="{% static 'django_adminstats/d3.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'django_adminstats/c3.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'django_adminstats/chart.js' %}"></script>
+{% endblock %}
+
+{% block extrastyle %}{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "django_adminstats/main.css" %}">
+{% endblock %}
+{% block bodyclass %}{{ block.super }} {{ opts.app_label }}-{{ opts.model_name }} change-form{% endblock %}
+{% if not is_popup %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+&rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_config.verbose_name }}</a>
+&rsaquo; <a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>
+&rsaquo; {% trans 'View Chart' %}
+</div>
+{% endblock %}
+{% endif %}
+{% block content %}
+<div id="content-main">
+  <ul class="object-tools">
+    <li><a href="{{ entry_url }}">{% trans 'View Entries' %}</a></li>
+  </ul>
+  <div class="django-vox-chart-controls">
+    <h3>{% trans 'Groupings' %}</h3>
+    <ul class="adminstats-groupings">
+      {% if groupings %}
+      {% for f in groupings %}
+        <li><a href="{{ f.url }}" class="{% if f.in_group %}deletelink{% else %}addlink{% endif %}">
+            {% blocktrans with filter_title=f.title %}by {{ filter_title }}{% endblocktrans %}
+          </a></li>
+      {% endfor %}
+      {% else %}
+        <li>{% trans 'None Available' %}</li>
+      {% endif %}
+    </ul>
+
+    <h3>{% trans 'Filters' %}</h3>
+    <ul class="adminstats-filters">
+      {% if filters %}
+      {% for f in filters %}
+        <li><a href="{{ f.url }}" class="deletelink">
+            {% blocktrans with filter_title=f.title filter_value=f.value %}{{ filter_title }}: {{ filter_value }}{% endblocktrans %}
+          </a></li>
+      {% endfor %}
+      {% else %}
+      <li>{% trans 'None Applied' %}</li>
+      {% endif %}
+    </ul>
+
+    <h3>{% trans 'Axis' %}</h3>
+    <ul>
+      {% if axes %}
+      {% for f in axes %}
+        <li><a href="{{ f.axis_url }}" class="{% if f.is_axis %}deletelink{% endif %}">
+          {{ f.title }}
+        </a></li>
+      {% endfor %}
+      {% else %}
+      <li>{% trans 'None Available' %}</li>
+      {% endif %}
+    </ul>
+  </div>
+  <div id="chart"></div>
+
+  <table id="chart-data" data-chart-type="{{ table.type }}">
+    {% if table.step %}
+    <tr id="chart-axis">
+      <th>{{ table.top_display }}</th>
+      {% for cell in table.headers %}
+        <th scope="col" data-value="{{ cell.value }}">
+          {% if cell.has_url %}<a href="{{ cell.url }}">{{ cell.display }}</a>{% else %}{{ cell.display }}{% endif %}</th>
+      {% endfor%}
+    </tr>
+    {% endif %}
+    {% for label, row in table.display_items %}
+    <tr class="chart-line">
+      <th>{% if row.has_url %}<a href="{{ row.url }}">{{ label }}</a>{% else %}{{ label }}{% endif %}</th>
+      {% for cell in row.by_headers %}
+      <td>{% if cell.has_url %}<a href="{{ cell.url }}">{{ cell.value }}</a>{% else %}{{ cell.value }}{% endif %}</td>
+      {% endfor%}
+    </tr>
+    {% endfor %}
+  </table>
+  {% if exceptions %}
+  <div class="error">
+    <p>
+      {% trans 'There were errors while processing some criteria. As a result some items might be missing.' %}
+      {% trans 'Try clearing the "spec" fields in your criteria.' %}
+    </p>
+    <ul>
+    {% for exception in exceptions %}
+      <li>{{ exception }}</li>
+    {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

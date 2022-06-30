@@ -1,0 +1,9 @@
+/* based off .addlink and such in django */
+.explorelink {
+    padding-left: 16px;
+    background: url(../admin/img/search.svg) 0 1px no-repeat;
+}
+
+.django-vox-chart-controls li { display: inline; }
+.django-vox-chart-controls li:first-child:before { content: "" }
+.django-vox-chart-controls li:before { content: " / " }

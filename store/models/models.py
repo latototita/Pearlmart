@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.urls import reverse
 from django.conf import settings
 import datetime
+from .product import Product
 from django.contrib.auth.models import User
 
 
@@ -12,6 +13,7 @@ class Vendor(models.Model):
     alternative_Phone=models.IntegerField(default='1',blank=True)
     shop_name=models.CharField(default='',blank=True, max_length=100,unique=True)
     vendor=models.CharField(max_length=100,default='None',blank=True)
+    dates = models.DateTimeField(default=datetime.datetime.today)
 
 
 class Payment(models.Model):
@@ -23,6 +25,7 @@ class Payment(models.Model):
     wave_name= models.CharField(max_length=100,default='None',blank=True)
     wave=models.CharField(default='Empty',blank=True,max_length=10)
     vendor_name=models.CharField(max_length=100,default='None',blank=True)
+    dates = models.DateTimeField(default=datetime.datetime.today)
 
     def __str__(self):
     
@@ -81,3 +84,91 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.author
+
+class Account(models.Model):
+    gross_income = models.IntegerField(default=0)
+    gross_profit = models.IntegerField(default=0)
+    net_profit = models.IntegerField(default=0)
+    date_created = models.DateTimeField(default=datetime.datetime.today)
+    number_of_products =models.IntegerField(default=0)
+    number_of_orders = models.IntegerField(default=0)
+    number_of_customers = models.IntegerField(default=0)
+    status = models.BooleanField(default=False)
+
+class Products_Sold(models.Model):
+    name = models.CharField(max_length=50)
+    price = models.IntegerField(default=0)
+    category = models.CharField(max_length=50)
+    brand = models.CharField(max_length=50)
+    shop =models.CharField(max_length=100,default='Pearl',blank=True)
+    date_sold= models.DateTimeField(default=datetime.datetime.today)
+    is_discounted=models.BooleanField(default=False)
+    discount_percentage=models.IntegerField(default=0)
+    def __str__(self):
+    
+        return self.name
+
+
+class Net_Profit(models.Model):
+    amount=models.IntegerField(default=0)
+    date_created=models.DateTimeField(default=datetime.datetime.today)
+    def __str__(self):
+    
+        return self.amount
+class Expense(models.Model):
+    amount= models.IntegerField(default=0)
+    reason=models.CharField(max_length=2000)
+    date_created=models.DateTimeField(default=datetime.datetime.today)
+    def __str__(self):
+    
+        return self.reason
+
+class Credit(models.Model):
+    amount= models.IntegerField(default=0)
+    reason=models.CharField(max_length=2000)
+    is_paid=models.BooleanField(default=False)
+    date_created=models.DateTimeField(default=datetime.datetime.today)
+    def __str__(self):
+    
+        return self.reason
+
+class Debit(models.Model):
+    amount= models.IntegerField(default=0)
+    reason=models.CharField(max_length=2000)
+    is_paid=models.BooleanField(default=False)
+    date_created=models.DateTimeField(default=datetime.datetime.today)
+    def __str__(self):
+    
+        return self.reason
+
+
+class Asset (models.Model):
+    costs =models.IntegerField(default=0)
+    reason=models.CharField(max_length=2000)
+    date_created=models.DateTimeField(default=datetime.datetime.today)
+    def __str__(self):
+    
+        return self.reason
+
+class Order_record(models.Model):
+    product = models.ForeignKey(Product,
+                                on_delete=models.CASCADE)
+    customer = models.ForeignKey(User,
+                                 on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+    price = models.IntegerField()
+    selling_price =models.IntegerField(default=0)
+    address = models.CharField(max_length=50, default='', blank=True)
+    phone = models.CharField(max_length=50, default='', blank=True)
+    date_created = models.DateField(default=datetime.datetime.today)
+    email  = models.EmailField(max_length=70,blank=True,unique=False)
+    status = models.BooleanField(default=False)
+    ordering_code=models.CharField(max_length=6,default='')
+    shop = models.IntegerField(default=0)
+    def __str__(self):
+    
+        return self.customer
+
+
+
+

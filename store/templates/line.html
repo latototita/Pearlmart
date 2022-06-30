@@ -1,0 +1,631 @@
+{% load static %}
+<html>
+    <head>
+        
+        <!--[if lte IE 8]>
+            <script src="{% static 'js/excanvas.js' %}"></script>
+        <![endif]-->
+        <title>Pearl Mart</title>
+        <!-- Favicon -->
+        <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+        
+    </head>
+    <body>
+{% if Products %}
+
+       
+<div class="container">
+            
+        <h1 style="color: #C70039;font-size: 160%;font-weight: 20%;font-family: verdana;"><b><u>Graph Work</u></b></h1>
+
+<div style="width: 100%; height: 100%">
+    <canvas style="margin-bottom: 30px; width: 60%; height: 50%;" id="myChartProductbar"></canvas>
+  </div>
+<!-- Render the rest of the ChangeList view -->
+<div style="width: 100%; height: 100%">
+    <canvas style="margin-bottom: 30px; width: 60%; height: 50%;" id="myChartProductline"></canvas>
+  </div>
+<!-- Render the rest of the ChangeList view -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const ctx = document.getElementById('myChartProductbar').getContext('2d');
+
+  // Sample data
+  const chartData = {{ chart_data | safe }};
+
+  // Parse the dates to JS
+  chartData.forEach((d) => {
+    d.x = new Date(d.date);
+  });
+
+  // Render the chart
+  const chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      datasets: [
+        {
+          label: '{{ info }}',
+          data: chartData,
+          backgroundColor: 'rgba(220,20,20,0.5)',
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      scales: {
+        xAxes: [
+          {
+            type: 'time',
+            time: {
+              unit: 'day',
+              round: 'day',
+              displayFormats: {
+                day: 'MMM D',
+              },
+            },
+          },
+        ],
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            },
+          },
+        ],
+      },
+    },
+  });
+});
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const ctx = document.getElementById('myChartProductline').getContext('2d');
+
+  // Sample data
+  const chartData = {{ chart_data | safe }};
+
+  // Parse the dates to JS
+  chartData.forEach((d) => {
+    d.x = new Date(d.date);
+  });
+
+  // Render the chart
+  const chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      datasets: [
+        {
+          label: '{{ info }}',
+          data: chartData,
+          borderColor: 'rgba(220,20,20,0.5)',
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      scales: {
+        xAxes: [
+          {
+            type: 'time',
+            time: {
+              unit: 'day',
+              round: 'day',
+              displayFormats: {
+                day: 'MMM D',
+              },
+            },
+          },
+        ],
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            },
+          },
+        ],
+      },
+    },
+  });
+});
+</script>
+</div>
+{% else %}
+       
+        <div class="container">
+            {% if graph %}
+            <h1 style="color: #C70039;font-size: 160%;font-weight: 20%;font-family: verdana;"><b><u>Graph Work</u></b></h1>
+            {% endif %}
+
+            {% if Products_Sold %}
+            <div style="width: 100%; height: 100%">
+                <canvas style="margin-bottom: 30px; width: 60%; height:150%;" id="myChartProducts_Sold"></canvas>
+            </div>
+            {% endif %}
+            {% if Asset %}
+            <div style="width: 100%; height: 100%">
+                <canvas style="margin-bottom: 30px; width: 60%; height:150%;" id="myChartAsset"></canvas>
+            </div>
+            {% endif %}
+            {% if Debit %}
+            <div style="width: 100%; height: 100%">
+                <canvas style="margin-bottom: 30px; width: 60%; height:150%;" id="myChartDebit"></canvas>
+            </div>
+            {% endif %}
+            {% if Credit %}
+            <div style="width: 100%; height: 100%">
+                <canvas style="margin-bottom: 30px; width: 60%; height:150%;" id="myChartCredit"></canvas>
+            </div>
+            {% endif %}
+            {% if Expense %}
+            <div style="width: 100%; height: 100%">
+                <canvas style="margin-bottom: 30px; width: 60%; height:150%;" id="myChartExpense"></canvas>
+            </div>
+            {% endif %}
+            
+            {% if Net_Profit %}
+            <div style="width: 100%; height: 100%">
+                <canvas style="margin-bottom: 30px; width: 60%; height:150%;" id="myChartNet_Profit">
+                </canvas>
+            </div>
+            {% endif %}
+            {% if Account %}
+            <div class="breadcrumb-area">
+              <br>
+              <button style="background-color:#C70039;">
+                <a href="{% url 'daily_accounting' %}" style="color:white;"><b>Daily Accounting</b></a>
+              </button>
+              <br>
+            </div>
+            <br>
+            <div style="width: 100%; height: 100%">
+                <canvas style="margin-bottom: 30px; width: 60%; height:150%;" id="myChartAccount"></canvas>
+            </div>
+             {% endif %}
+        </div>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+        <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+        <div class="container">
+
+        {% if Products_Sold %}
+        <script type="text/javascript" > 
+            $.get('{% url "line_chart_json_products_sold" %}', function(data) {
+                var ctx = $("#myChartProducts_Sold").get(0).getContext("2d");
+                new Chart(ctx, {
+                    type: 'line', data: data,
+                    options: {
+                      responsive: true,
+                      scales: {
+                        xAxes: [
+                          {
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'ID',
+                            },
+                          },
+                        ],
+                        yAxes: [
+                          {
+
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Product Prices(Shillings)',
+                            },
+                          },
+                        ],
+                      },
+                    },
+                });
+            });
+        </script>            
+        <script type="text/javascript">
+            $.get('{% url "line_chart_json_products_sold" %}', function(data) {
+                var ctx = $("#myChartProducts_Sold").get(0).getContext("2d");
+                new Chart(ctx, {
+                    type: 'bar',data: data,
+                    options: {
+                      responsive: true,
+                      scales: {
+                        xAxes: [
+                          {
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'ID',
+                            },
+                          },
+                        ],
+                        yAxes: [
+                          {
+
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Product Prices(Shillings)',
+                            },
+                          },
+                        ],
+                      },
+                    },
+                });
+            });
+        </script>
+        {% endif %}
+        {% if Asset %}
+        <script type="text/javascript">
+            $.get('{% url "line_chart_json_asset" %}', function(data) {
+                var ctx = $("#myChartAsset").get(0).getContext("2d");
+                new Chart(ctx, {
+                    type: 'bar',data: data,
+                    options: {
+                      responsive: true,
+                      scales: {
+                        xAxes: [
+                          {
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Date',
+                            },
+                          },
+                        ],
+                        yAxes: [
+                          {
+
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Amount in Shillings',
+                            },
+                          },
+                        ],
+                      },
+                    },
+                });
+            });
+        </script>
+        <script type="text/javascript">
+            $.get('{% url "line_chart_json_asset" %}', function(data) {
+                var ctx = $("#myChartAsset").get(0).getContext("2d");
+                new Chart(ctx, {
+                    type: 'bar',data: data,
+                    options: {
+                      responsive: true,
+                      scales: {
+                        xAxes: [
+                          {
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Date',
+                            },
+                          },
+                        ],
+                        yAxes: [
+                          {
+
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Amount in Shillings',
+                            },
+                          },
+                        ],
+                      },
+                    },
+                });
+            });
+        </script>
+        {% endif %}
+        {% if Debit %}
+        <script type="text/javascript">
+            $.get('{% url "line_chart_json_debit" %}', function(data) {
+                var ctx = $("#myChartDebit").get(0).getContext("2d");
+                new Chart(ctx, {
+                    type: 'line',data: data,
+                    options: {
+                      responsive: true,
+                      scales: {
+                        xAxes: [
+                          {
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Date',
+                            },
+                          },
+                        ],
+                        yAxes: [
+                          {
+
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Amount in Shillings',
+                            },
+                          },
+                        ],
+                      },
+                    },
+                });
+            });
+        </script>
+        <script type="text/javascript">
+            $.get('{% url "line_chart_json_debit" %}', function(data) {
+                var ctx = $("#myChartDebit").get(0).getContext("2d");
+                new Chart(ctx, {
+                    type: 'bar',data: data,
+                    options: {
+                      responsive: true,
+                      scales: {
+                        xAxes: [
+                          {
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Date',
+                            },
+                          },
+                        ],
+                        yAxes: [
+                          {
+
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Amount in Shillings',
+                            },
+                          },
+                        ],
+                      },
+                    },
+                });
+            });
+        </script>
+        {% endif %}
+        {% if Credit %}
+        <script type="text/javascript">
+            $.get('{% url "line_chart_json_credit" %}', function(data) {
+                var ctx = $("#myChartCredit").get(0).getContext("2d");
+                new Chart(ctx, {
+                    type: 'line',data: data,
+                    options: {
+                      responsive: true,
+                      scales: {
+                        xAxes: [
+                          {
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Date',
+                            },
+                          },
+                        ],
+                        yAxes: [
+                          {
+
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Amount in Shillings',
+                            },
+                          },
+                        ],
+                      },
+                    },
+                });
+            });
+        </script>
+        <script type="text/javascript">
+            $.get('{% url "line_chart_json_credit" %}', function(data) {
+                var ctx = $("#myChartCredit").get(0).getContext("2d");
+                new Chart(ctx, {
+                    type: 'bar',data: data,
+                    options: {
+                      responsive: true,
+                      scales: {
+                        xAxes: [
+                          {
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Date',
+                            },
+                          },
+                        ],
+                        yAxes: [
+                          {
+
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Amount in Shillings',
+                            },
+                          },
+                        ],
+                      },
+                    },
+                });
+            });
+        </script>
+        {% endif %}
+        {% if Expense %}
+        <script type="text/javascript">
+            $.get('{% url "line_chart_json_expense" %}', function(data) {
+                var ctx = $("#myChartExpense").get(0).getContext("2d");
+                new Chart(ctx, {
+                    type: 'line',data: data,
+                    options: {
+                      responsive: true,
+                      scales: {
+                        xAxes: [
+                          {
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Date',
+                            },
+                          },
+                        ],
+                        yAxes: [
+                          {
+
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Amount in Shillings',
+                            },
+                          },
+                        ],
+                      },
+                    },
+                });
+            });
+        </script>
+        <script type="text/javascript">
+            $.get('{% url "line_chart_json_expense" %}', function(data) {
+                var ctx = $("#myChartExpense").get(0).getContext("2d");
+                new Chart(ctx, {
+                    type: 'bar',data: data,
+                    options: {
+                      responsive: true,
+                      scales: {
+                        xAxes: [
+                          {
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Date',
+                            },
+                          },
+                        ],
+                        yAxes: [
+                          {
+
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Amount in Shillings',
+                            },
+                          },
+                        ],
+                      },
+                    },
+                });
+            });
+        </script>
+        {% endif %}
+        {% if Net_Profit %}
+        <script type="text/javascript">
+            $.get('{% url "line_chart_json_net_profit" %}', function(data) {
+                var ctx = $("#myChartNet_Profit").get(0).getContext("2d");
+                new Chart(ctx, {
+                    type: 'line',data: data,
+                    options: {
+                      responsive: true,
+                      scales: {
+                        xAxes: [
+                          {
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Date',
+                            },
+                          },
+                        ],
+                        yAxes: [
+                          {
+
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Amount in Shillings',
+                            },
+                          },
+                        ],
+                      },
+                    },
+                });
+            });
+        </script>
+        <script type="text/javascript">
+            $.get('{% url "line_chart_json_net_profit" %}', function(data) {
+                var ctx = $("#myChartNet_Profit").get(0).getContext("2d");
+                new Chart(ctx, {
+                    type: 'bar',data: data,
+                    options: {
+                      responsive: true,
+                      scales: {
+                        xAxes: [
+                          {
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Date',
+                            },
+                          },
+                        ],
+                        yAxes: [
+                          {
+
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Amount in Shillings',
+                            },
+                          },
+                        ],
+                      },
+                    },
+                });
+            });
+        </script>
+        {% endif %}
+        {% if Account %}
+        <script type="text/javascript">
+            $.get('{% url "line_chart_json_account" %}', function(data) {
+                var ctx = $("#myChartAccount").get(0).getContext("2d");
+                new Chart(ctx, {
+                    type: 'bar',data: data,
+                    options: {
+                      responsive: true,
+                      scales: {
+                        xAxes: [
+                          {
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Date',
+                            },
+                          },
+                        ],
+                        yAxes: [
+                          {
+
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Amount in Shillings)',
+                            },
+                          },
+                        ],
+                      },
+                    },
+                });
+            });
+        </script>
+        
+        <script type="text/javascript">
+            $.get('{% url "line_chart_json_account" %}', function(data) {
+                var ctx = $("#myChartAccount").get(0).getContext("2d");
+                new Chart(ctx, {
+                    type: 'line',data: data,
+                    options: {
+                      responsive: true,
+                      scales: {
+                        xAxes: [
+                          {
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Date',
+                            },
+                          },
+                        ],
+                        yAxes: [
+                          {
+
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Amount in Shillings',
+                            },
+                          },
+                        ],
+                      },
+                    },
+                });
+            });
+        </script>
+        {% endif %}
+        </div>                                    
+{% endif %}
+ </body>
+</html>              

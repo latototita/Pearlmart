@@ -1,0 +1,56 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+{% load admin_urls %}
+{% block extrahead %}{{ block.super }}
+<script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+<link rel="stylesheet" href="{% static 'django_adminstats/c3.min.css' %}"/>
+<script type="text/javascript" src="{% static 'django_adminstats/d3.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'django_adminstats/c3.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'django_adminstats/chart.js' %}"></script>
+{% endblock %}
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}">{% endblock %}
+{% block bodyclass %}{{ block.super }} {{ opts.app_label }}-{{ opts.model_name }} change-form{% endblock %}
+{% if not is_popup %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+&rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_config.verbose_name }}</a>
+&rsaquo; <a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>
+&rsaquo; <a href="{% url opts|admin_urlname:'change' chart.pk|admin_urlquote %}">{{ chart|truncatewords:"18" }}</a>
+&rsaquo; {% trans 'View Chart' %}
+</div>
+{% endblock %}
+{% endif %}
+{% block content %}
+<div id="content-main">
+  <table id="chart-data" data-chart-type="{{ chart.chart_type }}">
+    <tr id="chart-axis">
+      <td></td>
+      {% for date in header %}
+        <th scope="col" data-value="{{ date|date:'Y-m-d' }}T00:00:00">{{ date }}</th>
+      {% endfor%}
+    </tr>
+    {% for key, cells in rows.items %}
+    <tr class="chart-line">
+      <th>{{ key }}</th>
+      {% for data in cells %}
+      <td>{{ data }}</td>
+      {% endfor%}
+    </tr>
+    {% endfor %}
+  </table>
+  {% if exceptions %}
+  <div class="error">
+    <p>
+      {% trans 'There were errors while processing some criteria. As a result some items might be missing.' %}
+      {% trans 'Try clearing the "spec" fields in your criteria.' %}
+    </p>
+    <ul>
+    {% for exception in exceptions %}
+      <li>{{ exception }}</li>
+    {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

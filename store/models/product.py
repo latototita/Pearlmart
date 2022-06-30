@@ -18,7 +18,7 @@ class Product(models.Model):
     description = models.TextField(max_length=500, default='' , null=True , blank=True)
     image =models.ImageField(upload_to='Uploads/products/')
     shop =models.CharField(max_length=100,default='None',blank=True)
-    date = models.DateTimeField(default=timezone.now)
+    dates= models.DateTimeField(default=timezone.now)
     discount=models.BooleanField(default=False)
     discount_percentage=models.IntegerField(default=0)
     is_featured=models.BooleanField(default=False)
