@@ -58,11 +58,11 @@ class CommentAdmin(admin.ModelAdmin):
 
 
 class AdminProduct(admin.ModelAdmin):
-    list_display = ['name', 'price','stock','selling_price','category','brand','image','dates','discount','is_featured','is_top_rated','is_best_selling','is_new_arrival','is_most_viewed','is_new_product', 'is_hot_sale','is_hot_deal',]
+    list_display = ['name', 'price','stock','selling_price','category','brand','image','dates','shop_name','shop','discount','is_featured','is_top_rated','is_best_selling','is_new_arrival','is_most_viewed','is_new_product', 'is_hot_sale','is_hot_deal',]
     search_fields = ('name','category', 'brand','price','stock')
     list_filter = ('brand', 'dates','category')
     ordering=('-dates',)
-    list_editable = ('discount','selling_price','is_featured','is_top_rated','is_best_selling','is_new_arrival','is_most_viewed','is_new_product', 'is_hot_sale','is_hot_deal',)
+    list_editable = ('discount','selling_price','is_featured','shop_name','shop','is_top_rated','is_best_selling','is_new_arrival','is_most_viewed','is_new_product', 'is_hot_sale','is_hot_deal',)
     change_list_template = "../templates/change_list.html"
     def changelist_view(self, request, extra_context=None):
         extra_context = extra_context or {}

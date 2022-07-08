@@ -18,7 +18,7 @@ class Order(models.Model):
     email  = models.EmailField(max_length=70,blank=True,unique=False)
     status = models.BooleanField(default=False)
     ordering_code=models.CharField(max_length=6,default='')
-    shop = models.IntegerField(default=0)
+    shop_name = models.CharField(max_length=6,default='Pearlmart')
     is_accounted = models.BooleanField(default=False)
 
     def placeOrder(self):
@@ -38,6 +38,6 @@ class Order(models.Model):
 
     @staticmethod
     def get_orders_by_customer(customer_id):
-        return Order.objects.filter(customer=customer_id).order_by('-date')
+        return Order.objects.filter(customer=customer_id).order_by('-dates')
 
 

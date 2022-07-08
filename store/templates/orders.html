@@ -21,7 +21,7 @@
                     <th>Total</th>
                     <th>Code</th>
                     <th>Cancel Order</th>
-                    <th>Status</th>
+                    <th>Order Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,16 +31,21 @@
                     <td>{{forloop.counter}}</td>
                     <td><img style="height: 80px;" class="rounded-circle" src="{{order.product.image.url}}" alt=""></td>
                     <td>{{order.product.name}}</td>
-                    <td>{{order.date}}</td>
+                    <td>{{order.dates}}</td>
                     <td>{{order.price}}/=</td>
                     <td>{{order.quantity}}</td>
                     <td>{{order.quantity|multiply:order.price}}/=</td>
                     <td>{{order.ordering_code}}</td>
-                    <td><a href="/?order={{order.id}}" class="btn btn-primary my-2 my-sm-0"><i class="glyphicon glyphicon-trash">Delete</i></a></td>
                     {% if order.status %}
-                    <td><small class="btn btn-danger">Completed</small></td>
-                    {%else%}
-                    <td><small class="btn btn-primary">Pending</small></td>
+                    <td><small class="" style="background-color:#FF5733;position: absolute;width: 100px;height: 50px;font-size: 14px;color: #ffffff;font-weight: 600;text-align:center;line-height: 50px;display: block;-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 10%;text-transform: uppercase">Finished</small></td>
+                    {% else %}
+                    <td><a href="/?order={{order.id}}" ><i class="glyphicon glyphicon-trash" style="position: absolute;width: 100px;height: 50px;font-size: 14px;color: #ffffff;font-weight: 600;text-align:center;line-height: 50px;display: block;-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 10%;text-transform: uppercase;background-color:#C70039;">Cancel</i></a></td>
+                    
+                    {% endif %}
+                    {% if order.status %}
+                    <td><small style="background-color:#3b084f;position: absolute;width: 100px;height: 50px;font-size: 14px;color: #ffffff;font-weight: 600;text-align:center;line-height: 50px;display: block;-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 10%;text-transform: uppercase" >Completed</small></td>
+                    {% else %}
+                    <td><small  style="background-color:#FFC300;position: absolute;width: 100px;height: 50px;font-size: 14px;color: #ffffff;font-weight: 600;text-align:center;line-height: 50px;display: block;-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 10%;text-transform: uppercase">Pending</small></td>
                     {% endif %}
                 </tr>
 

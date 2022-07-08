@@ -91,7 +91,7 @@
 </div>
 </div>
             
-{% endif %}
+{% else %}
 <!-- Register Content Start -->
                         <div class="col-lg-6 container">
                             <div class="login-reg-form-wrap mt-md-34 mt-sm-34">
@@ -100,11 +100,12 @@
                                 {% else %}
                                 <h2><u>Update Or Add New {{ name }}</u></h2>
                                 {% endif %}
-                                <form action="" method="POST">
+                                <form action="/Vendor_update" method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
+                                    {{ form.path }}
                                     {{ form|crispy }}
                                     <div class="single-input-item">
-                                        <button class="sqr-btn" type="submit" >Update Your{{ name }} {% if vendor %}Profile  {% endif %} Now!!!</button>
+                                         <p><input class="btn btn-primary my-2 my-sm-0" type="submit" value="Submit"></p>
                                     </div>
                                 </form>
                             </div>
@@ -115,5 +116,5 @@
             </div>
         </div>
         <!-- login register wrapper end -->
-
+{% endif %}
 {% endblock %}

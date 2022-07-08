@@ -21,7 +21,7 @@ def lart(request):
         productes = Product.get_products_by_id(list(request.session.get('cart').keys()))
         products = Product.get_products_by_id(list(request.session.get('cart').keys()))
 
-    return render(request , 'cart.html' , {'products':products,'productes' : productes,'brands':brands,'categories':categories} )
+    return render(request , 'cart.html' , {'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'products':products,'productes' : productes,'brands':brands,'categories':categories} )
 
 
 
@@ -47,7 +47,7 @@ def details(request, id):
     random.shuffle(related_products)
     
 
-    context={'related_products': related_products,'product':product,'form':form,'productes':productes,'brands':brands,'categories':categories}
+    context={'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'related_products': related_products,'product':product,'form':form,'productes':productes,'brands':brands,'categories':categories}
     cart = request.session.get('cart')
 
     request.session['cart'] = cart
@@ -81,8 +81,8 @@ def checkout1(request):
 
         print(page_number)
         product_list = paginator.get_page(page_number)
-        return render(request , 'index.html',{'product_list' : product_list,'categories':categories,'brands':brands,'productes':productes})
-    return render(request , 'checkout1.html',{'checkout':'checkout','categories':categories,'brands':brands,'productes':productes})
+        return render(request , 'index.html',{'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'product_list' : product_list,'categories':categories,'brands':brands,'productes':productes})
+    return render(request , 'checkout1.html',{'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'checkout':'checkout','categories':categories,'brands':brands,'productes':productes})
 
 def remove_to_cart(request):
     product = request.POST.get('product')

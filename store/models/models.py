@@ -8,9 +8,10 @@ from django.contrib.auth.models import User
 
 
 class Vendor(models.Model):
+    photo=models.ImageField(upload_to='profile', default='')
     phone=models.CharField(default='1',blank=True,max_length=10)
     location=models.CharField(default='',blank=True, max_length=100)
-    alternative_Phone=models.IntegerField(default='1',blank=True)
+    alternative_Phone=models.CharField(default='1',blank=True,max_length=10)
     shop_name=models.CharField(default='',blank=True, max_length=100,unique=True)
     vendor=models.CharField(max_length=100,default='None',blank=True)
     dates = models.DateTimeField(default=datetime.datetime.today)
@@ -93,7 +94,6 @@ class Account(models.Model):
     number_of_products =models.IntegerField(default=0)
     number_of_orders = models.IntegerField(default=0)
     number_of_customers = models.IntegerField(default=0)
-    status = models.BooleanField(default=False)
 
 class Products_Sold(models.Model):
     name = models.CharField(max_length=50)
@@ -164,7 +164,7 @@ class Order_record(models.Model):
     email  = models.EmailField(max_length=70,blank=True,unique=False)
     status = models.BooleanField(default=False)
     ordering_code=models.CharField(max_length=6,default='')
-    shop = models.IntegerField(default=0)
+    shop_name = models.CharField(max_length=50,default='')
     def __str__(self):
     
         return self.customer

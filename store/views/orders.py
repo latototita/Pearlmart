@@ -29,18 +29,19 @@ def orders(request):
         productes={}
     else:
         productes = Product.get_products_by_id(list(request.session.get('cart').keys()))
-    customer = request.session.get('customer')
-    orders = Order.get_orders_by_customer(customer)
+    orders = Order.get_orders_by_customer(request.user.id)
     deleteorder=request.GET.get('order')
     order = request.POST.get('order')
     if deleteorder:
         order=Order.objects.filter(id__in=deleteorder)
-        product=Order.objects.filter(id__in=order.product.id)
-        stock=(product.stock+order.quantity)
-        new_product=Product(stock=stock)
-        new_product.save()
+        try:
+            product_stock=Product.objects.filter(name=order.name).filter(shop_name=order.shop_name)
+            product_stock.stock=(product_stock.stock+order.quantity)
+            product_stock.save()
+        except:
+            pass
         order.delete()
         messages.success(request, f'Order for {order}Item Cancelled Successfully')
     print(orders)
     
-    return render(request , 'orders.html'  , {'orders' : orders,'orderes':'orderes','productes':productes,'brands':brands,'categories':categories})
+    return render(request , 'orders.html'  , {'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'orders' : orders,'orderes':'orderes','productes':productes,'brands':brands,'categories':categories})

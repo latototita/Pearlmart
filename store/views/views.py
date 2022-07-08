@@ -25,6 +25,7 @@ from django.contrib.auth.decorators import user_passes_test
 from .login import Login
 from django.contrib.auth.models import Group
 from store.models.product import Product
+from django.contrib.admin.views.decorators import staff_member_required
 
 def group_check(user):
     return user.groups.filter(name__in=['Vendor'])
@@ -39,7 +40,7 @@ def  Contact1(request):
         productes={}
     else:
         productes = Product.get_products_by_id(list(request.session.get('cart').keys()))
-    context={'productes':productes,'brands':brands,'categories':categories}
+    context={'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'productes':productes,'brands':brands,'categories':categories}
     return render(request,'contactus.html',context)
 
 
@@ -83,7 +84,7 @@ def  Contact(request):
             messages.success(request, f'We have recived your message, You will recive and email confirming it soon, Have a lovely day')
     else:
         messages.success(request, f'Ooops Due to a possible Error in Our system, Your message was not recived, Please Try again!!!.')
-        context={'productes':productes,'brands':brands,'categories':categories}
+        context={'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'productes':productes,'brands':brands,'categories':categories}
         return render(request,'contactus.html',context)
 
 def  Contact_Us1(request):
@@ -95,7 +96,7 @@ def  Contact_Us1(request):
         productes={}
     else:
         productes = Product.get_products_by_id(list(request.session.get('cart').keys()))
-    context={'productes':productes,'brands':brands,'categories':categories}
+    context={'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'productes':productes,'brands':brands,'categories':categories}
     return render(request,'Contact_Us.html',context)
 
 
@@ -140,7 +141,7 @@ def  Contact_Us(request):
             messages.success(request, f'We have recived your message, You will recive and email confirming it soon, Have a lovely day')
     else:
         messages.success(request, f'Ooops Due to a possible Error in Our system, Your message was not recived, Please Try again!!!.')
-        context={'productes':productes,'brands':brands,'categories':categories}
+        context={'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'productes':productes,'brands':brands,'categories':categories}
         return render(request,'Contact_Us.html',context)
 
 @login_required(login_url='login')
@@ -158,7 +159,7 @@ def become_vendor1(request):
     except:
         user=None
     if user is None:
-        context={'Become_Vendor':'Become_Vendor','brands':brands,'categories':categories,'productes':productes}
+        context={'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'Become_Vendor':'Become_Vendor','brands':brands,'categories':categories,'productes':productes}
         messages.success(request, f'Sell On Our Site for free,Up to End of July,for those who register Before the month of April Ends')
         return render(request,'become_vendor.html',context)
     else:
@@ -216,7 +217,7 @@ def become_vendor(request):
         messages.success(request, f'Succefully Become a Pearl-Mart Vendor, Kindly Explore and add Products, Thank You.')
         return redirect('Dashboard')
     else:
-        context={'Become_Vendor':'Become_Vendor','brands':brands,'categories':categories,'productes':productes}
+        context={'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'Become_Vendor':'Become_Vendor','brands':brands,'categories':categories,'productes':productes}
         return render(request,'become_vendor.html',context)
 
 # Create your views here.
@@ -297,27 +298,22 @@ def Product_update(request, id):
 
     return render(request,'add1.html',context)
 
-
+@login_required
 @user_passes_test(group_check)
 def Vendor_update(request):
-    cart = request.session.get('cart')
-    if not cart:
-        request.session['cart'] = {}
-        productes={}
-    else:
-        productes = Product.get_products_by_id(list(request.session.get('cart').keys()))
+    
     vendor= Vendor.objects.get(vendor=request.user.id)
-
-    if request.method == 'POST':
-        form = AddVendorForm(request.POST, instance=vendor)
+    #
+    if request.POST:
+        form = AddVendor_UpdateForm(request.POST, instance=vendor)
         if form.is_valid():
             # update the existing `Band` in the database
             form.save()
             # redirect to the detail page of the `Band` we just updated
             return redirect('Dashboard')
-    form = AddVendorForm(instance=vendor)
-    context={'form': form,'vendor':'vendor','productes':productes,'name':'Vendor'}
-
+    form = AddVendor_UpdateForm(instance=vendor)
+    context={'form': form,'vendor':'vendor','name':'Vendor'}
+    messages.success(request, f'unsuccessful')
     return render(request,'Change.html',context)
 
 
@@ -521,55 +517,15 @@ def vendor_add_product(request):
             feed_back.del_price=discounted_price
             feed_back.price=(((5/100)*form.cleaned_data['selling_price'])+form.cleaned_data['selling_price'])
             feed_back.shop=request.user.id
+            Shop_name=Vendor.objects.get(vendor=request.user.id)
+            feed_back.shop_name=Shop_name.shop_name
             feed_back.save()
             return redirect('view_admin')
     else:
         form = AddProductForm()
     return render(request, 'add1.html', {'form' : form})
 
-'''def vendor_add_product(request):
-    user = request.session.get('customer')
-    if request.method=='POST':
-        product=Product()
-        name = request.POST.get("name")
-        stock = request.POST.get("stock")
-        price= request.POST.get("price")
-        image =  request.POST['image']
-        description = request.POST.get("description")
-        brand = request.POST.get("brand")
-        category = request.POST.get("category")
-        brand=Brand.objects.get(id=brand)
-        category=Category.objects.get(id=category)
-        print(stock)
-        print(price)
-        product=Product(
-            name=name,
-            price=int(price),
-            stock=int(stock),
-            image=image,
-            description=description,
-            brand=brand,
-            category=category,
-            )
-        product.shop=user
-        product.save()
-        print('laban')
-        print(category)
-        print(brand)
-        product_list=Product.objects.filter(shop=user)
-        context={'product_list':product_list}
-        return redirect('view_admin')
 
-
-        print('9')
-    user= request.session.get('customer')
-    brands=Brand.objects.all()
-    categories=Category.objects.all()
-    form=AddProductForm()
-    print('10')
-    context={'form':form,'addproduct':'addproduct','productes':productes','brands':brands,'categories':categories}
-    return render(request,'add.html',context)
-'''
 @user_passes_test(group_check)
 def view_admin(request):
     cart = request.session.get('cart')
@@ -803,7 +759,7 @@ def add_comment(request, pk):
         return redirect('index')
     return redirect('post_detail', pk=pk)
 
-
+@staff_member_required
 def daily_accounting(request):
     today = datetime.datetime.today()
     number_of_products=0
@@ -816,100 +772,101 @@ def daily_accounting(request):
     profits=0
     gross_income_transport=0
     if Order.objects.filter(dates=today).filter(status=True).filter(is_accounted=False):
-        '''print('pass : ')
-    
-        print('Failed try 1')
-        todays_accounting=[]
-        print('Failed try 1')
-        pass
-    try:
-        todays_accounting= Accounts.objects.filter(date_created=today).filter(status =True)
-    except Exception as e:
-        raise e
-    else:
-        return HttpResponse('else')
-    if todays_accounting==[]:'''
-        if Order.objects.filter(dates=today).filter(status=True).filter(is_accounted=False):
-            Orders_today=Order.objects.filter(dates=today).filter(status =True)
-            if Orders_today.first():
-                print('Orders not Empty')
-                for order in Orders_today:
-                    if order.customer not in New_Orders:
-                        New_Orders.append(order.customer)
-                        number_of_orders=number_of_orders+1
-                        number_of_customers=number_of_customers+1
-                        gross_income_transport= gross_income_transport+3000
-                    if order.product not in Product_Sold:
-                        Product_Sold.append(order.product)
-                    number_of_products=number_of_products+order.quantity
-                    gross_income_selling=gross_income_selling+(order.price*order.quantity)
-                    product=Product.objects.get(id=order.product.id)
-                    gross_income_cost=gross_income_cost+(product.selling_price*order.quantity)
-                    cost_price=(product.selling_price*order.quantity)
-                    selling_price=(order.price*order.quantity)
-                    print(product.selling_price)
-                    orders=Order.objects.get(id=order.id)
-                    orders.is_accounted=True
-                    orders.save()
-                gross_income_selling=(gross_income_selling+gross_income_transport)
-                print('gross_income_selling :',gross_income_selling)
-                gross_profit=(gross_income_selling- gross_income_cost)
-                print('gross_profit  :',gross_profit)
-                profits=(selling_price-cost_price)+gross_income_transport
-                if Credit.objects.filter(date_created=today):
-                    Credits=Credit.objects.filter(date_created=today)
-                    if Credit.first():
-                        for credit in Credits:
-                            profits=(profits+credit.amount)
+        Orders_today=Order.objects.filter(dates=today).filter(status =True)
+        if Orders_today.first():
+            print('Orders not Empty')
+            for order in Orders_today:
+                if order.customer not in New_Orders:
+                    New_Orders.append(order.customer)
+                    number_of_orders=number_of_orders+1
+                    number_of_customers=number_of_customers+1
+                    gross_income_transport= gross_income_transport+3000
+                if order.product not in Product_Sold:
+                    Product_Sold.append(order.product)
+                number_of_products=number_of_products+order.quantity
+                gross_income_selling=gross_income_selling+(order.price*order.quantity)
+                product=Product.objects.get(id=order.product.id)
+                gross_income_cost=gross_income_cost+(product.selling_price*order.quantity)
+                cost_price=(product.selling_price*order.quantity)
+                selling_price=(order.price*order.quantity)
+                print(product.selling_price)
+                orders=Order.objects.get(id=order.id)
+                orders.is_accounted=True
+                orders.save()
+            gross_income_selling=(gross_income_selling+gross_income_transport)
+            print('gross_income_selling :',gross_income_selling)
+            gross_profit=(gross_income_selling- gross_income_cost)
+            print('gross_profit  :',gross_profit)
+            profits=(selling_price-cost_price)+gross_income_transport
+            if Credit.objects.filter(date_created=today):
+                Credits=Credit.objects.filter(date_created=today)
+                if Credit.first():
+                    for credit in Credits:
+                        profits=(profits+credit.amount)
+            else:
+                pass
+            if Expense.objects.filter(date_created=today):
+                Expenses=Expenses.objects.filter(date_created=today)
+                if Expenses.first():
+                    for expense in Expenses:
+                        profits=(profits-expense.amount)
                 else:
                     pass
-                if Expense.objects.filter(date_created=today):
-                    Expenses=Expenses.objects.filter(date_created=today)
-                    if Expenses.first():
-                        for expense in Expenses:
-                            profits=(profits-expense.amount)
-                    else:
-                        pass
+            else:
+                pass
+            if Debit.objects.filter(date_created=today):
+                Debt=Debit.objects.filter(date_created=today)
+                if Debt.first():
+                    for debt in Debt:
+                        profits=(profits-debt.amount)
                 else:
                     pass
-                if Debit.objects.filter(date_created=today):
-                    Debt=Debit.objects.filter(date_created=today)
-                    if Debt.first():
-                        for debt in Debt:
-                            profits=(profits-debt.amount)
-                    else:
-                        pass
-                else:
-                    pass
+            else:
+                pass
 
-                print('profits :', profits)
-                for product in Product_Sold:
-                    product=Product.objects.get(id=order.product.id)
-                    products_Sold = Products_Sold(
-                        name=product.name,
-                        price=product.price,
-                        category=product.category.name,
-                        brand=product.brand.name,
-                        shop=product.shop,
-                        is_discounted=product.discount,
-                        discount_percentage=product.discount_percentage,)
-                    products_Sold.save()
+            print('profits :', profits)
+            for product in Product_Sold:
+                if Products_Sold.objects.filter(dates=today):
+                    if Products_Sold.objects.filter(date_sold=today).filter(name=product.name):
+                        pass
+                    else:
+                        product=Product.objects.get(id=order.product.id)
+                        products_Sold = Products_Sold(
+                            name=product.name,
+                            price=product.price,
+                            category=product.category.name,
+                            brand=product.brand.name,
+                            shop=product.shop,
+                            is_discounted=product.discount,
+                            discount_percentage=product.discount_percentage,)
+                        products_Sold.save()
+            if Account.objects.filter(date_created=today):
+                Account_today=Account.objects.filter(date_created=today)
+                Account_today.gross_income=(gross_income_selling+Account_today.gross_income)
+                Account_today.gross_profit=(gross_profit+Account_today.gross_profit)
+                Account_today.net_profits=(profits+Account_today.net_profits)
+                Account_today.number_of_products=(number_of_products+Account_today.number_of_products)
+                Account_today.number_of_orders=(number_of_orders+Account_today.number_of_orders)
+                Account_today.number_of_customers=(number_of_orders+Account_today.number_of_customers)
+                Account_today.save()
+            else:
                 accounts = Account(
                     gross_income=gross_income_selling,
-                    gross_profit=profits,
+                    gross_profit=gross_profit,
                     net_profit=profits,
                     number_of_products=number_of_products,
                     number_of_orders=number_of_orders)
                 accounts.save()
+            if Net_Profit.objects.filter(date_created=today):
+                Net_pros=Net_Profit.objects.filter(date_created=today)
+                Net_pros.amount=(Net_pros.amount+profits)
+                Net_pros.save()
+            else:
                 net_profits=Net_Profit(
                     amount=profits)
                 net_profits.save()
-        
-            else:
-                print('Empty No Order today')
-                return HttpResponse('Empty No Order today')
-        return HttpResponse('Empty')
-    elif todays_accounting.first():
-        print('todays_accounting handled already')
-        return HttpResponse('todays_accounting handled already')
-
+        return HttpResponse('Done')
+    
+    else:
+        print('Not Done')
+        return HttpResponse('Empty No Order today')

@@ -35,7 +35,11 @@
                                     <div class="blog-item mb-26">
                                         <div class="blog-thumb img-full fix">
                                             <a href="{% url 'post_detail' post.pk %}">
-                                                <img src="{% static 'assets/img/blog/img_blog1.jpg' %}" alt="">
+                                                {% if post.image.url %}
+                                                <img src="{{ post.image.url }}" style="height: 370px;width: 100%;" alt="">
+                                                {% else %}
+                                                <img src="{% static 'assets/img/blog/img_blog1.jpg' %}"  alt="">
+                                                {% endif %}
                                             </a>
                                         </div>
                                         <div class="blog-content">

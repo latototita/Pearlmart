@@ -17,12 +17,13 @@ class OrderForm(ModelForm):
 
 class ViewCartForm(forms.ModelForm):
 	class Meta:
-		model=Order
-		fields=('quantity','id',)
-	def __init__(self, *args, **kwargs,):
+		model=Product
+		fields=('stock','id')
+
+	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
-		
-		self.fields['quantity']=forms.FloatField(max_value=100, min_value=1)
+		self.fields['stock']=forms.FloatField(min_value=1)
+
 class RegistrationForm(UserCreationForm):
 	email=forms.EmailField()
 
@@ -31,20 +32,7 @@ class RegistrationForm(UserCreationForm):
 		fields=["username","email","password1","password2"]
 
 
-
-
-
-
-class PostForm(forms.ModelForm):
-    class Meta:
-        model = Post
-        fields = ['title','image','content']
-
-        widgets = {
-            'content': forms.Textarea(attrs={'class': 'editable medium-editor-textarea'})
-        }
-
-class BaseForm(ModelForm):
+class BaseForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(BaseForm, self).__init__(*args, **kwargs)
         for bound_field in self:
@@ -52,7 +40,25 @@ class BaseForm(ModelForm):
                 bound_field.field.widget.attrs["required"] = "required"
 
 
+
+
+class PostForm(BaseForm):
+    class Meta:
+        model = Post
+        fields = ['title','image','content']
+
+        widgets = {
+            'content': forms.Textarea(attrs={'class': 'editable medium-editor-textarea'})
+        }
+    image = forms.ImageField(required=True)
+    title = forms.CharField(required=True)
+
 # Your forms
+class AddVendor_UpdateForm(BaseForm):
+    class Meta:
+        model = Vendor
+        fields=('photo','phone','alternative_Phone','location','shop_name')
+
 class AddVendorForm(BaseForm):
     class Meta:
         required_fields = ['photo','phone','alternative_Phone','location','shop_name']
@@ -74,7 +80,6 @@ class AddProductForm(BaseForm):
 	stock = forms.IntegerField(required=True)
 	selling_price=forms.IntegerField(required=True)
 	image=forms.ImageField(required=True)
-	description=forms.CharField(required=True)
 
 class PaymentForm(ModelForm):
 	class Meta:
