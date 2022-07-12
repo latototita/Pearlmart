@@ -8,12 +8,8 @@ click-plugins==1.1.1
 click-repl==0.2.0
 datetime-truncate==1.1.1
 Django==3.2
-django-admin-charts==1.0.0
 django-admin-interface==0.19.1
-django-admin-list-charts==0.1.3
 django-adminstats==0.7.4
-django-bower==5.2.0
-django-celery==3.1.17
 django-chartjs==2.3.0
 django-colorfield==0.7.1
 django-crispy-forms==1.14.0
@@ -36,10 +32,8 @@ python-memcached==1.59
 python-nvd3==0.14.2
 python-slugify==1.1.4
 pytz==2022.1
-redis==3.2.0
 six==1.16.0
 sqlparse==0.4.2
 Unidecode==1.3.4
 vine==1.3.0
 wcwidth==0.2.5
-django-chartjs
