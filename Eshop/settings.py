@@ -28,10 +28,10 @@ SECRET_KEY = '^_g%33qd(g8bjc+*40&uh(ptgkb$&-*+0!i3$lu7xj1u166cbb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-#SESSION_COOKIE_DOMAIN = '.pearlmart.ml'
-SESSION_COOKIE_SECURE = False
+SESSION_COOKIE_DOMAIN = '.pearlmart.ml'
+SESSION_COOKIE_SECURE = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['147.182.206.79','.pearlmart.ml','www.pearlamrt.ml','pearlmart.ml']
 
 # Application definition
 
@@ -88,7 +88,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Eshop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -99,14 +99,14 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'urban_prod',
-        'USER': 'u_urban',
-        'PASSWORD': '123',
+        'NAME': 'pearlmartdb',
+        'USER': 'pearlmart',
+        'PASSWORD': '1234$Victoria',
         'HOST': 'localhost',
         'PORT': '',
     }
 }
-'''
+
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
