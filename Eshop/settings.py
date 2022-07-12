@@ -36,7 +36,7 @@ ALLOWED_HOSTS = ['147.182.206.79','.pearlmart.ml','www.pearlamrt.ml','pearlmart.
 # Application definition
 
 INSTALLED_APPS = [
-    'admin_list_charts',
+    #'admin_list_charts',
     'admin_interface',
     'colorfield',
     'chartjs',
