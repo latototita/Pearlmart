@@ -31,7 +31,7 @@ DEBUG = True
 SESSION_COOKIE_DOMAIN = '.pearlmart.ml'
 SESSION_COOKIE_SECURE = True
 
-ALLOWED_HOSTS = ['147.182.206.79','.pearlmart.ml','www.pearlamrt.ml','pearlmart.ml']
+ALLOWED_HOSTS = ['147.182.206.79','.pearlmart.ml','www.pearlamrt.ml','pearlmart.ml','localhost']
 
 # Application definition
 
@@ -87,7 +87,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Eshop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-'''
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -105,7 +105,7 @@ DATABASES = {
         'PORT': '',
     }
 }
-
+'''
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
