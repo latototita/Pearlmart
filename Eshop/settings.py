@@ -28,8 +28,8 @@ SECRET_KEY = '^_g%33qd(g8bjc+*40&uh(ptgkb$&-*+0!i3$lu7xj1u166cbb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-SESSION_COOKIE_DOMAIN = '.pearlmart.ml'
-SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_DOMAIN = None
+SESSION_COOKIE_SECURE = False
 
 ALLOWED_HOSTS = ['159.223.12.182','.pearlmart.ml','www.pearlamrt.ml','pearlmart.ml','localhost']
 
