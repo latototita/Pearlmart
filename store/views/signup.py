@@ -4,7 +4,8 @@ from .home import store
 from django.views import View
 from .forms import RegistrationForm
 from store.models.product import Product
-
+from store.models.brand import Brand
+from store.models.category import Category
 
 def signup(response):
     brands = Brand.get_all_brand()
