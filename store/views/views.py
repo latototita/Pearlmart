@@ -35,6 +35,11 @@ def  Contact1(request):
     brands = Brand.get_all_brand()
     categories = Category.get_all_categories()
     cart = request.session.get('cart')
+    fashion_cat=Category.objects.filter(is_tech=True)
+    tech_cat=Category.objects.filter(is_fashion=True)
+    cat_home=Category.objects.filter(is_home=True)
+    party_cat=Category.objects.filter(is_party=True)
+    tagged_cat=Category.objects.filter(is_tagged=True)
     if not cart:
         request.session['cart'] = {}
         productes={}
@@ -48,6 +53,11 @@ def  Contact(request):
     brands = Brand.get_all_brand()
     categories = Category.get_all_categories()
     cart = request.session.get('cart')
+    fashion_cat=Category.objects.filter(is_tech=True)
+    tech_cat=Category.objects.filter(is_fashion=True)
+    cat_home=Category.objects.filter(is_home=True)
+    party_cat=Category.objects.filter(is_party=True)
+    tagged_cat=Category.objects.filter(is_tagged=True)
     if not cart:
         request.session['cart'] = {}
         productes={}
@@ -91,6 +101,11 @@ def  Contact_Us1(request):
     brands = Brand.get_all_brand()
     categories = Category.get_all_categories()
     cart = request.session.get('cart')
+    fashion_cat=Category.objects.filter(is_tech=True)
+    tech_cat=Category.objects.filter(is_fashion=True)
+    cat_home=Category.objects.filter(is_home=True)
+    party_cat=Category.objects.filter(is_party=True)
+    tagged_cat=Category.objects.filter(is_tagged=True)
     if not cart:
         request.session['cart'] = {}
         productes={}
@@ -105,6 +120,11 @@ def  Contact_Us(request):
     brands = Brand.get_all_brand()
     categories = Category.get_all_categories()
     cart = request.session.get('cart')
+    fashion_cat=Category.objects.filter(is_tech=True)
+    tech_cat=Category.objects.filter(is_fashion=True)
+    cat_home=Category.objects.filter(is_home=True)
+    party_cat=Category.objects.filter(is_party=True)
+    tagged_cat=Category.objects.filter(is_tagged=True)
     if not cart:
         request.session['cart'] = {}
         productes={}
@@ -112,7 +132,7 @@ def  Contact_Us(request):
         productes = Product.get_products_by_id(list(request.session.get('cart').keys()))
     subject = request.POST.get('contact_subject')
     message = request.POST.get('message')
-    
+    context={'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'productes':productes,'brands':brands,'categories':categories}
     if request.method=='POST':
         if user.is_authenticated:
             message=f'{message}............repely to {request.user.email}'
@@ -139,9 +159,9 @@ def  Contact_Us(request):
                     fail_silently = False,
                     )
             messages.success(request, f'We have recived your message, You will recive and email confirming it soon, Have a lovely day')
+            return render(request,'Contact_Us.html',context)
     else:
         messages.success(request, f'Ooops Due to a possible Error in Our system, Your message was not recived, Please Try again!!!.')
-        context={'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'productes':productes,'brands':brands,'categories':categories}
         return render(request,'Contact_Us.html',context)
 
 @login_required(login_url='login')
@@ -149,6 +169,11 @@ def become_vendor1(request):
     brands = Brand.get_all_brand()
     categories = Category.get_all_categories()
     cart = request.session.get('cart')
+    fashion_cat=Category.objects.filter(is_tech=True)
+    tech_cat=Category.objects.filter(is_fashion=True)
+    cat_home=Category.objects.filter(is_home=True)
+    party_cat=Category.objects.filter(is_party=True)
+    tagged_cat=Category.objects.filter(is_tagged=True)
     if not cart:
         request.session['cart'] = {}
         productes={}
@@ -171,6 +196,11 @@ def become_vendor(request):
     brands = Brand.get_all_brand()
     categories = Category.get_all_categories()
     cart = request.session.get('cart')
+    fashion_cat=Category.objects.filter(is_tech=True)
+    tech_cat=Category.objects.filter(is_fashion=True)
+    cat_home=Category.objects.filter(is_home=True)
+    party_cat=Category.objects.filter(is_party=True)
+    tagged_cat=Category.objects.filter(is_tagged=True)
     if not cart:
         request.session['cart'] = {}
         productes={}

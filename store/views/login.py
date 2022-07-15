@@ -36,6 +36,12 @@ def Login(request):
             return render(request,'login.html',context)
     brands = Brand.get_all_brand()
     categories = Category.get_all_categories()
+    fashion_cat=Category.objects.filter(is_tech=True)
+    tech_cat=Category.objects.filter(is_fashion=True)
+    cat_home=Category.objects.filter(is_home=True)
+    party_cat=Category.objects.filter(is_party=True)
+    tagged_cat=Category.objects.filter(is_tagged=True)
+    
     context={'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'productes':productes,'brands':brands,'categories':categories}
     return render(request,'login.html',context)
 

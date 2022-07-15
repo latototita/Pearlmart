@@ -43,5 +43,10 @@ def orders(request):
         order.delete()
         messages.success(request, f'Order for {order}Item Cancelled Successfully')
     print(orders)
+    fashion_cat=Category.objects.filter(is_tech=True)
+    tech_cat=Category.objects.filter(is_fashion=True)
+    cat_home=Category.objects.filter(is_home=True)
+    party_cat=Category.objects.filter(is_party=True)
+    tagged_cat=Category.objects.filter(is_tagged=True)
     
     return render(request , 'orders.html'  , {'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'orders' : orders,'orderes':'orderes','productes':productes,'brands':brands,'categories':categories})

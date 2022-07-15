@@ -13,6 +13,13 @@ def lart(request):
     brands = Brand.get_all_brand()
     categories = Category.get_all_categories()
     cart = request.session.get('cart')
+
+    fashion_cat=Category.objects.filter(is_tech=True)
+    tech_cat=Category.objects.filter(is_fashion=True)
+    cat_home=Category.objects.filter(is_home=True)
+    party_cat=Category.objects.filter(is_party=True)
+    tagged_cat=Category.objects.filter(is_tagged=True)
+    
     if not cart:
         request.session['cart'] = {}
         productes={}
@@ -29,6 +36,13 @@ def details(request, id):
     brands = Brand.get_all_brand()
     categories = Category.get_all_categories()
     cart = request.session.get('cart')
+
+    fashion_cat=Category.objects.filter(is_tech=True)
+    tech_cat=Category.objects.filter(is_fashion=True)
+    cat_home=Category.objects.filter(is_home=True)
+    party_cat=Category.objects.filter(is_party=True)
+    tagged_cat=Category.objects.filter(is_tagged=True)
+
     if not cart:
         request.session['cart'] = {}
         productes={}
@@ -60,6 +74,14 @@ def details(request, id):
 @login_required(login_url='login')
 def checkout1(request):
     cart = request.session.get('cart')
+
+    fashion_cat=Category.objects.filter(is_tech=True)
+    tech_cat=Category.objects.filter(is_fashion=True)
+    cat_home=Category.objects.filter(is_home=True)
+    party_cat=Category.objects.filter(is_party=True)
+    tagged_cat=Category.objects.filter(is_tagged=True)
+
+
     if not cart:
         request.session['cart'] = {}
         productes={}

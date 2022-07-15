@@ -9,6 +9,12 @@ from store.models.product import Product
 def signup(response):
     brands = Brand.get_all_brand()
     categories = Category.get_all_categories()
+    fashion_cat=Category.objects.filter(is_tech=True)
+    tech_cat=Category.objects.filter(is_fashion=True)
+    cat_home=Category.objects.filter(is_home=True)
+    party_cat=Category.objects.filter(is_party=True)
+    tagged_cat=Category.objects.filter(is_tagged=True)
+    
     if response.method=="POST":
         form=RegistrationForm(response.POST)
         if form.is_valid():
