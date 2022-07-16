@@ -700,7 +700,7 @@ class PostListView(ListView):
     model = Post
     template_name = 'blog/index.html'
     context_object_name = 'posts'
-    paginate_by = 5
+    paginate_by = 20
 
 
     def get_queryset(self):

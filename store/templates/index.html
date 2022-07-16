@@ -273,7 +273,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <ul class="pagination-box">
-                                        {% if is_paginated %}
+                                        <!---{% if is_paginated %}-->
                                         {% if page_obj.has_previous %}
                                         <li><a class="Previous" href="?page=1">First</a></li>
                                         <li><a class="Previous" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
@@ -289,8 +289,23 @@
                                         <li><a class="Next" href="?page={{ page_obj.next_page_number }}">Next</a></li>
                                         <li><a href="?page={{page_obj.paginator.num_pages }}"> Last </a></li>
                                         {% endif %}
-                                        {% endif %}
+                                        <!---{% endif %}-->
                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end pagination area -->
+                        <!-- start pagination area -->
+                        <div class="paginatoin-area text-center pt-28">
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul class="pagination-box">
+                                        <li><a class="Previous" href="#">Previous</a></li>
+                                         <li class="active"><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a class="Next" href="#"> Next </a></li>
                                     </ul>
                                 </div>
                             </div>
