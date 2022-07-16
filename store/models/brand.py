@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.db import  models
 
 class Brand(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=45)
     shop =models.CharField(max_length=100,default='None',blank=True)
     is_popular=models.BooleanField(default=False)
     is_trending=models.BooleanField(default=False)
