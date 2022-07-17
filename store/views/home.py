@@ -74,8 +74,8 @@ def store(request):
         products = Product.get_all_products().order_by('-id');
         k=None
     random.shuffle(list(products))
-    paginator=Paginator(products,6)
-    page_number=request.GET.get('page')
+    #paginator=Paginator(products,6)
+    #page_number=request.GET.get('page')
       
     fashion_cat=Category.objects.filter(is_tech=True)
     tech_cat=Category.objects.filter(is_fashion=True)
@@ -83,9 +83,9 @@ def store(request):
     party_cat=Category.objects.filter(is_party=True)
     tagged_cat=Category.objects.filter(is_tagged=True)
     
-    product_list = paginator.get_page(page_number)
+    #product_list = paginator.get_page(page_number)
         
-    context={'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'store':'store','productes':productes,'product_list':product_list,'page_number':page_number,'k':k,'brands':brands,'categories':categories,'brands':brands}
+    context={'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'store':'store','productes':productes,'product_list':products,'k':k,'brands':brands,'categories':categories,'brands':brands}
     return render(request, 'index.html', context)
 def search(request):
     cart = request.session.get('cart')
