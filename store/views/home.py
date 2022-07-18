@@ -82,10 +82,16 @@ def store(request):
     cat_home=Category.objects.filter(is_home=True)
     party_cat=Category.objects.filter(is_party=True)
     tagged_cat=Category.objects.filter(is_tagged=True)
-    
+
+    if request.user.is_authenticated:
+        vendor_present=Vendor.objects.filter(vendor=request.user.id)
+        vendor_present_here={}
+    else:
+        vendor_present_here=None
+
     #product_list = paginator.get_page(page_number)
         
-    context={'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'store':'store','productes':productes,'product_list':products,'k':k,'brands':brands,'categories':categories,'brands':brands}
+    context={'vendor_present_here':vendor_present_here,'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'store':'store','productes':productes,'product_list':products,'k':k,'brands':brands,'categories':categories,'brands':brands}
     return render(request, 'index.html', context)
 def search(request):
     cart = request.session.get('cart')
@@ -94,6 +100,11 @@ def search(request):
         productes={}
     else:
         productes = Product.get_products_by_id(list(request.session.get('cart').keys()))
+    fashion_cat=Category.objects.filter(is_tech=True)
+    tech_cat=Category.objects.filter(is_fashion=True)
+    cat_home=Category.objects.filter(is_home=True)
+    party_cat=Category.objects.filter(is_party=True)
+    tagged_cat=Category.objects.filter(is_tagged=True)
     if request.method=="POST":
         categories = Category.get_all_categories()
         brands = Brand.get_all_brand()
@@ -107,6 +118,7 @@ def search(request):
             product_list = paginator.get_page(page_number)
         except:
             product_list={}
+        print('Yo')
         context={'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'store':'store','productes':productes,'product_list':product_list,'searched':searched,'page_number':page_number,'brands':brands,'categories':categories}
 
         return render(request,'index.html', context)

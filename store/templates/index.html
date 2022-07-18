@@ -55,7 +55,12 @@
                                         <div class="top-bar-right">
                                             <div class="product-short">
                                                 <p>Become a Vendor ,Join and : </p>
-                                                <a href="/become_vendor1" class="check-btn sqr-btn " >Sell Here  <i class="fa fa-user"></i></a>
+                                                {% if vendor_present_here %}
+                                                <a href="/Dashboard" class="check-btn sqr-btn " >Dashboard<i class="fa fa-user">
+                                                {% else %}
+                                                <a href="/become_vendor1" class="check-btn sqr-btn " >Sell Here <i class="fa fa-user">
+                                                </i></a>
+                                                {% endif %}
                                             </div>
                                         </div>
                                     </div>
