@@ -59,9 +59,10 @@ def details(request, id):
     product=Product.objects.get(id=id)
     related_products = list(Product.objects.filter(category=product.category.id).exclude(id=product.id))
     related_products=random.sample(related_products, len(related_products))
-    
+    k=random.randint(1, 25)
+    G=random.randint(1, 20)
 
-    context={'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'related_products': related_products,'product':product,'form':form,'productes':productes,'brands':brands,'categories':categories}
+    context={'k':k,'G':G,'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'related_products': related_products,'product':product,'form':form,'productes':productes,'brands':brands,'categories':categories}
     cart = request.session.get('cart')
 
     request.session['cart'] = cart
