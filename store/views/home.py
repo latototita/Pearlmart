@@ -74,7 +74,7 @@ def store(request):
         products = Product.get_all_products().order_by('-id');
         k=None
     #random.shuffle(list(products))
-    products=random.sample(products, len(products))
+    products=random.sample(products, len(list(products)))
     
     #paginator=Paginator(products,6)
     #page_number=request.GET.get('page')
