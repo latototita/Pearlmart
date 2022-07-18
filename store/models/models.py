@@ -8,17 +8,17 @@ from django.contrib.auth.models import User
 
 
 class Vendor(models.Model):
-    photo=models.ImageField(upload_to='profile', default='')
-    phone=models.CharField(default='1',blank=True,max_length=10)
+    photo=models.ImageField(upload_to='media/profile', default='')
+    phone=models.CharField(default='1',blank=True,max_length=13)
     location=models.CharField(default='',blank=True, max_length=100)
-    alternative_Phone=models.CharField(default='1',blank=True,max_length=10)
+    alternative_Phone=models.CharField(default='1',blank=True,max_length=13)
     shop_name=models.CharField(default='',blank=True, max_length=100,unique=True)
     vendor=models.CharField(max_length=100,default='None',blank=True)
     dates = models.DateTimeField(default=datetime.datetime.today)
 
 
 class Payment(models.Model):
-    name=models.CharField(max_length=100,default='None',blank=True)
+    key=models.CharField(max_length=100,default='None',blank=True)
     mtn_name = models.CharField(max_length=100,default='None',blank=True)
     mtn=models.CharField(default='Empty',blank=True,max_length=10)
     airtel_name= models.CharField(max_length=100,default='None',blank=True)

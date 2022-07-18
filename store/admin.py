@@ -215,7 +215,7 @@ class AdminOrder(admin.ModelAdmin):
 
 
 class AdminPayment(admin.ModelAdmin):
-    list_display = ['name','dates']
+    list_display = ['key','dates','vendor_name']
     ordering=('-dates',)
     change_list_template = "../templates/change_list.html"
     def changelist_view(self, request, extra_context=None):

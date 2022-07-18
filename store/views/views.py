@@ -21,7 +21,7 @@ from django.shortcuts import render
 
 from django.template import RequestContext
 from django.contrib.auth.decorators import user_passes_test
-
+import random
 from .login import Login
 from django.contrib.auth.models import Group
 from store.models.product import Product
@@ -67,7 +67,7 @@ def  Contact(request):
     message = request.POST.get('message')
     
     if request.method=='POST':
-        if user.is_authenticated:
+        if request.user.is_authenticated:
             message=f'{message}............repely to {request.user.email}'
             send_mail(subject,
                     message,
@@ -76,13 +76,13 @@ def  Contact(request):
                     fail_silently = False,
                     )
             send_mail(subject,
-                    f'Your message has been recived successfully, we will get back to you has soon has we can!!!. Have a lovely day',
+                    f'Your message has been received successfully, we will get back to you has soon has we can!!!. Have a lovely day',
                     settings.EMAIL_HOST_USER,
                     [f'{request.user.email}'],
                     fail_silently = False,
                     )
-            messages.success(request, f'We have recived your message, You will recive and email confirming it soon, Have a lovely day')
-            return redirect('Contact_Us')
+            messages.success(request, f'We have received your message, You will receive and email confirming it soon, Have a lovely day')
+            return redirect('store')
         else:
             message=f'{message}............'
             send_mail(subject,
@@ -91,7 +91,8 @@ def  Contact(request):
                     ['pearlmartbusinesses@gmail.com'],
                     fail_silently = False,
                     )
-            messages.success(request, f'We have recived your message, You will recive and email confirming it soon, Have a lovely day')
+            messages.success(request, f'We have received your message successfully.\n Please signup here pearlmart.ml/signup or login here pearlmart.ml/login so that we can always get back to you via your email.\n , You will recive and email confirming it soon, Have a lovely day')
+            return redirect('store')
     else:
         messages.success(request, f'Ooops Due to a possible Error in Our system, Your message was not recived, Please Try again!!!.')
         context={'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'productes':productes,'brands':brands,'categories':categories}
@@ -101,17 +102,13 @@ def  Contact_Us1(request):
     brands = Brand.get_all_brand()
     categories = Category.get_all_categories()
     cart = request.session.get('cart')
-    fashion_cat=Category.objects.filter(is_tech=True)
-    tech_cat=Category.objects.filter(is_fashion=True)
-    cat_home=Category.objects.filter(is_home=True)
-    party_cat=Category.objects.filter(is_party=True)
-    tagged_cat=Category.objects.filter(is_tagged=True)
+
     if not cart:
         request.session['cart'] = {}
         productes={}
     else:
         productes = Product.get_products_by_id(list(request.session.get('cart').keys()))
-    context={'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'productes':productes,'brands':brands,'categories':categories}
+    context={'productes':productes,'brands':brands,'categories':categories}
     return render(request,'Contact_Us.html',context)
 
 
@@ -134,7 +131,7 @@ def  Contact_Us(request):
     message = request.POST.get('message')
     context={'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'productes':productes,'brands':brands,'categories':categories}
     if request.method=='POST':
-        if user.is_authenticated:
+        if request.user.is_authenticated:
             message=f'{message}............repely to {request.user.email}'
             send_mail(subject,
                     message,
@@ -143,13 +140,13 @@ def  Contact_Us(request):
                     fail_silently = False,
                     )
             send_mail(subject,
-                    f'Your message has been recived successfully, we will get back to you has soon has we can!!!. Have a lovely day',
+                    f'Your message has been received successfully, we will get back to you has soon has we can!!!. Have a lovely day',
                     settings.EMAIL_HOST_USER,
                     [f'{request.user.email}'],
                     fail_silently = False,
                     )
-            messages.success(request, f'We have recived your message, You will recive and email confirming it soon, Have a lovely day')
-            return redirect('Contact_Us')
+            messages.success(request, f'We have received your message, You will recive and email confirming it soon, Have a lovely day')
+            return redirect('Dashboard')
         else:
             message=f'{message}............'
             send_mail(subject,
@@ -159,7 +156,7 @@ def  Contact_Us(request):
                     fail_silently = False,
                     )
             messages.success(request, f'We have recived your message, You will recive and email confirming it soon, Have a lovely day')
-            return render(request,'Contact_Us.html',context)
+            return redirect('Dashboard')
     else:
         messages.success(request, f'Ooops Due to a possible Error in Our system, Your message was not recived, Please Try again!!!.')
         return render(request,'Contact_Us.html',context)
@@ -235,10 +232,10 @@ def become_vendor(request):
         send_mail('New Vendor Joined',
             f'Your Have a new vendor, with the name of {request.user.username}, phone number : {phone}, Alternative Phone Number : {alternative_Phone}, Shop name : {shop_name}, Located at : {location}',
             settings.EMAIL_HOST_USER,
-            ['pearlmartbusinesses@gmail.com',f'{request.user.email}'],
+            ['pearlmartbusinesses@gmail.com'],
             fail_silently = False,
             )
-        send_mail('New Vendor Joined',
+        send_mail('Joined As a Pearl-Mart Vendor',
             f'You have successfully become a Pearl-Mart Vendor, click the following link to manage your selling account pearlmart.ml/Dashboard',
             settings.EMAIL_HOST_USER,
             [f'{request.user.email}'],
@@ -289,8 +286,11 @@ def Payment_update(request):
         productes={}
     else:
         productes = Product.get_products_by_id(list(request.session.get('cart').keys()))
-    payment = Payment.objects.get(name=request.user.id)
-
+    try:
+        payment = Payment.objects.get(key=request.user.id)
+    except:
+        messages.success(request, f'Add Or Customize Your Own brand')
+        return redirect('payment')
     if request.method == 'POST':
         form = PaymentForm(request.POST, instance=payment)
         if form.is_valid():
@@ -300,7 +300,7 @@ def Payment_update(request):
             return redirect('Dashboard')
     else:
         form = PaymentForm(instance=payment)
-        context={'form': form}
+        context={'form': form,'names':'Payment_update'}
 
     return render(request,'Change.html',context)
 
@@ -330,11 +330,18 @@ def Product_update(request, id):
 
 @login_required
 @user_passes_test(group_check)
+def Vendor_update_get(request):
+    vendor= Vendor.objects.get(vendor=request.user.id)
+    form = AddVendor_UpdateForm(instance=vendor)
+    context={'form': form,'vendor':'vendor','name':'Vendor','names':'Vendor_update'}
+    return render(request,'Change.html',context)
+
+@login_required
+@user_passes_test(group_check)
 def Vendor_update(request):
     
     vendor= Vendor.objects.get(vendor=request.user.id)
-    #
-    if request.POST:
+    if request.method == 'POST':
         form = AddVendor_UpdateForm(request.POST, instance=vendor)
         if form.is_valid():
             # update the existing `Band` in the database
@@ -342,7 +349,7 @@ def Vendor_update(request):
             # redirect to the detail page of the `Band` we just updated
             return redirect('Dashboard')
     form = AddVendor_UpdateForm(instance=vendor)
-    context={'form': form,'vendor':'vendor','name':'Vendor'}
+    context={'form': form,'vendor':'vendor','name':'Vendor','names':'Vendor_update'}
     messages.success(request, f'unsuccessful')
     return render(request,'Change.html',context)
 
@@ -371,7 +378,7 @@ def Brand_add(request):
         brands=Brand.objects.filter(shop=request.user.id)
         form = AddBrandForm()
         messages.success(request, f'Add Or Customize Your Own brand')
-        context={'form': form,'brands':brands,'brand':'brand','productes':productes,'name':'Brand'}
+        context={'form': form,'brands':brands,'brand':'brand','productes':productes,'name':'Brand','names':'Brand_add'}
 
     return render(request,'Change.html',context)
 
@@ -396,7 +403,7 @@ def Category_add(request):
     else:
         categories=Category.objects.filter(shop=request.user.id)
         form = AddCategoryForm()
-        context={'form': form,'categories':categories,'category':'category','productes':productes,'name':'Category'}
+        context={'form': form,'categories':categories,'category':'category','productes':productes,'name':'Category','names':'Category_add'}
 
     return render(request,'Change.html',context)
 
@@ -419,7 +426,7 @@ def Brand_update(request, id):
             return redirect('Brand_add')
     else:
         form = AddBrandForm(instance=brand)
-        context={'form': form,'name':'Brand'}
+        context={'form': form,'name':'Brand','names':'Brand_update'}
 
     return render(request,'Change.html',context)
 @user_passes_test(group_check)
@@ -442,7 +449,7 @@ def Category_update(request, id):
     else:
         form = AddCategoryForm(instance=category)
         
-        context={'form': form,'name':'Category'}
+        context={'form': form,'name':'Category','names':'Category_update'}
 
     return render(request,'Change.html',context)
 
@@ -501,8 +508,33 @@ def productboard(request):
     context={'products':products}
     return render(request,'VendorProducts.html',context)
 
+
 @user_passes_test(group_check)
 def payment(request):
+    cart = request.session.get('cart')
+    if not cart:
+        request.session['cart'] = {}
+        productes={}
+    else:
+        productes = Product.get_products_by_id(list(request.session.get('cart').keys()))
+    if request.method == 'POST':
+        form = PaymentForm(request.POST, request.FILES)
+        if form.is_valid():
+            # update the existing `Band` in the database
+            feedback=form.save(commit=False)
+            feedback.key=request.user.id
+            vendor_name=Vendor.objects.get(vendor=request.user.id)
+            feedback.vendor_name=vendor_name.shop_name
+            feedback.save()
+            # redirect to the detail page of the `Band` we just updated
+            return redirect('Dashboard')
+    else:
+        categories=Category.objects.filter(shop=request.user.id)
+        form = PaymentForm()
+        return render(request, 'payment.html', {'form' : form})
+'''
+@user_passes_test(group_check)
+def Payment(request):
     cart = request.session.get('cart')
     if not cart:
         request.session['cart'] = {}
@@ -520,11 +552,10 @@ def payment(request):
             feedback.save()
 
             return redirect('Dashboard')
-    else:
-        form = PaymentForm()
+    form = PaymentForm()
     return render(request, 'payment.html', {'form' : form})
 
-
+'''
 # Create your views here.
 @user_passes_test(group_check)
 def vendor_add_product(request):
@@ -564,15 +595,14 @@ def view_admin(request):
         productes={}
     else:
         productes = Product.get_products_by_id(list(request.session.get('cart').keys()))
-    customer = request.session.get('customer')
-    product_list=Product.objects.filter(shop=customer)
+    product_list=Product.objects.filter(shop=request.user.id)
     context={'product_list':product_list}
     return render(request,'Vadmin.html', context)
 
 @user_passes_test(group_check)
 def Vdeleteproduct(request,id):
     product=Product.objects.get(id=id).delete()
-    return redirect('Vadmin')
+    return redirect('productboard')
 
 @user_passes_test(group_check)
 def stopvending(request):

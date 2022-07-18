@@ -18,9 +18,10 @@
 			<th>No</th>
 			<th>Product</th>
 			<th>Price</th>
+			<th>Stock</th>
 			<th>Brand</th>
-			<th>Image</th>
 			<th>Category</th>
+			<th>Image</th>
 			<th>Edit</th>
 			<th>Delete</th>
 		</thead>
@@ -30,9 +31,10 @@
 				<td>{{ forloop.counter }}</td>
 				<td> {{ product.name }} </td>
 				<td> {{ product.price}}</td>
+				<td> {{ product.stock }}</td>
 		<td> {{ product.brand.name }} </td>
-		<td><img src="{{ product.image }}" height="40", width="50" alt=""></td>
-				<td> {{ product.category.name }} </td>
+		<td> {{ product.category.name }} </td>
+		<td><img src="{{ product.image.url }}" height="40", width="50" alt=""></td>
 				<td>
 				<form action="{% url 'Product_update' product.id %}" method="POST">
 				<button type="submit" class="btn btn-primary">
@@ -48,6 +50,9 @@
 		</tbody>
 		
 	</table>
+</div>
+<div class="container">
+	<a href="/vendor_add_product" class="btn btn-primary my-2 my-sm-0"><i class="fa fa-edit"></i> Add Product</a>
 </div>
 </div>
 </div>

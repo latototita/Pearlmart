@@ -58,6 +58,7 @@ class AddVendor_UpdateForm(BaseForm):
     class Meta:
         model = Vendor
         fields=('photo','phone','alternative_Phone','location','shop_name')
+    photo= forms.ImageField(label='Edit Profile Photo')
 
 class AddVendorForm(BaseForm):
     class Meta:

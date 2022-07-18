@@ -90,8 +90,8 @@
 </div>
 </div>
 </div>
-            
-{% else %}
+{% endif %}
+
 <!-- Register Content Start -->
                         <div class="col-lg-6 container">
                             <div class="login-reg-form-wrap mt-md-34 mt-sm-34">
@@ -100,7 +100,7 @@
                                 {% else %}
                                 <h2><u>Update Or Add New {{ name }}</u></h2>
                                 {% endif %}
-                                <form action="/Vendor_update" method="post" enctype="multipart/form-data">
+                                <form action="/{{names}}" method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     {{ form.path }}
                                     {{ form|crispy }}
@@ -116,5 +116,5 @@
             </div>
         </div>
         <!-- login register wrapper end -->
-{% endif %}
+
 {% endblock %}
