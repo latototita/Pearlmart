@@ -74,7 +74,7 @@ def store(request):
         products = Product.get_all_products().order_by('-id');
         k=None
     #random.shuffle(list(products))
-    products=random.sample(l, len(products))
+    products=random.sample(products, len(products))
     
     #paginator=Paginator(products,6)
     #page_number=request.GET.get('page')
@@ -159,14 +159,14 @@ def homepage(request):
     trending=Product.objects.filter(is_most_viewed=True).order_by('-dates')[:12]
 
 
-    top_rated=random.sample(l, len(top_rated))
-    featured=random.sample(l, len(featured))
-    best_selling=random.sample(l, len(best_selling))
-    new_arrival=random.sample(l, len(new_arrival))
-    new_product=random.sample(l, len(new_product))
-    hot_sale=random.sample(l, len(hot_sale))
-    hot_deal=random.sample(l, len(hot_deal))
-    trending=random.sample(l, len(trending))
+    top_rated=random.sample(top_rated, len(top_rated))
+    featured=random.sample(featured, len(featured))
+    best_selling=random.sample(best_selling, len(best_selling))
+    new_arrival=random.sample(new_arrival, len(new_arrival))
+    new_product=random.sample(new_product, len(new_product))
+    hot_sale=random.sample(hot_sale, len(hot_sale))
+    hot_deal=random.sample(hot_deal, len(hot_deal))
+    trending=random.sample(trending, len(trending))
     '''random.shuffle(list(top_rated))
     random.shuffle(list(featured))
     random.shuffle(list(best_selling))

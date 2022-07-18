@@ -58,7 +58,7 @@ def details(request, id):
             cart[product] = form.cleaned_data.get('quantity')
     product=Product.objects.get(id=id)
     related_products = list(Product.objects.filter(category=product.category.id).exclude(id=product.id))
-    related_products=random.sample(l, len(related_products))
+    related_products=random.sample(related_products, len(related_products))
     
 
     context={'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'related_products': related_products,'product':product,'form':form,'productes':productes,'brands':brands,'categories':categories}
