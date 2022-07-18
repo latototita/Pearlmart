@@ -164,7 +164,7 @@ class Order_record(models.Model):
     email  = models.EmailField(max_length=70,blank=True,unique=False)
     status = models.BooleanField(default=False)
     ordering_code=models.CharField(max_length=60,default='')
-    shop_name = models.CharField(max_length=50,default='')
+    shop_name = models.CharField(max_length=60,default='')
     def __str__(self):
     
         return self.customer
