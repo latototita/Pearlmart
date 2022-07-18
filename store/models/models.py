@@ -163,7 +163,7 @@ class Order_record(models.Model):
     date_created = models.DateField(default=datetime.datetime.today)
     email  = models.EmailField(max_length=70,blank=True,unique=False)
     status = models.BooleanField(default=False)
-    ordering_code=models.CharField(max_length=6,default='')
+    ordering_code=models.CharField(max_length=60,default='')
     shop_name = models.CharField(max_length=50,default='')
     def __str__(self):
     
