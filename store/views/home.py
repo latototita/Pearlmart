@@ -149,14 +149,14 @@ def homepage(request):
 
 
 
-    top_rated=Product.objects.filter(is_top_rated=True).order_by('-dates')[:12]
-    featured=Product.objects.filter(is_featured=True).order_by('-dates')[:12]
-    best_selling= Product.objects.filter(is_best_selling=True).order_by('-dates')[:12]
-    new_arrival=Product.objects.filter(is_new_arrival=True).order_by('-dates')[:12]
-    new_product=Product.objects.filter(is_new_product=True).order_by('-dates')[:12]
-    hot_sale=Product.objects.filter(is_hot_sale=True).order_by('-dates')[:12]
-    hot_deal=Product.objects.filter(is_hot_deal=True).order_by('-dates')[:12]
-    trending=Product.objects.filter(is_most_viewed=True).order_by('-dates')[:12]
+    top_rated=list(Product.objects.filter(is_top_rated=True).order_by('-dates')[:12])
+    featured=list(Product.objects.filter(is_featured=True).order_by('-dates')[:12])
+    best_selling= list(Product.objects.filter(is_best_selling=True).order_by('-dates')[:12])
+    new_arrival=list(Product.objects.filter(is_new_arrival=True).order_by('-dates')[:12])
+    new_product=list(Product.objects.filter(is_new_product=True).order_by('-dates')[:12])
+    hot_sale=list(Product.objects.filter(is_hot_sale=True).order_by('-dates')[:12])
+    hot_deal=list(Product.objects.filter(is_hot_deal=True).order_by('-dates')[:12])
+    trending=list(Product.objects.filter(is_most_viewed=True).order_by('-dates')[:12])
 
 
     top_rated=random.sample(top_rated, len(top_rated))
