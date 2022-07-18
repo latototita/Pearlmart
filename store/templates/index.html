@@ -55,12 +55,12 @@
                                         <div class="top-bar-right">
                                             <div class="product-short">
                                                 <p>Become a Vendor ,Join and : </p>
-                                                
-                                                <a href="/Dashboard" class="check-btn sqr-btn " >Your Dashboard<i class="fa fa-user">
-                                                
-                                                <a href="/become_vendor1" class="check-btn sqr-btn " >Sell Here <i class="fa fa-user">
+                                                {% if vendor_present_here == True %}
+                                                <a href="/Dashboard" class="check-btn sqr-btn " ><i class="fa fa-dashboard"></i>Your Dashboard</a>
+                                                {% else %}
+                                                <a href="/become_vendor1" class="check-btn sqr-btn " ><i class="fa fa-store-alt"></i>Sell Here
                                                 </i></a>
-                                                
+                                                {% endif %}
                                             </div>
                                         </div>
                                     </div>

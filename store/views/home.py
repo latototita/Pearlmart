@@ -85,9 +85,9 @@ def store(request):
 
     if request.user.is_authenticated:
         vendor_present=Vendor.objects.filter(vendor=request.user.id)
-        vendor_present_here={}
+        vendor_present_here=True
     else:
-        vendor_present_here=None
+        vendor_present_here=False
 
     #product_list = paginator.get_page(page_number)
         
