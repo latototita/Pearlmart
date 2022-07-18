@@ -7,6 +7,8 @@ from Eshop import settings
 from store.models.product import Product
 from store.models.orders import Order
 from store.models.models import *
+from store.models.brand import Brand
+from store.models.category import Category
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
