@@ -54,11 +54,12 @@
                                     <div class="col-lg-5 col-md-6">
                                         <div class="top-bar-right">
                                             <div class="product-short">
-                                                <p>Become a Vendor ,Join and : </p>
                                                 {% if vendor_present_here == True %}
-                                                <a href="/Dashboard" class="check-btn sqr-btn " ><i class="fa fa-dashboard"></i>Your Dashboard</a>
+                                                <p>{{ request.user.username }}; Your </p>
+                                                <a href="/Dashboard" class="check-btn sqr-btn " ><i class="fa fa-dashboard"></i>Dashboard</a>
                                                 {% else %}
-                                                <a href="/become_vendor1" class="check-btn sqr-btn " ><i class="fa fa-store-alt"></i>Sell Here
+                                                <p>Become a Vendor ,Join here : </p>
+                                                <a href="/become_vendor1" class="check-btn sqr-btn " ><i class="fa fa-user-plus"></i>Sell Here
                                                 </i></a>
                                                 {% endif %}
                                             </div>
@@ -147,7 +148,7 @@
                                                     <span class="good"><i class="fa fa-shopping-cart"></i></span>
                                                     <span><i class="fa fa-shopping-cart"></i></span>
                                                     <div class="pro-review">
-                                                        <span>Pearl-Mart</span>
+                                                        <span>{{ product.shop_name }} Store</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -229,7 +230,7 @@
                                                 <span class="good"><i class="fa fa-shopping-cart"></i></span>
                                                 <span><i class="fa fa-shopping-cart"></i></span>
                                                 <div class="pro-review">
-                                                    <span>Pearl-Mart</span>
+                                                    <span>{{ product.shop_name }} Store</span>
                                                 </div>
                                             </div>
                                             <div class="pricebox">

@@ -209,9 +209,11 @@
                                             <h4><a href="{% url 'details' product.id %}">{{ product.name }}</a></h4>
                                             <div class="pricebox">
                                                 <span class="regular-price">{{ product.price }}/=</span>
+                                                {% if product.discount == True %}
                                                 <div class="old-price">
-                                                                <s>{{ product.del_price }}/=</s>
-                                                            </div>
+                                                    <del>{{ product.del_price }}/=</del>
+                                                </div>
+                                                {% endif %}
                                                 <div class="ratings">
                                                     <span class="good"><i class="fa fa-shopping-cart"></i></span>
                                                     <span class="good"><i class="fa fa-shopping-cart"></i></span>
@@ -219,7 +221,7 @@
                                                     <span class="good"><i class="fa fa-shopping-cart"></i></span>
                                                     <span><i class="fa fa-shopping-cart"></i></span>
                                                     <div class="pro-review">
-                                                        <span>PearlMart</span>
+                                                        <span>{{ product.shop_name }} Store</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -254,9 +256,11 @@
                                                     <div class="regular-price">
                                                         {{ product.price }}/=
                                                     </div>
+                                                    {% if product.discount == True %}
                                                     <div class="old-price">
-                                                        <s>{{ product.del_price }}/=</s>
+                                                        <del>{{ product.del_price }}/=</del>
                                                     </div>
+                                                    {% endif %}
                                                 </div>
                                                 <div class="ratings">
                                                     <span class="good"><i class="fa fa-shopping-cart"></i></span>
@@ -265,7 +269,7 @@
                                                     <span class="good"><i class="fa fa-shopping-cart"></i></span>
                                                     <span><i class="fa fa-shopping-cart"></i></span>
                                                     <div class="pro-review">
-                                                        <span>PearlMart</span>
+                                                        <span>{{ product.shop_name }} Store</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -408,9 +412,11 @@
                                         <h4><a href="{% url 'details' product.id %}">{{ product.name }}</a></h4>
                                         <div class="pricebox">
                                             <span class="regular-price">{{ product.price }}/=</span>
+                                            {% if product.discount == True %}
                                             <div class="old-price">
-                                                                <s>{{ product.del_price }}/=</s>
-                                                            </div>
+                                                <del>{{ product.del_price }}/=</del>
+                                            </div>
+                                            {% endif %}
                                             <div class="ratings">
                                                 <span class="good"><i class="fa fa-shopping-cart"></i></span>
                                                 <span class="good"><i class="fa fa-shopping-cart"></i></span>
@@ -418,7 +424,7 @@
                                                 <span class="good"><i class="fa fa-shopping-cart"></i></span>
                                                 <span><i class="fa fa-shopping-cart"></i></span>
                                                 <div class="pro-review">
-                                                    <span>PearlMart</span>
+                                                    <span>{{ product.shop_name }} Store</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -517,9 +523,11 @@
                                         <h4><a href="{% url 'details' product.id %}">{{ product.name }}</a></h4>
                                         <div class="pricebox">
                                             <span class="regular-price">{{ product.price }}/=</span>
+                                            {% if product.discount == True %}
                                             <div class="old-price">
-                                                                <s>{{ product.del_price }}/=</s>
-                                                            </div>
+                                                <del>{{ product.del_price }}/=</del>
+                                            </div>
+                                            {% endif %}
                                             <div class="ratings">
                                                 <span class="good"><i class="fa fa-shopping-cart"></i></span>
                                                 <span class="good"><i class="fa fa-shopping-cart"></i></span>
@@ -527,7 +535,7 @@
                                                 <span class="good"><i class="fa fa-shopping-cart"></i></span>
                                                 <span><i class="fa fa-shopping-cart"></i></span>
                                                 <div class="pro-review">
-                                                    <span>PearlMart</span>
+                                                    <span>{{ product.shop_name }} Store</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -586,9 +594,11 @@
                                                             <div class="regular-price">
                                                                 {{ product.price }}/=
                                                             </div>
-                                                            <div class="old-price">
-                                                                <s>{{ product.del_price }}/=</s>
-                                                            </div>
+                                                            {% if product.discount == True %}
+                                                    <div class="old-price">
+                                                        <del>{{ product.del_price }}/=</del>
+                                                    </div>
+                                                    {% endif %}
                                                         </div>
                                                         <div class="ratings">
                                                             <span class="good"><i class="fa fa-shopping-cart"></i></span>
@@ -597,7 +607,7 @@
                                                             <span class="good"><i class="fa fa-shopping-cart"></i></span>
                                                             <span><i class="fa fa-shopping-cart"></i></span>
                                                             <div class="pro-review">
-                                                                <span>PearlMart</span>
+                                                                <span>{{ product.shop_name }} Store</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -631,6 +641,11 @@
                                                             <div class="regular-price">
                                                                 {{ product.price }}
                                                             </div>
+                                                            {% if product.discount == True %}
+                                                    <div class="old-price">
+                                                        <del>{{ product.del_price }}/=</del>
+                                                    </div>
+                                                    {% endif %}
                                                         </div>
                                                         <div class="ratings">
                                                            
@@ -667,9 +682,11 @@
                                                             <div class="regular-price">
                                                                 {{ product.price }}/=
                                                             </div>
-                                                            <div class="old-price">
-                                                                <s>{{ product.del_price }}/=</s>
-                                                            </div>
+                                                            {% if product.discount == True %}
+                                                    <div class="old-price">
+                                                        <del>{{ product.del_price }}/=</del>
+                                                    </div>
+                                                    {% endif %}
                                                         </div>
                                                         <div class="ratings">
                                                             <span class="good"><i class="fa fa-shopping-cart"></i></span>
@@ -678,7 +695,7 @@
                                                             <span class="good"><i class="fa fa-shopping-cart"></i></span>
                                                             <span><i class="fa fa-shopping-cart"></i></span>
                                                             <div class="pro-review">
-                                                                <span>PearlMart</span>
+                                                                <span>{{ product.shop_name }} Store</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -776,16 +793,10 @@
                             <div class="pricebox">
                                 <span class="regular-price">{{ product.price }}/=</span>
                                 {% if product.discount == True %}
-                                <div class="old-price" style="color:purple;">
-                                    <b>
-                                        <i>
-                                            <s>
-                                                {{ product.del_price }}/=
-                                            </s>
-                                        </i>
-                                    </b>
-                                </div>
-                                    {% endif %}
+                                                    <div class="old-price">
+                                                        <del>{{ product.del_price }}/=</del>
+                                                    </div>
+                                                    {% endif %}
                                 <div class="ratings">
                                     <span class="good"><i class="fa fa-shopping-cart"></i></span>
                                     <span class="good"><i class="fa fa-shopping-cart"></i></span>

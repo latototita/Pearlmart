@@ -54,7 +54,7 @@
                                             <span class="good"><i class="fa fa-star"></i></span>
                                             <span><i class="fa fa-star"></i></span>
                                             <div class="pro-review">
-                                                <span>1 review(s)</span>
+                                                <span>{{ product.shop_name }}</span>
                                             </div>
                                         </div>
                                         <div class="customer-rev">
@@ -64,6 +64,11 @@
                                             <h5>Availability:</h5>
                                             <span>{{product.stock }} in stock</span>
                                         </div>
+                                        {% if product.discount == True %}
+                                        <div class="old-price">
+                                            <del>{{ product.del_price }}/=</del>
+                                        </div>
+                                        {% endif %}
                                         <div class="pricebox">
                                             <span class="regular-price">{{product.price }}</span>
                                         </div>
@@ -263,9 +268,11 @@ When you and more generally, use any of our services (the "Services", which incl
                                                     <div class="regular-price">
                                                         {{ product.price }}/=
                                                     </div>
+                                                    {% if product.discount == True %}
                                                     <div class="old-price">
-                                                        <del>{{ product.price }}/=</del>
+                                                        <del>{{ product.del_price }}/=</del>
                                                     </div>
+                                                    {% endif %}
                                                 </div>
                                                 <div class="ratings">
                                                     <span class="good"><i class="fa fa-star"></i></span>

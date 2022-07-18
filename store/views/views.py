@@ -576,7 +576,7 @@ def vendor_add_product(request):
             discount_percentage=ld[2]
             discounted_price=(((r/100)*form.cleaned_data['selling_price'])+form.cleaned_data['selling_price'])
             feed_back.del_price=discounted_price
-            feed_back.price=(((5/100)*form.cleaned_data['selling_price'])+form.cleaned_data['selling_price'])
+            feed_back.price=(((6/100)*form.cleaned_data['selling_price'])+form.cleaned_data['selling_price'])
             feed_back.shop=request.user.id
             Shop_name=Vendor.objects.get(vendor=request.user.id)
             feed_back.shop_name=Shop_name.shop_name

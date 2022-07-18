@@ -73,7 +73,9 @@ def store(request):
     else:
         products = Product.get_all_products().order_by('-id');
         k=None
-    random.shuffle(list(products))
+    #random.shuffle(list(products))
+    products=random.sample(l, len(products))
+    
     #paginator=Paginator(products,6)
     #page_number=request.GET.get('page')
       
@@ -118,7 +120,6 @@ def search(request):
             product_list = paginator.get_page(page_number)
         except:
             product_list={}
-        print('Yo')
         context={'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'store':'store','productes':productes,'product_list':product_list,'searched':searched,'page_number':page_number,'brands':brands,'categories':categories}
 
         return render(request,'index.html', context)
@@ -157,8 +158,16 @@ def homepage(request):
     hot_deal=Product.objects.filter(is_hot_deal=True).order_by('-dates')[:12]
     trending=Product.objects.filter(is_most_viewed=True).order_by('-dates')[:12]
 
- 
-    random.shuffle(list(top_rated))
+
+    top_rated=random.sample(l, len(top_rated))
+    featured=random.sample(l, len(featured))
+    best_selling=random.sample(l, len(best_selling))
+    new_arrival=random.sample(l, len(new_arrival))
+    new_product=random.sample(l, len(new_product))
+    hot_sale=random.sample(l, len(hot_sale))
+    hot_deal=random.sample(l, len(hot_deal))
+    trending=random.sample(l, len(trending))
+    '''random.shuffle(list(top_rated))
     random.shuffle(list(featured))
     random.shuffle(list(best_selling))
     random.shuffle(list(new_arrival))
@@ -166,7 +175,7 @@ def homepage(request):
     random.shuffle(list(hot_sale))
     random.shuffle(list(hot_sale))
     random.shuffle(list(hot_deal))
-    random.shuffle(list(products))
+    random.shuffle(list(products))'''
 
     latest=Post.objects.order_by('-date_posted')[:5]
     news=Post.objects.filter(is_news=True).order_by('-date_posted')[:3]
