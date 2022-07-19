@@ -81,6 +81,11 @@ class AddProductForm(BaseForm):
 	stock = forms.IntegerField(required=True)
 	selling_price=forms.IntegerField(required=True)
 	image=forms.ImageField(required=True)
+class ProductUpdateForm(BaseForm):
+	class Meta:
+		model=Product
+		fields=('name','stock','brand',  'selling_price','image','description','category')
+
 
 class PaymentForm(ModelForm):
 	class Meta:

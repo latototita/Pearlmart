@@ -316,7 +316,7 @@ def Product_update(request, id):
     product= Product.objects.get(id=id)
 
     if request.method == 'POST':
-        form = AddProductForm(request.POST, instance=product)
+        form = ProductUpdateForm(request.POST, instance=product)
         if form.is_valid():
             feed_back=form.save(commit=False)
             l =[10,13,18,15,60,45,34,43,24,26,19,31,47,51,50,12,8,37,27]
@@ -335,7 +335,7 @@ def Product_update(request, id):
             # redirect to the detail page of the `Band` we just updated
             return redirect('productboard')
     else:
-        form = AddProductForm(instance=product)
+        form = ProductUpdateForm(instance=product)
         context={'form': form,'products':'products','productes':productes,'product':product}
 
     return render(request,'add1.html',context)
