@@ -568,16 +568,18 @@ def vendor_add_product(request):
     user = request.session.get('customer')
     if request.method == 'POST':
         form = AddProductForm(request.POST, request.FILES)
-  
+
         if form.is_valid():
             feed_back=form.save(commit=False)
             l =[10,13,18,15,60,45,34,43,24,26,19,31,47,51,50,12,8,37,27]
             ld=random.sample(l, len(l))
             discount_percentage=ld[2]
-            discounted_price=(((r/100)*form.cleaned_data['selling_price'])+form.cleaned_data['selling_price'])
+            price=(((6/100)*form.cleaned_data['selling_price'])+form.cleaned_data['selling_price'])
+            discounted_price=(((int(discount_percentage)/100)*price)+price)
             feed_back.del_price=discounted_price
-            feed_back.price=(((6/100)*form.cleaned_data['selling_price'])+form.cleaned_data['selling_price'])
+            feed_back.price=price
             feed_back.shop=request.user.id
+            feed_back.discount_percentage=discount_percentage
             Shop_name=Vendor.objects.get(vendor=request.user.id)
             feed_back.shop_name=Shop_name.shop_name
             feed_back.save()
