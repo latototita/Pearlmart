@@ -438,7 +438,7 @@ def Brand_update(request, id):
             return redirect('Brand_add')
     else:
         form = AddBrandForm(instance=brand)
-        context={'form': form,'name':'Brand','names':'Brand_update'}
+        context={'form': form,'brand_updated':'brand_updated','updated':'updated'}
 
     return render(request,'Change.html',context)
 @user_passes_test(group_check)
@@ -461,7 +461,7 @@ def Category_update(request, id):
     else:
         form = AddCategoryForm(instance=category)
         
-        context={'form': form,'name':'Category','names':'Category_update'}
+        context={'form': form,'category_updated':'category_updated','updated':'updated'}
 
     return render(request,'Change.html',context)
 
