@@ -37,7 +37,7 @@
 		<td><img src="{{ product.image.url }}" height="40", width="50" alt=""></td>
 				<td><a href="{% url 'Product_update' product.id %}" class="btn btn-primary">Edit</a></td>
 				<td><a href="{% url 'Product_delete' product.id %}"
-class="glyphicon glyphicon-delete-sign">Delete</a></td>
+class="btn btn-success">Delete <i class="fa fa-trash"></i></a></td>
 			</tr>
 			{% endfor %}
 		</tbody>

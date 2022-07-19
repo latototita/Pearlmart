@@ -318,6 +318,18 @@ def Product_update(request, id):
     if request.method == 'POST':
         form = AddProductForm(request.POST, instance=product)
         if form.is_valid():
+            feed_back=form.save(commit=False)
+            l =[10,13,18,15,60,45,34,43,24,26,19,31,47,51,50,12,8,37,27]
+            ld=random.sample(l, len(l))
+            discount_percentage=ld[2]
+            price=(((6/100)*form.cleaned_data['selling_price'])+form.cleaned_data['selling_price'])
+            discounted_price=(((int(discount_percentage)/100)*price)+price)
+            feed_back.del_price=discounted_price
+            feed_back.price=price
+            feed_back.shop=request.user.id
+            feed_back.discount_percentage=discount_percentage
+            Shop_name=Vendor.objects.get(vendor=request.user.id)
+            feed_back.shop_name=Shop_name.shop_name
             # update the existing `Band` in the database
             form.save()
             # redirect to the detail page of the `Band` we just updated
@@ -565,7 +577,7 @@ def vendor_add_product(request):
         productes={}
     else:
         productes = Product.get_products_by_id(list(request.session.get('cart').keys()))
-    user = request.session.get('customer')
+    user = request.user.id
     if request.method == 'POST':
         form = AddProductForm(request.POST, request.FILES)
 
