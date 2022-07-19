@@ -17,12 +17,12 @@ class OrderForm(ModelForm):
 
 class ViewCartForm(forms.ModelForm):
 	class Meta:
-		model=Product
-		fields=('stock','id')
-
-	def __init__(self, *args, **kwargs):
+		model=Order
+		fields=('quantity','id',)
+	def __init__(self, *args, **kwargs,):
 		super().__init__(*args, **kwargs)
-		self.fields['stock']=forms.FloatField(min_value=1)
+		
+		self.fields['quantity']=forms.FloatField(max_value=100, min_value=1)
 
 class RegistrationForm(UserCreationForm):
 	email=forms.EmailField()
