@@ -16,7 +16,7 @@ class Product(models.Model):
     category =models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, default=1)
     description = models.TextField(max_length=1000)
-    image =models.ImageField(upload_to='Uploads/products/')
+    image =models.ImageField(upload_to='Uploads/products/', blank=True)
     shop=models.CharField(max_length=100,default=1)
     shop_name =models.CharField(max_length=100,default='Pearlmart',blank=True)
     dates= models.DateTimeField(default=timezone.now)
