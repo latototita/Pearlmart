@@ -35,16 +35,9 @@
 		<td> {{ product.brand.name }} </td>
 		<td> {{ product.category.name }} </td>
 		<td><img src="{{ product.image.url }}" height="40", width="50" alt=""></td>
-				<td>
-				<form action="{% url 'Product_update' product.id %}" method="POST">
-				<button type="submit" class="btn btn-primary">
-				<i class="fa fa-edit">Edit</i> </button>
-					</form></td>
-				<td>
-				<form action="{% url 'Product_delete' product.id %}" method="POST">
-				<button type="submit" class="btn btn-primary">
-				<i class="glyphicon glyphicon-delete-sign">Delete</i> </button>
-					</form></td>
+				<td><a href="{% url 'Product_update' product.id %}" class="btn btn-primary">Edit</a></td>
+				<td><a href="{% url 'Product_delete' product.id %}"
+class="glyphicon glyphicon-delete-sign">Delete</a></td>
 			</tr>
 			{% endfor %}
 		</tbody>
