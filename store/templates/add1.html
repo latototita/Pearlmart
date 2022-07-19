@@ -39,7 +39,7 @@
                         <div class="col-lg-6">
                             <div class="login-reg-form-wrap  pr-lg-50">
                         {% if products %}
-                        <h2>Update Product: {{ product.name }}</h2>
+                        <h2>Update Product:  {{ product.name }}</h2>
                         {% else %}
                                 <h2>Add Product</h2>
                         {% endif %}
@@ -51,7 +51,13 @@
                                         {{ form |crispy }}
                                     </div>
                                         <div class="single-input-item">
-                                        <button type="submit" class="btn btn-primary">Add New Product</button>
+                                        <button type="submit" class="btn btn-primary">
+                                    {% if products %}
+                                    Change Product
+                                    {% else %}
+                                    Add New Product
+                                    {% endif %}
+                                </button>
                                         </div>
                                     </form>
                                 </div>
