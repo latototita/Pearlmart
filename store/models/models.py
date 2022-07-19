@@ -151,10 +151,8 @@ class Asset (models.Model):
         return self.reason
 
 class Order_record(models.Model):
-    product = models.ForeignKey(Product,
-                                on_delete=models.CASCADE)
-    customer = models.ForeignKey(User,
-                                 on_delete=models.CASCADE)
+    product = models.CharField(max_length=100)
+    customer = models.CharField(max_length=100)
     quantity = models.IntegerField(default=1)
     price = models.IntegerField()
     selling_price =models.IntegerField(default=0)
@@ -166,9 +164,5 @@ class Order_record(models.Model):
     ordering_code=models.CharField(max_length=60,default='')
     shop_name = models.CharField(max_length=60,default='')
     def __str__(self):
-    
         return self.customer
-
-
-
 

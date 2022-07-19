@@ -50,8 +50,8 @@ def checkout(request):
                           quantity=cart.get(str(product.id)))
             
 
-            order_records = Order_record(customer=User(id=customer),
-                          product=product,
+            order_records = Order_record(customer=request.user.username,
+                          product=product.name,
                           price=product.price,
                           selling_price=product.selling_price,
                           address=address,
