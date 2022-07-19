@@ -34,12 +34,14 @@ def orders(request):
     order = request.POST.get('order')
     if deleteorder:
         order=Order.objects.filter(id__in=deleteorder)
+        order_record=Order_record.objects.filter(quantity=order.quantity).filter(ordering_code=order.ordering_code).filter(product=order.product.name)
         try:
-            product_stock=Product.objects.filter(name=order.name).filter(shop_name=order.shop_name)
+            product_stock=Product.objects.filter(name=order.product.name).filter(shop_name=order.shop_name).filter(id=order.product.id)
             product_stock.stock=(product_stock.stock+order.quantity)
             product_stock.save()
         except:
             pass
+        order_record.delete()
         order.delete()
         messages.success(request, f'Order for {order}Item Cancelled Successfully')
     print(orders)

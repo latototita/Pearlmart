@@ -10,7 +10,7 @@ def is_in_cart(product  , cart):
             return True
     return False;
 
-
+ 
 @register.filter(name='cart_quantity')
 def cart_quantity(product  , cart):
     keys = cart.keys()
@@ -25,16 +25,16 @@ def price_total(product  , cart):
     return product.price * cart_quantity(product , cart)
 
 @register.filter(name='total_cart_price')
-def total_cart_price(products , cart):
+def total_cart_price(productes , cart):
     sum = 0 ;
-    for p in products:
+    for p in productes:
         sum += price_total(p , cart)
     return sum
 
 @register.filter(name='total_cart_price_grand')
-def total_cart_price_grand(products , cart):
+def total_cart_price_grand(productes , cart):
     sum = 0 ;
-    for p in products:
+    for p in productes:
         sum += price_total(p , cart)
     sum=sum+3000
     return sum
