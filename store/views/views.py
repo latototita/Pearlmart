@@ -848,7 +848,6 @@ def daily_accounting(request):
     if Order.objects.filter(dates=today).filter(status=True).filter(is_accounted=False):
         Orders_today=Order.objects.filter(dates=today).filter(status =True)
         if Orders_today.first():
-            print('Orders not Empty')
             for order in Orders_today:
                 if order.customer not in New_Orders:
                     New_Orders.append(order.customer)
@@ -868,9 +867,7 @@ def daily_accounting(request):
                 orders.is_accounted=True
                 orders.save()
             gross_income_selling=(gross_income_selling+gross_income_transport)
-            print('gross_income_selling :',gross_income_selling)
             gross_profit=(gross_income_selling- gross_income_cost)
-            print('gross_profit  :',gross_profit)
             profits=(selling_price-cost_price)+gross_income_transport
             if Credit.objects.filter(date_created=today):
                 Credits=Credit.objects.filter(date_created=today)
@@ -898,7 +895,6 @@ def daily_accounting(request):
             else:
                 pass
 
-            print('profits :', profits)
             for product in Product_Sold:
                 if Products_Sold.objects.filter(dates=today):
                     if Products_Sold.objects.filter(date_sold=today).filter(name=product.name):

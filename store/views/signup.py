@@ -19,7 +19,15 @@ def signup(response):
     if response.method=="POST":
         form=RegistrationForm(response.POST)
         if form.is_valid():
-            form.save()
+            if User.objects.filter(email=form.cleaned_data['email']):
+                messages.success(request, f'Email already in use, Please use a different Email')
+                return render(response,'signup.html',{'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'form':form,'brands':brands,'categories':categories})
+            elif User.objects.filter(username=form.cleaned_data['username']):
+                messages.success(request, f'Username already in use, Please use a different Username')
+                return render(response,'signup.html',{'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'form':form,'brands':brands,'categories':categories})
+            else:
+                form.save()
+        messages.success(request, f'Successfully Registered,Please log into your Account to Make Orders')
         return redirect('login')
     else:
         form=RegistrationForm()
