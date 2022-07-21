@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password
 from .home import store
-from .login import Login
 from django.views import View
 from .forms import RegistrationForm
 from store.models.product import Product
@@ -21,7 +20,7 @@ def signup(response):
         form=RegistrationForm(response.POST)
         if form.is_valid():
             form.save()
-        return redirect('Login')
+        return redirect('login')
     else:
         form=RegistrationForm()
 
