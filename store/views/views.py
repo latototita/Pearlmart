@@ -586,7 +586,7 @@ def vendor_add_product(request):
             l =[10,13,18,15,60,45,34,43,24,26,19,31,47,51,50,12,8,37,27]
             ld=random.sample(l, len(l))
             discount_percentage=ld[2]
-            price=(((6/100)*form.cleaned_data['selling_price'])+form.cleaned_data['selling_price'])
+            price=(((8/100)*form.cleaned_data['selling_price'])+form.cleaned_data['selling_price'])
             discounted_price=(((int(discount_percentage)/100)*price)+price)
             feed_back.del_price=discounted_price
             feed_back.price=price
