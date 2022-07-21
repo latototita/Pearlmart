@@ -27,10 +27,9 @@ def signup(response):
             elif User.objects.filter(username=form.cleaned_data['username']):
                 messages.success(response, f'Username already in use, Please use a different Username')
                 return render(response,'signup.html',{'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'form':form,'brands':brands,'categories':categories})
-            else:
-                form.save()
-        messages.success(response, f'Successfully Registered,Please log into your Account to Make Orders')
-        return redirect('login')
+            form.save()
+            messages.success(response, f'Successfully Registered,Please log into your Account to Make Orders')
+            return redirect('login')
     else:
         form=RegistrationForm()
 

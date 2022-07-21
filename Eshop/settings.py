@@ -34,7 +34,7 @@ SESSION_COOKIE_SECURE = False
 
 
 
-ALLOWED_HOSTS = ["*"]#'159.223.12.182','.pearlmart.ml','www.pearlamrt.ml','pearlmart.ml']
+ALLOWED_HOSTS = ['159.223.12.182','.pearlmart.ml','www.pearlamrt.ml','pearlmart.ml']
 
 # Application definition
 
