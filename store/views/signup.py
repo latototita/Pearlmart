@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password
 from .home import store
+from django.contrib.auth.models import User
 from django.views import View
+from django.contrib import messages
 from .forms import RegistrationForm
 from store.models.product import Product
 from store.models.brand import Brand
