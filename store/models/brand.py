@@ -3,7 +3,7 @@ from django.db import  models
 
 class Brand(models.Model):
     name = models.CharField(max_length=45)
-    shop =models.CharField(max_length=100,default='None',blank=True)
+    shop =models.CharField(max_length=100,default=1,blank=True)
     is_popular=models.BooleanField(default=False)
     is_trending=models.BooleanField(default=False)
     is_tech=models.BooleanField(default=False)

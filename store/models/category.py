@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class Category(models.Model):
     name = models.CharField(max_length=45)
-    shop =models.CharField(max_length=100,default='None',blank=True)
+    shop =models.CharField(max_length=100,default=1,blank=True)
     is_tech=models.BooleanField(default=False)
     is_fashion=models.BooleanField(default=False)
     is_home=models.BooleanField(default=False)

@@ -3,9 +3,9 @@
 {% load crispy_forms_tags %}
 {% block body %}
 <!-- Brand Content Start -->
-{% if updated %}
+<!-- {% if updated %}
     {% if brand_updated %}
-    <!-- Register Content Start -->
+   
                             <div class="col-lg-6 container">
                                 <div class="login-reg-form-wrap mt-md-34 mt-sm-34">
                                     {% if vendor %}
@@ -23,14 +23,14 @@
                                     </form>
                                 </div>
                             </div>
-                            <!-- Register Content End -->
+                           
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- login register wrapper end -->
+          
         {% elif category_updated %}
-        <!-- Register Content Start -->
+
                                 <div class="col-lg-6 container">
                                     <div class="login-reg-form-wrap mt-md-34 mt-sm-34">
                                         {% if vendor %}
@@ -48,12 +48,12 @@
                                         </form>
                                     </div>
                                 </div>
-                                <!-- Register Content End -->
+                                
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- login register wrapper end -->
+                
         {% endif %}
 {% else %}
     {% if brand %}
@@ -100,8 +100,7 @@
     </div>
     </div>
     </div>
-    <!-- Category Content Start -->
-    <!-- Register Content Start -->
+
                             <div class="col-lg-6 container">
                                 <div class="login-reg-form-wrap mt-md-34 mt-sm-34">
                                     {% if vendor %}
@@ -119,12 +118,10 @@
                                     </form>
                                 </div>
                             </div>
-                            <!-- Register Content End -->
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- login register wrapper end -->
     {% elif category %}
     <div class="panel panel-default container">
                     <div class="panel-heading">
@@ -167,7 +164,7 @@
     </div>
     </div>
     </div>
-    <!-- Register Content Start -->
+
                             <div class="col-lg-6 container">
                                 <div class="login-reg-form-wrap mt-md-34 mt-sm-34">
                                     {% if vendor %}
@@ -185,15 +182,15 @@
                                     </form>
                                 </div>
                             </div>
-                            <!-- Register Content End -->
+
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- login register wrapper end -->
+           
     {% else %}
 
-    <!-- Register Content Start -->
+-->
                             <div class="col-lg-6 container">
                                 <div class="login-reg-form-wrap mt-md-34 mt-sm-34">
                                     {% if vendor %}
@@ -211,12 +208,11 @@
                                     </form>
                                 </div>
                             </div>
-                            <!-- Register Content End -->
+                          
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- login register wrapper end -->
-    {% endif %}
-{% endif %}
+            
+
 {% endblock %}

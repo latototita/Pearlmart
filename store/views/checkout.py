@@ -98,7 +98,15 @@ def checkout(request):
         
         messages.success(request, f'Dear Customer, \nYour Order For the following Products:\n{product_lists}\n as been Received Successfully, Will be delivered To {address} within 24 hours, With Order Code {ordering_code} To be use for delivery and security. Have a Good Day.Take Care')
         request.session['cart'] = {}
-        return redirect('store')
+        brands = Brand.get_all_brand()
+        categories = Category.get_all_categories()
+        fashion_cat=Category.objects.filter(is_tech=True)
+        tech_cat=Category.objects.filter(is_fashion=True)
+        cat_home=Category.objects.filter(is_home=True)
+        party_cat=Category.objects.filter(is_party=True)
+        tagged_cat=Category.objects.filter(is_tagged=True)
+        context={'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'product_list' : product_list,'categories':categories,'brands':brands}
+        return render(request, 'success.html',context)
     else:
         messages.success(request, f'You Have an empty Cart, Please Add Orders to Cart and Make Your Order')
         return redirect('checkout1')
