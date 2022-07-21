@@ -289,7 +289,7 @@ def Payment_update(request):
     try:
         payment = Payment.objects.get(key=request.user.id)
     except:
-        messages.success(request, f'Add Or Customize Your Own brand')
+        messages.success(request, f'You Have no payment option registered, Please register on this page')
         return redirect('payment')
     if request.method == 'POST':
         form = PaymentForm(request.POST, instance=payment)
