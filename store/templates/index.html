@@ -279,7 +279,6 @@
                             <div class="row">
                                 <div class="col-12">
                                     <ul class="pagination-box">
-                                        {% if is_paginated %}
                                         {% if page_obj.has_previous %}
                                         <li><a class="Previous" href="?page=1">First</a></li>
                                         <li><a class="Previous" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
@@ -295,7 +294,7 @@
                                         <li><a class="Next" href="?page={{ page_obj.next_page_number }}">Next</a></li>
                                         <li><a href="?page={{page_obj.paginator.num_pages }}"> Last </a></li>
                                         {% endif %}
-                                        {% endif %}
+                                        
                                        
                                     </ul>
                                 </div>
