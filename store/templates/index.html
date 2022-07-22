@@ -279,7 +279,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <ul class="pagination-box">
-                                    {% if page_obj.is_paginated %}
+                                    {% if page_obj %}
                                         {% if page_obj.has_previous %}
                                         <li><a class="Previous" href="?page=1">First</a></li>
                                         <li><a class="Previous" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
