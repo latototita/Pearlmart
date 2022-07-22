@@ -39,7 +39,7 @@ class Product(models.Model):
 
     @staticmethod
     def get_product_by_id(id):
-        return Product.objects.filter(id__in =id).order_by('-id')
+        return Product.objects.filter(id__in =id).order_by('?')
 
 
 
@@ -54,7 +54,7 @@ class Product(models.Model):
     @staticmethod
     def get_all_products_by_categoryid(category_id):
         if category_id:
-            return Product.objects.filter(category = category_id).order_by('-id')
+            return Product.objects.filter(category = category_id).order_by('?')
         else:
             return Product.get_all_products();
 
@@ -62,14 +62,14 @@ class Product(models.Model):
     @staticmethod
     def get_all_products_by_brandid(brand_id):
         if brand_id:
-            return Product.objects.filter(brand = brand_id).order_by('-id')
+            return Product.objects.filter(brand = brand_id).order_by('?')
         else:
             return Product.get_all_products();
 
 
     @staticmethod
     def get_all_product():
-        return Product.objects.filter(order__isnull=False).distinct().order_by('-id')
+        return Product.objects.filter(order__isnull=False).distinct().order_by('?')
 
     def __str__(self):
     
