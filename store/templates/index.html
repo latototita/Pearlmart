@@ -73,7 +73,7 @@
                             {% if product_list %}
 
                                     <!-- product single grid item start -->
-                                    {% for product in product_list %}
+                                    {% for product in product_list.object_list %}
 
                             <!-- product item start -->
                             
@@ -158,7 +158,7 @@
                           
                               <!-- product single grid item end -->
                                     {% endfor %}
-                                    {% for product in product_list %}
+                                    {% for product in product_list.object_list %}
 
                                     <!-- product single list item start -->
                                 <div class="container">
