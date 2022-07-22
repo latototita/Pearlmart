@@ -40,7 +40,7 @@
                                 <div class="row">
                                     <div class="col-lg-7 col-md-6">
                                         <div class="top-bar-left">
-                            {% if product_list %}
+                            {% if page_obj %}
                                             <div class="product-view-mode mr-70 mr-sm-0">
                                                 <a class="active" href="#" data-target="grid"><i class="fa fa-th"></i></a>
                                                 <a href="#" data-target="list"><i class="fa fa-list"></i></a>
@@ -70,10 +70,10 @@
                             <!-- shop product top wrap start -->
                             <!-- product item start -->
                             <div class="shop-product-wrap grid row">
-                            {% if product_list %}
+                            {% if page_obj %}
 
                                     <!-- product single grid item start -->
-                                    {% for product in product_list.object_list %}
+                                    {% for product in page_obj.object_list %}
 
                             <!-- product item start -->
                             
@@ -158,7 +158,7 @@
                           
                               <!-- product single grid item end -->
                                     {% endfor %}
-                                    {% for product in product_list.object_list %}
+                                    {% for product in page_obj.object_list %}
 
                                     <!-- product single list item start -->
                                 <div class="container">

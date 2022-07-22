@@ -76,7 +76,7 @@ def store(request):
     #random.shuffle(list(products))
     products=random.sample(products, len(products))
     
-    paginator=Paginator(products,30)
+    p=Paginator(products,30)
     page_number=request.GET.get('page')
       
     fashion_cat=Category.objects.filter(is_tech=True)
@@ -91,9 +91,9 @@ def store(request):
     else:
         vendor_present_here=False
 
-    product_list = paginator.get_page(page_number)
+    page_obj = p.get_page(page_number)
         
-    context={'vendor_present_here':vendor_present_here,'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'store':'store','productes':productes,'product_list':product_list,'k':k,'brands':brands,'categories':categories,'brands':brands}
+    context={'page_obj':page_obj,'vendor_present_here':vendor_present_here,'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'store':'store','productes':productes,'k':k,'brands':brands,'categories':categories,'brands':brands}
     return render(request, 'index.html', context)
 def search(request):
     cart = request.session.get('cart')
