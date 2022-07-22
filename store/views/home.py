@@ -121,7 +121,7 @@ def search(request):
             multiple_q=Q(Q(name__icontains=searched) | Q(description__icontains=searched))
             products=Product.objects.filter(multiple_q).order_by('-id')
             random.shuffle(list(products))
-            paginator=Paginator(products,30)
+            paginator=Paginator(products,5)
             page_number=request.GET.get('page')
             page_obj = paginator.get_page(page_number)
         except:
