@@ -64,14 +64,14 @@ def store(request):
         messages.success(request, 'Order Item deleted Successfully')
         return render(request , 'orders.html'  , {'orders' : orders})
     if categoryID:
-        products = list(Product.get_all_products_by_categoryid(categoryID))
+        products = Product.get_all_products_by_categoryid(categoryID)
     
         k=Category.objects.filter(id= categoryID)
     elif brandID:
-        products = list(Product.get_all_products_by_brandid(brandID))
+        products = Product.get_all_products_by_brandid(brandID)
         k=brandID
     else:
-        products = list(Product.get_all_products());
+        products = Product.get_all_products()
         k=None
     #random.shuffle(list(products))
     #products=random.sample(products, len(products))
