@@ -76,8 +76,8 @@ def store(request):
     #random.shuffle(list(products))
     products=random.sample(products, len(products))
     
-    #paginator=Paginator(products,6)
-    #page_number=request.GET.get('page')
+    paginator=Paginator(products,30)
+    page_number=request.GET.get('page')
       
     fashion_cat=Category.objects.filter(is_tech=True)
     tech_cat=Category.objects.filter(is_fashion=True)
@@ -91,9 +91,9 @@ def store(request):
     else:
         vendor_present_here=False
 
-    #product_list = paginator.get_page(page_number)
+    product_list = paginator.get_page(page_number)
         
-    context={'vendor_present_here':vendor_present_here,'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'store':'store','productes':productes,'product_list':products,'k':k,'brands':brands,'categories':categories,'brands':brands}
+    context={'vendor_present_here':vendor_present_here,'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'store':'store','productes':productes,'product_list':product_list,'k':k,'brands':brands,'categories':categories,'brands':brands}
     return render(request, 'index.html', context)
 def search(request):
     cart = request.session.get('cart')
@@ -107,6 +107,12 @@ def search(request):
     cat_home=Category.objects.filter(is_home=True)
     party_cat=Category.objects.filter(is_party=True)
     tagged_cat=Category.objects.filter(is_tagged=True)
+    if request.user.is_authenticated:
+        vendor_present=Vendor.objects.filter(vendor=request.user.id)
+        vendor_present_here=True
+    else:
+        vendor_present_here=False
+        
     if request.method=="POST":
         categories = Category.get_all_categories()
         brands = Brand.get_all_brand()
@@ -115,12 +121,12 @@ def search(request):
             multiple_q=Q(Q(name__icontains=searched) | Q(description__icontains=searched))
             products=Product.objects.filter(multiple_q).order_by('-id')
             random.shuffle(list(products))
-            paginator=Paginator(products,6)
+            paginator=Paginator(products,30)
             page_number=request.GET.get('page')
             product_list = paginator.get_page(page_number)
         except:
             product_list={}
-        context={'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'store':'store','productes':productes,'product_list':product_list,'searched':searched,'page_number':page_number,'brands':brands,'categories':categories}
+        context={'vendor_present_here':vendor_present_here,'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'store':'store','productes':productes,'product_list':product_list,'searched':searched,'page_number':page_number,'brands':brands,'categories':categories}
 
         return render(request,'index.html', context)
 
