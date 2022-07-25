@@ -22,11 +22,7 @@ class ViewCartForm(forms.ModelForm):
 	def __init__(self, min_values=None, *args, **kwargs):
 		super(ViewCartForm, self).__init__(*args, **kwargs)
 		self.fields['quantity'] = forms.IntegerField(min_values=1)
-'''def __init__(self, *args, **kwargs,):
-		super().__init__(*args, **kwargs)
-		
-		self.fields['quantity']=forms.FloatField(max_value=100, min_value=1)
-'''
+
 class RegistrationForm(UserCreationForm):
 	email=forms.EmailField()
 

@@ -30,7 +30,6 @@ from django.contrib.admin.views.decorators import staff_member_required
 def group_check(user):
     return user.groups.filter(name__in=['Vendor'])
 
-
 def  Contact1(request):
     brands = Brand.get_all_brand()
     categories = Category.get_all_categories()
@@ -587,6 +586,7 @@ def vendor_add_product(request):
             ld=random.sample(l, len(l))
             discount_percentage=ld[2]
             price=(((10/100)*form.cleaned_data['selling_price'])+form.cleaned_data['selling_price'])
+            price=round(price, -2)
             discounted_price=(((int(discount_percentage)/100)*price)+price)
             feed_back.del_price=discounted_price
             feed_back.price=price
@@ -940,3 +940,5 @@ def daily_accounting(request):
     else:
         print('Not Done')
         return HttpResponse('Empty No Order today')
+
+
