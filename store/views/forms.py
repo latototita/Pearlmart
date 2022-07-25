@@ -49,8 +49,7 @@ class PostForm(BaseForm):
         widgets = {
             'content': forms.Textarea(attrs={'class': 'editable medium-editor-textarea'})
         }
-	image=forms.ImageField(required=True)
-
+    image=forms.ImageField(required=True)
 # Your forms
 class AddVendor_UpdateForm(BaseForm):
     class Meta:
