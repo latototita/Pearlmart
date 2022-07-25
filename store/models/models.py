@@ -45,7 +45,7 @@ class PostManager(models.Manager):
 
 
 class Post(models.Model):
-    image=models.ImageField(upload_to='posts')
+    image=models.ImageField(upload_to='posts',blank=True)
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
