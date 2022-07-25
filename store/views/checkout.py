@@ -105,7 +105,7 @@ def checkout(request):
         cat_home=Category.objects.filter(is_home=True)
         party_cat=Category.objects.filter(is_party=True)
         tagged_cat=Category.objects.filter(is_tagged=True)
-        context={'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'product_list' : product_list,'categories':categories,'brands':brands}
+        context={'product_lists':product_lists,'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'categories':categories,'brands':brands}
         return render(request, 'success.html',context)
     else:
         messages.success(request, f'You Have an empty Cart, Please Add Orders to Cart and Make Your Order')
