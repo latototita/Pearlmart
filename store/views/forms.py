@@ -19,9 +19,10 @@ class ViewCartForm(forms.ModelForm):
 	class Meta:
 		model=Order
 		fields=('quantity','id',)
-	def __init__(self, *args, **kwargs):
+	def __init__(self, *args, **kwargs,):
 		super().__init__(*args, **kwargs)
-		self.fields['quantity'] = forms.IntegerField(min_value=1)
+		self.fields['quantity']=forms.IntegerField(max_value=1000, min_value=1)
+
 '''
 def __init__(self, min_value=None, *args, **kwargs):
 		super(ViewCartForm, self).__init__(*args, **kwargs)
