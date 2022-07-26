@@ -239,7 +239,7 @@
                                             </div>
                                             <p>{{ product.description|truncatewords:40 }}.</p>
                                             <a href="{% url 'details' product.id %}">read more <i class="fa fa-long-arrow-right"></i></a>
-                                            <div class="product-list-action-link">       
+                                             <div class="product-list-action-link">       
                                                 <a href="{% url 'details' product.id %}" > <span data-toggle="tooltip" data-placement="top" title="Quick view"><i class="fa fa-search"></i>
                                                 </span></a>
                                                 <p> 
@@ -254,7 +254,8 @@
                                     </div>
                                     <!-- product single list item start -->
                                 </div> <!-- product single column end -->
-
+                                {% endfor %}<!-- product single list item start -->
+                                 <!-- product single column end -->
                             </div>
                         </div>
                                     
