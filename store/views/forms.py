@@ -21,7 +21,7 @@ class ViewCartForm(forms.ModelForm):
 		fields=('quantity','id',)
 	def __init__(self, *args, **kwargs,):
 		super().__init__(*args, **kwargs)
-		self.fields['quantity']=forms.FloatField(max_value=1000, min_value=1)
+		self.fields['quantity']=forms.IntegerField(max_value=1000, min_value=1)
 
 '''
 def __init__(self, min_value=None, *args, **kwargs):
