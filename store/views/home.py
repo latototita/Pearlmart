@@ -71,7 +71,7 @@ def store(request):
         products = Product.get_all_products_by_brandid(brandID)
         k=brandID
     else:
-        products = Product.get_all_products()
+        products = Product.objects.all().order_by('?')
         k=None
     #random.shuffle(list(products))
     #products=random.sample(products, len(products))
