@@ -5,7 +5,7 @@
 {% load cart %}
 {% load custom_filter %}
 
-       <!-- breadcrumb area start -->
+        <!-- breadcrumb area start -->
         <div class="breadcrumb-area">
             <div class="container">
                 <div class="row">
@@ -31,7 +31,7 @@
                     <!-- product main wrap start -->
                     <div class="col-12">
                         <div class="shop-banner img-full">
-                            <img src="assets/img/banner/banner_static1.jpg" alt="">
+                            <img src="{% static 'assets/img/banner/banner_static1.jpg' %}" alt="">
                         </div>
                         <!-- product view wrapper area start -->
                         <div class="shop-product-wrapper pt-34">
@@ -65,19 +65,18 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
                                 </div>
                             </div>
                             <!-- shop product top wrap start -->
-
                             <!-- product item start -->
-                            <div class="shop-product-wrap list row">
-                                {% if page_obj %}
+                            <div class="shop-product-wrap grid row">
+                            {% if page_obj %}
 
                                     <!-- product single grid item start -->
                                     {% for product in page_obj.object_list %}
 
                             <!-- product item start -->
+                            
                                 <div class="col-lg-3 col-md-4 col-sm-6">
                                     <!-- product single grid item start -->
                                     <div class="product-item fix mb-30">
@@ -155,13 +154,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- product single grid item end -->
-                                    <!-- product single grid item end -->
+                                </div>
+                          
+                              <!-- product single grid item end -->
                                     {% endfor %}
                                     {% for product in page_obj.object_list %}
 
                                     <!-- product single list item start -->
-                                    <!-- product single list item start -->
+                                <div class="container">
                                     <div class="product-list-item mb-30">
                                         <div class="product-thumb">
                                             <a href="{% url 'details' product.id %}">
@@ -252,10 +252,11 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                     {% endfor %}
                                     <!-- product single list item start -->
-                                </div> <!-- product single column end -->
-
-                            </div>
+                                 <!-- product single column end -->
+                          </div>
                         </div>
                                     
                             {% else %}
