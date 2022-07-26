@@ -29,7 +29,7 @@ class Order(models.Model):
     @staticmethod
     def get_by_id(id):
         if category_id:
-            return Order.objects.filter(id=id)
+            return Order.objects.filter(id=id).order_by('?')
         else:
             return None
 

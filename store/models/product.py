@@ -56,7 +56,7 @@ class Product(models.Model):
         if category_id:
             return Product.objects.filter(category = category_id).order_by('?')
         else:
-            return Product.get_all_products();
+            return Product.objects.all().order_by('?');
 
 
     @staticmethod
@@ -64,7 +64,7 @@ class Product(models.Model):
         if brand_id:
             return Product.objects.filter(brand = brand_id).order_by('?')
         else:
-            return Product.get_all_products();
+            return Product.objects.all().order_by('?');
 
 
     @staticmethod
