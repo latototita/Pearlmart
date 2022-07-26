@@ -122,6 +122,7 @@ def remove_to_store(request):
     request.session['cart'] = cart
     print('cart' , request.session['cart'])
     return redirect('store')
+    
 def remove_to_checkout(request):
     product = request.POST.get('product')
     cart = request.session.get('cart')

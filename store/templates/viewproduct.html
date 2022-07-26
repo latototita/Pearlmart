@@ -74,7 +74,7 @@
                                         </div>
                                         <p>{{ product.description }}</p>
                                         <div class="quantity-cart-box d-flex align-items-center">
-                        <form action="/#" method="POST" class="btn-block">
+                        <!---<form action="/#" method="POST" class="btn-block">
 							{% csrf_token %}
 							{{ form|crispy}}
 							
@@ -83,8 +83,17 @@
 							<input type="submit"  class=" btn btn-primary"
 								value="Add To Cart">
 							
-						</form>
-						
+						</form> --->
+						<form action="" method="POST" class="btn-block">
+                            {% csrf_token %}
+                            {{ form|crispy}}
+                            
+                            <input hidden type="text" name='product' value='{{product.id}}'>
+                            
+                            <input type="submit"  class=" btn btn-primary"
+                                value="Add To Cart">
+                            
+                        </form>
                                               
                                             
                                         </div>
