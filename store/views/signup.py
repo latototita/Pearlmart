@@ -10,12 +10,12 @@ from store.models.brand import Brand
 from store.models.category import Category
 
 def signup(response):
-    cart = request.session.get('cart')
+    cart = response.session.get('cart')
     if not cart:
-        request.session['cart'] = {}
+        response.session['cart'] = {}
         productes={}
     else:
-        productes = Product.get_products_by_id(list(request.session.get('cart').keys()))
+        productes = Product.get_products_by_id(list(response.session.get('cart').keys()))
     brands = Brand.get_all_brand()
     categories = Category.get_all_categories()
     fashion_cat=Category.objects.filter(is_tech=True)
