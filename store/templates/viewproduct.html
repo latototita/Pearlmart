@@ -74,7 +74,7 @@
                                         </div>
                                         <p>{{ product.description }}</p>
                                         <div class="quantity-cart-box d-flex align-items-center">
-                        <form action="" method="POST" class="btn-block">
+                        <form action="/" method="POST" class="btn-block">
 							{% csrf_token %}
 							{{ form|crispy}}
 							
