@@ -76,7 +76,7 @@ def store(request):
     #random.shuffle(list(products))
     #products=random.sample(products, len(products))
     
-    p=Paginator(products,30)
+    p=Paginator(products,20)
     page_number=request.GET.get('page')
       
     fashion_cat=Category.objects.filter(is_tech=True)

@@ -238,7 +238,7 @@
                                                 <span class="regular-price">{{ product.price }}/=</span>
                                                 
                                             </div>
-                                            <p>{{ product.description|truncatewords:40 }}.</p>
+                                            <p>{{ product.description|truncatewords:25 }}.</p>
                                             <a href="{% url 'details' product.id %}">read more <i class="fa fa-long-arrow-right"></i></a>
                                             <div class="product-list-action-link">       
                                                 <a href="{% url 'details' product.id %}" > <span data-toggle="tooltip" data-placement="top" title="Quick view"><i class="fa fa-search"></i>
