@@ -354,7 +354,7 @@
                                 <div class="product-item fix">
                                     <div class="product-thumb">
                                         <a href="{% url 'details' product.id %}">
-                                            <img src="{{ product.image.url }}" id="img1" style="height: 210px;"  alt="">
+                                            <img src="{{ product.image.url }}" id="img1" style="max-height: 250px;"  alt="">
                                         </a>
                                         {% if product.discount == True %}
                                             <div class="product-label-discount" style="border-radius: 50%; color: purple;">
