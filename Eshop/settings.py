@@ -34,6 +34,7 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = True
 
+
 ALLOWED_HOSTS = ['159.223.12.182','.pearlmart.ml','www.pearlamrt.ml','pearlmart.ml']
 
 # Application definition
