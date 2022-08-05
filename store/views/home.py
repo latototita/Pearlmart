@@ -51,9 +51,9 @@ def store(request):
     else:
         productes = Product.get_products_by_id(list(request.session.get('cart').keys()))
     products = {}
-    categories = Category.get_all_categories()
+    categories = Category.objects.all()
     categoryID = request.GET.get('category')
-    brands = Brand.get_all_brand()
+    brands = Brand.objects.all()
     brandID = request.GET.get('brand')
     results=request.GET.get("kw")
     k=request.GET.get('caution')

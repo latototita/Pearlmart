@@ -69,7 +69,7 @@ class Product(models.Model):
 
     @staticmethod
     def get_all_product():
-        return Product.objects.filter(order__isnull=False).distinct().order_by('?')
+        return Product.objects.all().order_by('?')
 
     def __str__(self):
     
