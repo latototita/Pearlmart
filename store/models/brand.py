@@ -13,7 +13,7 @@ class Brand(models.Model):
     is_tagged=models.BooleanField(default=False)
     @staticmethod
     def get_all_brand():
-        return Brand.objects.filter(product__isnull=False).distinct()
+        return Brand.objects.filter(product__isnull=False)
 
 
     def __str__(self):
