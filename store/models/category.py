@@ -12,7 +12,7 @@ class Category(models.Model):
     is_tagged=models.BooleanField(default=False)
     @staticmethod
     def get_all_categories():
-        return Category.objects.filter(product__isnull=False)
+        return Category.objects.all()
 
 
     def __str__(self):
