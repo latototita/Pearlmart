@@ -38,7 +38,7 @@ SECURE_HSTS_SECONDS = 31536000 # 1 year
 SECURE_HSTS_PRELOAD = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
-ALLOWED_HOSTS = ['159.223.12.182','.pearlmart.ml','www.pearlamrt.ml','pearlmart.ml']
+ALLOWED_HOSTS = ['.pearlmart.ml','www.pearlamrt.ml','pearlmart.ml']
 
 # Application definition
 
