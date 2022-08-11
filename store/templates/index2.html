@@ -74,7 +74,7 @@
                             {% if page_obj %}
 
                                     <!-- product single grid item start -->
-                                    {% for product in page_obj.object_list %}
+                                    {% for product in page_obj %}
 
                             <!-- product item start -->
                             
@@ -159,7 +159,7 @@
                           
                               <!-- product single grid item end -->
                                     {% endfor %}
-                                    {% for product in page_obj.object_list %}
+                                    {% for product in page_obj %}
 
                                     <!-- product single list item start -->
                                 <div class="container">
@@ -214,6 +214,7 @@
 ">
                                                 <span>Hot Sale</span>
                                             </div>
+
                                             
                                             {% endif %}    
                                         {% endif %}
@@ -271,7 +272,7 @@
                        
                         <!-- product view wrapper area end -->
                        
-                        <!-- start pagination area -->
+                        <!--  
                         <div class="paginatoin-area text-center pt-28">
                             <div class="row">
                                 <div class="col-12">
@@ -297,7 +298,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        -->
                     </div>
 
                     <!-- product main wrap end -->
