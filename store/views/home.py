@@ -126,7 +126,7 @@ def search(request):
             page_obj = paginator.get_page(page_number)'''
         except:
             page_obj={}
-        context={'page_obj':page_obj,'vendor_present_here':vendor_present_here,'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'store':'store','productes':productes,'searched':searched,'page_number':page_number,'brands':brands,'categories':categories}
+        context={'page_obj':page_obj,'vendor_present_here':vendor_present_here,'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'store':'store','productes':productes,'searched':searched,'brands':brands,'categories':categories}
 
         return render(request,'index2.html', context)
 
