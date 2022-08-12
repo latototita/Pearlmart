@@ -119,9 +119,9 @@ def search(request):
         searched=request.POST['searched']
         try:
             multiple_q=Q(Q(name__icontains=searched) | Q(description__icontains=searched))
-            page_obj=Product.objects.filter(multiple_q).order_by('-id')
-            random.shuffle(list(page_obj))
-            '''paginator=Paginator(products,20)
+            page_obj=Product.objects.filter(multiple_q).order_by('?')
+            '''random.shuffle(list(page_obj))
+            paginator=Paginator(products,20)
             page_number=request.GET.get('page')
             page_obj = paginator.get_page(page_number)'''
         except:
