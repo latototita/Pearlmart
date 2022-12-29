@@ -2,9 +2,11 @@ from django.contrib import admin
 from django.urls import path
 from .views.home import Index , store,search,homepage
 from .views.signup import signup
+from .views.auction import *
+from .views.coinbasecommerce import *
 from .views.login import Login , Logout
 from .views.viewproduct import *
-from .views.checkout import checkout
+from .views.checkout import checkout,payment_response
 from .views.orders import orders,delete
 from .middlewares.auth import  auth_middleware
 from django.contrib.auth import views as auth_views
@@ -12,8 +14,17 @@ from store.views.views import *
 from store.graph import *
 
 
-
 urlpatterns = [
+    #Flutterwave
+    path('callback', payment_response, name='payment_response'),
+    #path('<str:ref>/', views.verifypayment, name='verifypayment'),
+    #Auction Room
+    path('auctionroom', auctionroom, name='auctionroom'),
+    #Coinbase commerce
+    path('home_view', home_view, name='home_view'),
+    path('success/', success_view, name='payments-success'),
+    path('cancel/', cancel_view, name='payments-cancel'),
+    path('webhook/', coinbase_webhook),
     #Graph Urls
     path('chartJSON_Asset', line_chart_json_asset, name='line_chart_json_asset'),
     path('chartJSON_Debit', line_chart_json_debit, name='line_chart_json_debit'),

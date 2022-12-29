@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% include 'messages.html' %}
 {% load cart %}
 {% load custom_filter %}
 {% block body %}
@@ -30,7 +31,7 @@
                     <div class="col-lg-12">
                         <div class="slider-wrapper-area2 mt-30">
                             <div class="hero-slider-active hero__2 slick-dot-style hero-dot">
-                                <div class="single-slider d-flex align-items-center" style="background-image: url('/static/assets/img/Yeebo_Market_01.jpg');">
+                                <div class="single-slider d-flex align-items-center" style="background-image: url('/static/assets/img/success1.png');">
                                     <div class="container">
                                         <div class="slider-main-content">
                                             <div class="slider-text text-center">
@@ -39,8 +40,8 @@
                                                 <p>Dearest {{ request.user.username }}.
                                                 <br>Your Order was made successfully.
                                                 <br>You will receive an email soon confirming it and it be contacted by Our delivery team.<br>Have a good day<br> Continue shopping with Us.<br>Pearl-Mart </p>
-                                                <a class="home-btn" href="/store">Back to Store</a><br>
-                                                <a class="home-btn" href="/homepage">Home Page</a>
+                                                <a class="home-btn" href="/store" style="background-color: #d8373e;">Back to Store</a><br>
+                                                <a class="home-btn" href="/homepage" style="background-color: #d8373e;">Home Page</a>
                                             </div>
                                         </div>
                                     </div>

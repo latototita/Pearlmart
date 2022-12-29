@@ -1,5 +1,6 @@
 from django.db import models
 from .product import Product
+from .models import Method
 from django.contrib.auth.models import User
 import datetime
 
@@ -19,6 +20,9 @@ class Order(models.Model):
     status = models.BooleanField(default=False)
     ordering_code=models.CharField(max_length=60,default='')
     shop_name = models.CharField(max_length=60,default='Pearlmart')
+    payment_method = models.ForeignKey(Method,
+                                 on_delete=models.CASCADE)
+    payment_verified = models.BooleanField(default=False)
     is_accounted = models.BooleanField(default=False)
 
     def placeOrder(self):

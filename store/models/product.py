@@ -15,7 +15,7 @@ class Product(models.Model):
     stock = models.IntegerField(default=0)
     category =models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, default=1)
-    description = models.TextField(max_length=1000)
+    description = models.TextField(max_length=1000,blank=True,null=True)
     image =models.ImageField(upload_to='Uploads/products/', blank=False)
     shop=models.CharField(max_length=100,default=1)
     shop_name =models.CharField(max_length=100,default='Pearlmart',blank=True)
@@ -30,6 +30,7 @@ class Product(models.Model):
     is_new_product=models.BooleanField(default=False)
     is_hot_sale=models.BooleanField(default=False)
     is_hot_deal=models.BooleanField(default=False)
+    onauction=models.BooleanField(default=False)
 
 
     @staticmethod

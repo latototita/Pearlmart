@@ -95,7 +95,7 @@ def store(request):
         
     context={'page_obj':page_obj,'vendor_present_here':vendor_present_here,'tagged_cat':tagged_cat,'fashion_cat':fashion_cat,'tech_cat':tech_cat,'cat_home':cat_home,'party_cat':party_cat,'store':'store','productes':productes,'k':k,'brands':brands,'categories':categories,'brands':brands}
     return render(request, 'index.html', context)
-def search(request):
+def search(request): 
     cart = request.session.get('cart')
     if not cart:
         request.session['cart'] = {}

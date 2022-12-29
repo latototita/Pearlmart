@@ -18,7 +18,7 @@ from django.views.generic import (
 from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.shortcuts import render
-
+from Eshop import settings
 from django.template import RequestContext
 from django.contrib.auth.decorators import user_passes_test
 import random
@@ -72,13 +72,13 @@ def  Contact(request):
                     message,
                     settings.EMAIL_HOST_USER,
                     ['pearlmartbusinesses@gmail.com'],
-                    fail_silently = False,
+                    fail_silently = True,
                     )
             send_mail(subject,
                     f'Your message has been received successfully, we will get back to you has soon has we can!!!. Have a lovely day',
                     settings.EMAIL_HOST_USER,
                     [f'{request.user.email}'],
-                    fail_silently = False,
+                    fail_silently = True,
                     )
             messages.success(request, f'We have received your message, You will receive and email confirming it soon, Have a lovely day')
             return redirect('store')
@@ -88,7 +88,7 @@ def  Contact(request):
                     message,
                     settings.EMAIL_HOST_USER,
                     ['pearlmartbusinesses@gmail.com'],
-                    fail_silently = False,
+                    fail_silently = True,
                     )
             messages.success(request, f'We have received your message successfully.\n Please signup here pearlmart.ml/signup or login here pearlmart.ml/login so that we can always get back to you via your email.\n , You will recive and email confirming it soon, Have a lovely day')
             return redirect('store')
@@ -136,13 +136,13 @@ def  Contact_Us(request):
                     message,
                     settings.EMAIL_HOST_USER,
                     ['pearlmartbusinesses@gmail.com'],
-                    fail_silently = False,
+                    fail_silently = True,
                     )
             send_mail(subject,
                     f'Your message has been received successfully, we will get back to you has soon has we can!!!. Have a lovely day',
                     settings.EMAIL_HOST_USER,
                     [f'{request.user.email}'],
-                    fail_silently = False,
+                    fail_silently = True,
                     )
             messages.success(request, f'We have received your message, You will recive and email confirming it soon, Have a lovely day')
             return redirect('Dashboard')
@@ -152,7 +152,7 @@ def  Contact_Us(request):
                     message,
                     settings.EMAIL_HOST_USER,
                     ['pearlmartbusinesses@gmail.com'],
-                    fail_silently = False,
+                    fail_silently = True,
                     )
             messages.success(request, f'We have recived your message, You will recive and email confirming it soon, Have a lovely day')
             return redirect('Dashboard')
@@ -232,13 +232,13 @@ def become_vendor(request):
             f'Your Have a new vendor, with the name of {request.user.username}, phone number : {phone}, Alternative Phone Number : {alternative_Phone}, Shop name : {shop_name}, Located at : {location}',
             settings.EMAIL_HOST_USER,
             ['pearlmartbusinesses@gmail.com'],
-            fail_silently = False,
+            fail_silently = True,
             )
         send_mail('Joined As a Pearl-Mart Vendor',
             f'You have successfully become a Pearl-Mart Vendor, click the following link to manage your selling account pearlmart.ml/Dashboard',
             settings.EMAIL_HOST_USER,
             [f'{request.user.email}'],
-            fail_silently = False,
+            fail_silently = True,
             )
         messages.success(request, f'Succefully Become a Pearl-Mart Vendor, Kindly Explore and add Products, Thank You.')
         return redirect('Dashboard')
@@ -689,7 +689,7 @@ def bad_request(request, exception):
             f'400,bad_request error page. Attend to this immediately,here {request.user.email}',
             settings.EMAIL_HOST_USER,
             ['pearlmartbusinesses@gmail.com'],
-            fail_silently = False,
+            fail_silently = True,
             )
 
     return response
@@ -703,7 +703,7 @@ def server_error(request):
             f'500,server_error error page. Attend to this immediately, here {request.user.email}',
             settings.EMAIL_HOST_USER,
             ['pearlmartbusinesses@gmail.com'],
-            fail_silently = False,
+            fail_silently = True,
             )
 	return response
 
@@ -719,7 +719,7 @@ def page_not_found(request, exception):
             f'404,page_not_found error page. Attend to this immediately, here {request.user.email}',
             settings.EMAIL_HOST_USER,
             ['pearlmartbusinesses@gmail.com'],
-            fail_silently = False,
+            fail_silently = True,
             )
 
     return response
@@ -736,7 +736,7 @@ def permission_denied(request, exception):
             f'403,permission_denied error page. Attend to this immediately, here {request.user.email}',
             settings.EMAIL_HOST_USER,
             ['pearlmartbusinesses@gmail.com'],
-            fail_silently = False,
+            fail_silently = True,
             )
     return response
 
@@ -940,5 +940,6 @@ def daily_accounting(request):
     else:
         print('Not Done')
         return HttpResponse('Empty No Order today')
+
 
 

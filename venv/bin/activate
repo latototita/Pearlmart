@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/omenyo/Downloads/laban-ANNOTHER-TRIAL-main/venv"
+VIRTUAL_ENV="/home/omenyo/Pearlmart/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

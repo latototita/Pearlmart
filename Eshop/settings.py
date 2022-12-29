@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-
+import dotenv
+dotenv.load_dotenv()
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -27,8 +28,8 @@ BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
 SECRET_KEY = '^_g%33qd(g8bjc+*40&uh(ptgkb$&-*+0!i3$lu7xj1u166cbb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
+DEBUG = True
+'''
 SESSION_COOKIE_DOMAIN = '.pearlmart.ml'
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
@@ -37,8 +38,8 @@ SECURE_SSL_REDIRECT = True
 SECURE_HSTS_SECONDS = 31536000 # 1 year
 SECURE_HSTS_PRELOAD = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-
-ALLOWED_HOSTS = ['.pearlmart.ml','www.pearlamrt.ml','pearlmart.ml']
+'''
+ALLOWED_HOSTS = ['*']#.pearlmart.ml','www.pearlamrt.ml','pearlmart.ml','127.0.0.1']
 
 # Application definition
 
@@ -94,7 +95,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Eshop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-'''
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -112,7 +113,7 @@ DATABASES = {
         'PORT': '',
     }
 }
-
+'''
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -170,8 +171,10 @@ EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST='smtp.mail.yahoo.com'
 EMAIL_PORT=587
 EMAIL_USE_TLS=True
-EMAIL_HOST_USER='pearlmartbusinesses@yahoo.com'
-EMAIL_HOST_PASSWORD='jlxmlemwkciomuea'
 
+EMAIL_HOST_USER=os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD=os.environ.get('EMAIL_HOST_PASSWORD')
+COINBASE_COMMERCE_API_KEY =os.environ.get('COINBASE_COMMERCE_API_KEY')
+COINBASE_COMMERCE_WEBHOOK_SHARED_SECRET = os.environ.get('COINBASE_COMMERCE_WEBHOOK_SHARED_SECRET')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'

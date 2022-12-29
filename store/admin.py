@@ -140,8 +140,8 @@ class AdminAsset(admin.ModelAdmin):
     
 
 class AdminOrder_record(admin.ModelAdmin):
-    list_display = ['customer','product','price','quantity','address','phone','date_created','status','ordering_code']
-    ordering=('-date_created',)
+    list_display = ['customer','product','price','quantity','address','phone','dates','status','ordering_code']
+    ordering=('-dates',)
     change_list_template = "../templates/change_list.html"
     def changelist_view(self, request, extra_context=None):
         extra_context = extra_context or {}
@@ -187,6 +187,10 @@ class AdminDebit(admin.ModelAdmin):
     
 
 class AdminBrand(admin.ModelAdmin):
+    list_display = ['name']
+
+    
+class AdminAucton(admin.ModelAdmin):
     list_display = ['name']
 
 class AdminCategory(admin.ModelAdmin):
@@ -237,6 +241,7 @@ class AdminPayment(admin.ModelAdmin):
 
 
 # Register your models here.
+admin.site.register(Method)
 admin.site.register(Comment, CommentAdmin)
 admin.site.register(Product, AdminProduct)
 admin.site.register(Category , AdminCategory)
@@ -251,7 +256,7 @@ admin.site.register(Payment,AdminPayment)
 admin.site.register(Vendor, VendorAdmin)
 
 
-
+admin.site.register(Auction, AdminAucton)
 admin.site.register(Expense, AdminExpenses)
 admin.site.register(Order_record , AdminOrder_record)
 admin.site.register(Net_Profit, AdminNet_Profit)

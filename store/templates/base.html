@@ -3764,7 +3764,7 @@ only screen and (min-width: 768px) and (max-width: 991px) {
     height: 80%;
 
 }
-
+ 
 .product-item .product-thumb .img-sec {
     top: 0;
     left: 0;
@@ -8200,7 +8200,10 @@ only screen and (max-width: 767px) {
 <body>
 
 
-
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
     <div class="wrapper">
 
         <!-- header area start -->
@@ -8479,6 +8482,7 @@ only screen and (max-width: 767px) {
                                                 
                                                 </ul>
                                             </li>
+                                            <li><a href="/auctionroom"><i class="fa fa-auction"></i>Auction</a></li>
                                           
                                             <li class="static"><a href="/store">STORES<i class="fa fa-angle-down"></i></a>
                                                  <ul class="megamenu dropdown">
@@ -8661,9 +8665,8 @@ only screen and (max-width: 767px) {
                         </div>
                         <div class="social-icons">
                             <a  data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook"></i></a>
-                            <a  data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter"></i></a>
+                            <a  data-toggle="tooltip" data-placement="top" title="What'sApp"><i class="fa fa-whatsapp"></i></a>
                             <a href="https://instagram.com/Pearl-Mart" data-toggle="tooltip" data-placement="top" title="Instagram"><i class="fa fa-instagram"></i></a>
-                            <a  data-toggle="tooltip" data-placement="top" title="Google-plus"><i class="fa fa-google-plus"></i></a>
                             <a href="https://youtube.com/channel/UCxV6swj_J-sYnoCg8z7Qf5Q" data-toggle="tooltip" data-placement="top" title="Youtube"><i class="fa fa-youtube"></i></a>
                         </div>
                     </div>
@@ -9452,6 +9455,85 @@ only screen and (max-width: 767px) {
 
 }(jQuery));
     </script>
+    <script>
+    'use strict';
+
+$(window).on('load', function() {
+	/*------------------
+		Preloder
+	--------------------*/
+	$(".loader").fadeOut();
+	$("#preloder").delay(400).fadeOut("slow");
+
+});
+</script>
+<style>
+    /* Preloder */
+
+#preloder {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 999999;
+	background: #ffffff;
+}
+
+.loader {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -13px;
+	margin-left: -13px;
+	border-radius: 60px;
+	animation: loader 0.8s linear infinite;
+	-webkit-animation: loader 0.8s linear infinite;
+}
+
+@keyframes loader {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+		border: 4px solid #f44336;
+		border-left-color: transparent;
+	}
+	50% {
+		-webkit-transform: rotate(180deg);
+		transform: rotate(180deg);
+		border: 4px solid #673ab7;
+		border-left-color: transparent;
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+		border: 4px solid #f44336;
+		border-left-color: transparent;
+	}
+}
+
+@-webkit-keyframes loader {
+	0% {
+		-webkit-transform: rotate(0deg);
+		border: 4px solid #f44336;
+		border-left-color: transparent;
+	}
+	50% {
+		-webkit-transform: rotate(180deg);
+		border: 4px solid #673ab7;
+		border-left-color: transparent;
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		border: 4px solid #f44336;
+		border-left-color: transparent;
+	}
+}
+
+</style>
+    
 </body>
 
 

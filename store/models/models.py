@@ -7,6 +7,15 @@ from .product import Product
 from django.contrib.auth.models import User
 
 
+class Method(models.Model):
+    name = models.CharField(max_length=45)
+    def __str__(self):
+        return self.name
+class Auction(models.Model):
+    name = models.ForeignKey(
+        Product, on_delete=models.CASCADE)
+    start_price= models.IntegerField(default=0)
+    bid_price= models.IntegerField(default=0)
 class Vendor(models.Model):
     photo=models.ImageField(upload_to='media/profile', default='')
     phone=models.CharField(default='1',blank=True,max_length=13)
@@ -158,11 +167,14 @@ class Order_record(models.Model):
     selling_price =models.IntegerField(default=0)
     address = models.CharField(max_length=50, default='', blank=True)
     phone = models.CharField(max_length=50, default='', blank=True)
-    date_created = models.DateField(default=datetime.datetime.today)
+    dates = models.DateField(default=datetime.datetime.today)
     email  = models.EmailField(max_length=70,blank=True,unique=False)
     status = models.BooleanField(default=False)
     ordering_code=models.CharField(max_length=60,default='')
     shop_name = models.CharField(max_length=60,default='')
+    payment_method = models.ForeignKey(Method,
+                                 on_delete=models.CASCADE)
+    payment_verified = models.BooleanField(default=False)
     def __str__(self):
         return self.customer
 

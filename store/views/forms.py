@@ -113,3 +113,13 @@ class AddCategoryForm(ModelForm):
 	name= forms.CharField(label='Customize Your Own Category for Products',required=True)
 
 
+class AuctionForm(forms.ModelForm):
+	class Meta:
+		model=Auction
+		fields=('bid_price',)
+	bid_price= forms.IntegerField(label='Place your Bid',required=True)
+
+class PaymentForm(forms.ModelForm):
+	class Meta:
+		model=Order
+		fields=('payment_method',)

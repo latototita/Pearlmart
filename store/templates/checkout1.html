@@ -29,7 +29,7 @@
                     <div class="col-lg-6">
                         <div class="checkout-billing-details-wrap">
                             <h2>Delivery Informaation</h2>
-                            <div class="billing-form-wrap">
+                            <div class="billing-form-wrap"> 
                                 <form action="/check-out" method="POST">
                                 			{% csrf_token %}
                                 			<div class="single-input-item" class="bold" class="bold">
@@ -47,18 +47,16 @@
                                                 <label for="email_2" class="bold">Email Address(Optional)</label>
                                                 <input type="email" name="email" id="email_2" placeholder="Email Address"  />
                                             </div>
-
+                                            <div class="single-input-item">
+                                            {{ form|crispy }}
+                                        </div>
                                             <div class="container">
                                             <div class="payment-method-name ">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="cashon" name="paymentmethod" value="cash" class="custom-control-input" checked  />
-                                                <label class="custom-control-label" for="cashon">Cash On Delivery</label>
+                                                <div class="payment-method-details" data-method="cash">
+                                                </div>
                                             </div>
-                                       
-	                                        <div class="payment-method-details" data-method="cash">
-	                                            <p>Pay with cash upon delivery.</p>
-	                                        </div>
-	                                         <button type="submit" class="check-btn sqr-btn">Place Order</button>
+	                                         <button type="submit" name="cash" class="check-btn sqr-btn">Next</button>
+                                             
 	                                     </div>
 	                                 </div>
 	                                     </form>
