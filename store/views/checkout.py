@@ -432,6 +432,7 @@ import math,requests
 
 def process_payment(name,email,amount,phone,ordering_code):
      auth_token= 'FLWSECK_TEST-9d95ef51f2cff0ee18cb3377923e8095-X'
+     request.session['cart'] = {}
      hed = {'Authorization': 'Bearer ' + auth_token}
      data = {
                 "tx_ref":ordering_code,
@@ -463,6 +464,7 @@ def process_payment(name,email,amount,phone,ordering_code):
 
 def process_payment_visa(name,email,amount,phone,ordering_code):
      auth_token= 'FLWSECK_TEST-9d95ef51f2cff0ee18cb3377923e8095-X'
+     request.session['cart'] = {}
      hed = {'Authorization': 'Bearer ' + auth_token}
      data = {
                 "tx_ref":ordering_code,

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views.home import Index , store,search,homepage
+from .views.home import Index , store,search,homepage,clearcart
 from .views.signup import signup
 from .views.auction import *
 from .views.coinbasecommerce import *
@@ -36,6 +36,8 @@ urlpatterns = [
     #Accounting
     path('daily_accounting/',daily_accounting,name='daily_accounting'),
     #store
+    
+    path('clearcart',clearcart,name='clearcart'),
     path('remove_to_store',remove_to_store,name='remove_to_store'),
     path('remove_to_checkout',remove_to_checkout,name='remove_to_checkout'),
     path('remove_to_homepage',remove_to_homepage,name='remove_to_homepage'),

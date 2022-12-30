@@ -6,6 +6,7 @@ from django.utils import timezone
 from django.urls import reverse
 from django.conf import settings
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 class Product(models.Model):
     name = models.CharField(max_length=50)
@@ -16,7 +17,8 @@ class Product(models.Model):
     category =models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, default=1)
     description = models.TextField(max_length=1000,blank=True,null=True)
-    image =models.ImageField(upload_to='Uploads/products/', blank=False)
+    #image =models.ImageField(upload_to='Uploads/products/', blank=False)
+    image=CloudinaryField('image')
     shop=models.CharField(max_length=100,default=1)
     shop_name =models.CharField(max_length=100,default='Pearlmart',blank=True)
     dates= models.DateTimeField(default=timezone.now)

@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import dotenv
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 dotenv.load_dotenv()
 
 
@@ -25,7 +28,8 @@ BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '^_g%33qd(g8bjc+*40&uh(ptgkb$&-*+0!i3$lu7xj1u166cbb'
+SECRET_KEY=os.environ.get('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -56,6 +60,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary',
     'store'
 ]
 
@@ -176,5 +181,11 @@ EMAIL_HOST_USER=os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD=os.environ.get('EMAIL_HOST_PASSWORD')
 COINBASE_COMMERCE_API_KEY =os.environ.get('COINBASE_COMMERCE_API_KEY')
 COINBASE_COMMERCE_WEBHOOK_SHARED_SECRET = os.environ.get('COINBASE_COMMERCE_WEBHOOK_SHARED_SECRET')
+
+cloudinary.config( 
+  cloud_name =os.environ.get('cloud_name'),
+  api_key = os.environ.get('api_key'),
+  api_secret = os.environ.get('api_secret'),
+)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'

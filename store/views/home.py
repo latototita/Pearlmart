@@ -42,7 +42,10 @@ class Index(View):
     def get(self , request):
         # print()
         return HttpResponseRedirect(f'/store{request.get_full_path()[1:]}')
-
+def clearcart (request):
+    cart = request.session.get('cart')
+    request.session['cart'] = {}
+    return redirect('store')
 def store(request):
     cart = request.session.get('cart')
     if not cart:
