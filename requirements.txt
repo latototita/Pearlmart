@@ -4,6 +4,7 @@ billiard
 click
 click-didyoumean
 click-plugins
+python-dotenv
 click-repl
 datetime-truncate
 Django==3.2
