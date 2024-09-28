@@ -5,6 +5,7 @@ click
 click-didyoumean
 click-plugins
 python-dotenv
+cloudinary
 click-repl
 datetime-truncate
 Django==3.2
