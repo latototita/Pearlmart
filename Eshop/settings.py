@@ -183,12 +183,17 @@ EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST='smtp.mail.yahoo.com'
 EMAIL_PORT=587
 EMAIL_USE_TLS=True
+EMAIL_HOST_USER='pearlmartbusinesses@yahoo.com'
+EMAIL_HOST_PASSWORD='jlxmlemwkciomuea'
 
+COINBASE_COMMERCE_API_KEY='jlxmlemwkciomuea'
+COINBASE_COMMERCE_WEBHOOK_SHARED_SECRET='jlxmlemwkciomuea'
+'''
 EMAIL_HOST_USER=os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD=os.environ.get('EMAIL_HOST_PASSWORD')
 COINBASE_COMMERCE_API_KEY =os.environ.get('COINBASE_COMMERCE_API_KEY')
 COINBASE_COMMERCE_WEBHOOK_SHARED_SECRET = os.environ.get('COINBASE_COMMERCE_WEBHOOK_SHARED_SECRET')
-
+'''
 cloudinary.config( 
   cloud_name =os.environ.get('cloud_name'),
   api_key = os.environ.get('api_key'),
