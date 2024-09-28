@@ -195,9 +195,9 @@ COINBASE_COMMERCE_API_KEY =os.environ.get('COINBASE_COMMERCE_API_KEY')
 COINBASE_COMMERCE_WEBHOOK_SHARED_SECRET = os.environ.get('COINBASE_COMMERCE_WEBHOOK_SHARED_SECRET')
 '''
 cloudinary.config( 
-  cloud_name =os.environ.get('cloud_name'),
-  api_key = os.environ.get('api_key'),
-  api_secret = os.environ.get('api_secret'),
+  cloud_name ='pearlmart',
+  api_key = '285244465262975',
+  api_secret ='zL3e3F0hXOo9SLmXX7c8joUBviE',
 )
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
