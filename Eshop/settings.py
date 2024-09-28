@@ -100,11 +100,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Eshop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-import dj_database_url
+
+# settings.py
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),  # Use os.path.join for string paths
     }
 }
 '''
@@ -173,8 +174,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-import django_heroku
-django_heroku.settings(locals())
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 #STMP configuration
