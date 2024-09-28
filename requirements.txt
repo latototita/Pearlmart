@@ -9,6 +9,7 @@ python-dotenv
 cloudinary
 click-repl
 datetime-truncate
+gunicorn
 Django==3.2
 django-admin-interface
 django-adminstats
