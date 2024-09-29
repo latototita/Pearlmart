@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'admin_interface',
     'colorfield',
     'chartjs',
+    'bootstrap4',
     'django.contrib.admin',
     'crispy_forms',
     'django_social_share',
