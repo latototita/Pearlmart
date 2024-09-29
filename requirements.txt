@@ -1,5 +1,6 @@
 amqp
 asgiref
+psycopg2-binary
 coinbase-commerce
 billiard
 click
