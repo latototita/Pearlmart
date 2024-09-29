@@ -5,6 +5,7 @@ coinbase-commerce
 billiard
 click
 click-didyoumean
+django-bootstrap4
 click-plugins
 python-dotenv
 cloudinary
