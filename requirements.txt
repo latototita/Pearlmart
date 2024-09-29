@@ -7,6 +7,7 @@ click
 click-didyoumean
 django-bootstrap4
 django-crispy-forms
+crispy-bootstrap4
 click-plugins
 python-dotenv
 cloudinary
