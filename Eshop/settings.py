@@ -51,9 +51,9 @@ INSTALLED_APPS = [
     'admin_interface',
     'colorfield',
     'chartjs',
-    'bootstrap4',
     'django.contrib.admin',
     'crispy_forms',
+    'crispy_bootstrap4',  # Required for Bootstrap 4
     'django_social_share',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -81,11 +81,28 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Eshop.urls'
-
+'''
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+'''
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Add custom templates directory
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -189,7 +206,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-
+# Define the template pack to use
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 #STMP configuration
 
