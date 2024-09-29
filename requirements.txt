@@ -6,6 +6,7 @@ billiard
 click
 click-didyoumean
 django-bootstrap4
+django-crispy-forms
 click-plugins
 python-dotenv
 cloudinary
